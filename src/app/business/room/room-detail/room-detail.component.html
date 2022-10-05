@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="zoom">
+    <div class="display"></div>
+    <div class="row-chair left-way right-way">
+      <ng-container
+        *ngFor="let item of seats; let i = index"
+      >
+        <button
+          [class.seat]="item.type=='normal'"
+          [class.vip-seat]="item.type=='vip'"
+          [class.sweet-seat]="item.type=='sweet'"
+          [class.available]="item.status=='AVAILABLE'"
+          [class.solded]="item.status=='SOLDED'"
+          [class.your_select]="item.status=='YOUR_SELECT'"
+          [class.holded]="item.status=='HOLDED'"
+          (click)="change(item)"
+        >A1</button>
+      </ng-container>
+    </div>
+    <div class="row left-way right-way">
+      <ng-container
+        *ngFor="let item of seats; let i = index"
+      >
+        <button
+          [class.seat]="item.type=='normal'"
+          [class.vip-seat]="item.type=='vip'"
+          [class.sweet-seat]="item.type=='sweet'"
+          [class.available]="item.status=='AVAILABLE'"
+          [class.solded]="item.status=='SOLDED'"
+          [class.your-select]="item.status=='YOUR_SELECT'"
+          [class.holded]="item.status=='HOLDED'"
+          (click)="change(item)"
+        >A1</button>
+      </ng-container>
+    </div>
+    
+    <div class="btn-room">
+      <button nz-button nzType="primary">Primary Button</button>
+      <button class="btn-detail" nz-button nzType="primary">Huỷ</button>
+        <button class="btn-detail">Mua vé</button>
+    </div>
+  </div>
+</div>

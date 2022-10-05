@@ -1,0 +1,85 @@
+
+.zoom {
+    background-image: url("../../../../assets/1.jpg");
+    overflow: scroll;
+    width: min-content;
+}
+
+.zoom .display {
+    height: 200px;
+}
+
+.zoom .row-chair{
+    display: block;
+}
+
+.zoom .left-way{
+    margin-left: 100px;
+}
+
+.zoom .left-way{
+    margin-right: 100px;
+}
+
+.zoom .seat {
+    width: 40px;
+    height: 30px;
+    display: inline-block;
+    margin: 5px 0px ;
+    border-radius: 50%;
+}
+
+.zoom .vip-seat {
+    width: 40px;
+    height: 30px;
+    display: inline-block;
+    margin: 5px 0px ;
+    border-radius: 50% 50% 10% 10%;
+
+}
+
+
+.zoom .sweet-seat{
+    width: 70px;
+    height: 30px;
+    display: inline-block;
+    margin: 5px 0px ;
+    border-radius: 50% 50% 10% 10%;
+}
+
+.zoom .row-chair{
+    width: fit-content;
+    display: inline-flex;
+}
+
+.zoom .available{
+    background-color: #D3D3D3;
+}
+
+.zoom .holded{
+    background-color: #00FF00;
+}
+
+.zoom .your-select{
+    background-color: #32CD32;
+}
+
+.zoom .solded{
+    background-color: #FF0000;
+}
+
+button {
+    cursor: pointer;
+}
+
+.btn-room {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.btn-room .btn-detail{
+    margin-left: 50px;
+}
