@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomListComponent implements OnInit {
 
+  data = [1, 2, 3];
+
   constructor() { }
 
   ngOnInit(): void {
