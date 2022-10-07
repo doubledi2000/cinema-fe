@@ -7,6 +7,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import {NzCalendarModule} from 'ng-zorro-antd/calendar';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -27,6 +28,8 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
   ],
   exports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     NzButtonModule,
     NzTableModule,
     NzToolTipModule,

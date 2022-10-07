@@ -1,0 +1,15 @@
+export enum DATE_CONSTANT {
+    YYYYMMDD_HYPHEN = 'YYYY-MM-dd',
+    YYYYMMDD_HYPHEN_BIG = 'YYYY-MM-DD',
+    DDMMYYYY_HYPHEN = 'DD-MM-YYYY',
+    yyyyMMDD_HYPHEN = 'yyyy-MM-DD',
+    YYYYMMDD_SLASH = 'YYYY/MM/dd',
+    YYYYMMDD_SLASH_BIG = 'YYYY/MM/DD',
+    DDMMYYYY_SLASH = 'dd/MM/YYYY',
+    DDMMYYYY_SLASH_SMALL = 'dd/MM/yyyy',
+    DDMMYYYY_SLASH_BIG = 'DD/MM/YYYY',
+    DDMMYYYY = 'DDMMYYYY',
+  }
+  export enum TIME_CONSTANT {
+    HH_mm = 'HH:mm',
+  }

@@ -1,8 +1,24 @@
-<nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange()" [nzFormat]="'dd-MM-YYYY'"></nz-date-picker>
-    <br />
+<div class="content">
+    <div class="row">
+        <div class="col-2">
+            <div class="text-center text-justify mt-2 mb-2" style="font-weight: bolder;" >
+                {{getDay(dateSelected)}},<br> {{getDate(dateSelected)}}
+                </div>
+        </div>
+        <ng-container *ngFor="let day of daysArr">
+            <div class="calendar-days m-1 p-2 text-center" (click)="changeSeletedDate(day)" 
+            [class.today]="day.isSeleted"
+            >
+                {{ day.date?.getDate() +"/" + getMonth(day)}} 
+                <br><div class="text">{{pareseDay(day)}}</div>
+              </div>
+              
+        </ng-container>
+    </div>
+</div>
 
 <div class="content d-flex flex-wrap">
-
+  
      <div class="col-5 offset-1 mt-5">
         <div class="film-header">
             <div class="title">

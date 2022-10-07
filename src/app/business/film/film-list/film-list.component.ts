@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as moment from 'moment';
+import { DATE_CONSTANT } from 'src/app/shared/constant/date.constant';
 import { DatePickerCustom } from 'src/app/shared/model/date-picker.model';
+import CommonUtil from 'src/app/shared/utils/common-util';
 @Component({
   selector: 'app-film-list',
   templateUrl: './film-list.component.html',
   styleUrls: ['./film-list.component.scss']
 })
 export class FilmListComponent implements OnInit {
+  dateSelected = new Date();
 
   public date = moment();
   public dateForm?: FormGroup = new FormGroup({});
@@ -22,7 +25,7 @@ export class FilmListComponent implements OnInit {
 
   public ngOnInit() {
     this.getDays();
-    console.log(this.daysArr)
+    this.dateSelected = new Date();
   }
 
 
@@ -35,11 +38,33 @@ export class FilmListComponent implements OnInit {
   }
 
   
-  click(event: any){
-    console.log(event)
+  changeSeletedDate(day: any){
+    this.dateSelected = day.date;
+    this.daysArr.forEach((d)=>{
+      d.isSeleted = false;
+    })
+    day.isSeleted = true;
   }
   isToday(date: Date){
-    console.log(date)
     return date.getDate() === new Date().getDate();
+  }
+
+  getDay(dateSelected: Date):string {
+    return CommonUtil.getDay(dateSelected);
+  }
+
+  pareseDay(d : any) {
+    if(d.date instanceof Date) {
+      return CommonUtil.getDay(d.date);
+    }
+    return '';
+  }
+
+  getDate(day: Date): string{
+    return moment(day).format(DATE_CONSTANT.DDMMYYYY_HYPHEN);
+  }
+
+  getMonth(day: any) {
+    return day.date.getMonth() + 1;
   }
 }

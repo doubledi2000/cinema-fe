@@ -1,16 +1,53 @@
-
-<div class="container-fluid">
-
-    <div class="row">
-        <div class="col-2">
-            <div class="text-center text-justify mt-2 mb-2" style="font-weight: bolder;" >
-                Thứ 5,<br> 20/10/2022
-                </div>
+<div class="content">
+    <ng-container>
+        <div class="row mt-3">
+            <div class="col-3">
+                <nz-input-group nzPrefixIcon="search-custom">
+                    <input type="text" trim nz-input [placeholder]="'search'">
+                </nz-input-group>
+            </div>
+            <div class="col-9 d-flex justify-content-end">
+                <button nz-button nzType="primary">Add</button>
+            </div>
         </div>
-        <ng-container *ngFor="let day of daysArr">
-            <div class="calendar-days m-1 p-2" (click)="click(day)" ngClass="'today':{{day.isSeleted}}">
-                {{ day.date?.getDate() }}
-              </div>
-        </ng-container>
-    </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <nz-table
+                #table
+                [nzData]="[{}, {}]"
+                [nzTableLayout]="'fixed'"
+                >
+                <thead>
+                    <tr>
+                        <th nzAlign="center" nzWidth="80px">STT</th>
+                        <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">Mã phim</th>
+                        <th nzAlign="center" [nzSortFn]="true">Tên phim</th>
+                        <th nzAlign="center">Nhà sản xuất</th>
+                        <th nzAlign="center">Ngày công chiếu</th>
+                        <th nzAlign="center">Thời lượng</th>
+                        <th nzAlign="center">Trạng thái</th>
+                    </tr>
+                </thead>
+           
+                <tbody>
+                    <ng-container  *ngFor="let item of [{}, {}]">
+                        <tr>
+                            <td class="thead-border-top-left" nzAlign="center">
+                                1
+                            </td>
+                            <td nzAlign="center">AAAA</td>
+                            <td nzAlign="left">Phim hay</td>
+                            <td nzAlign="left">Nhà sản xuất</td>
+                            <td nzAlign="center">Ngày công chiếu</td>
+                            <td nzAlign="center">Thời lượng</td>
+                            <td nzAlign="center">Trạng thái</td>
+
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </nz-table>
+            </div>
+        </div>
+    </ng-container>
+    
 </div>
