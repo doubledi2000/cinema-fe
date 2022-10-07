@@ -1,0 +1,33 @@
+
+.film-header{
+    display: block;
+    background-color: azure;
+}
+.film-header .title{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.avatar img{
+    width: 184px;
+    height: 273px;
+}
+
+.info{
+    display: flex;
+}
+
+.info .title{
+    font-weight: bolder;
+}
+.schedule{
+    display: flex;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    
+    align-items: flex-end;
+}
+.schedule button{
+    margin-right: 5px;
+    margin-top: 5px;
+}

@@ -5,6 +5,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import {NzCalendarModule} from 'ng-zorro-antd/calendar';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 
 
@@ -19,14 +21,18 @@ import {NzCalendarModule} from 'ng-zorro-antd/calendar';
     NzButtonModule,
     NzTableModule,
     NzToolTipModule,
-    NzCalendarModule
+    NzCalendarModule,
+    NzDatePickerModule,
+    NzTabsModule
   ],
   exports: [
     CommonModule,
     NzButtonModule,
     NzTableModule,
     NzToolTipModule,
-    NzCalendarModule
+    NzCalendarModule,
+    NzDatePickerModule,
+    NzTabsModule
   ]
 })
 export class SharedModule { }

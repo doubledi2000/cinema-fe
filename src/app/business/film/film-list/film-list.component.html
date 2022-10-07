@@ -1,0 +1,16 @@
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-2">
+            <div class="text-center text-justify mt-2 mb-2" style="font-weight: bolder;" >
+                Thứ 5,<br> 20/10/2022
+                </div>
+        </div>
+        <ng-container *ngFor="let day of daysArr">
+            <div class="calendar-days m-1 p-2" (click)="click(day)" ngClass="'today':{{day.isSeleted}}">
+                {{ day.date?.getDate() }}
+              </div>
+        </ng-container>
+    </div>
+</div>
