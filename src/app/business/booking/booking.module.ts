@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { BookingRoutingModule } from './booking-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { BookingComponent } from './booking/booking.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    BookingComponent
+  ],
   imports: [
     CommonModule,
     BookingRoutingModule,

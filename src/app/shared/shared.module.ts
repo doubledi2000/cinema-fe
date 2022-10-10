@@ -8,9 +8,9 @@ import {NzCalendarModule} from 'ng-zorro-antd/calendar';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
-
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzStepsModule } from 'ng-zorro-antd/steps';
 
 
 @NgModule({
@@ -24,7 +24,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NzToolTipModule,
     NzCalendarModule,
     NzDatePickerModule,
-    NzTabsModule
+    NzTabsModule,
+    NzIconModule,
+    NzInputModule,
+    NzStepsModule
   ],
   exports: [
     CommonModule,
@@ -35,7 +38,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NzToolTipModule,
     NzCalendarModule,
     NzDatePickerModule,
-    NzTabsModule
+    NzTabsModule,
+    NzIconModule,
+    NzInputModule,
+    NzStepsModule
   ]
 })
 export class SharedModule { }
