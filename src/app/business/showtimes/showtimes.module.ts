@@ -5,12 +5,14 @@ import { ShowtimesRoutingModule } from './showtimes-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ShowtimeListComponent } from './showtime-list/showtime-list.component';
 import { FormsModule } from '@angular/forms';
+import { BookingComponent } from './booking/booking.component';
 
 
 
 @NgModule({
   declarations: [
-    ShowtimeListComponent
+    ShowtimeListComponent,
+    BookingComponent
   ],
   imports: [
     CommonModule,

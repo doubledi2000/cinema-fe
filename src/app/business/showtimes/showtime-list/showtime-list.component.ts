@@ -1,5 +1,5 @@
 import { getLocaleFirstDayOfWeek } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { NzCalendarMode } from 'ng-zorro-antd/calendar';
 import { getISOWeek } from 'date-fns';
 
@@ -9,6 +9,8 @@ import * as moment from 'moment';
 import { DATE_CONSTANT } from 'src/app/shared/constant/date.constant';
 import { DatePickerCustom } from 'src/app/shared/model/date-picker.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { BookingComponent } from '../booking/booking.component';
 @Component({
   selector: 'app-showtime-list',
   templateUrl: './showtime-list.component.html',
@@ -25,7 +27,12 @@ export class ShowtimeListComponent implements OnInit {
 
   public daysArr:DatePickerCustom[] = [];
 
-  constructor(private fb: FormBuilder) {
+  public maxSeatOfRow = 18;
+
+  constructor(private _fb: FormBuilder,
+    private _modal: NzModalService,
+    private _viewContainerRef: ViewContainerRef
+    ) {
   }
 
 
@@ -43,6 +50,14 @@ export class ShowtimeListComponent implements OnInit {
     }
   }
 
+  openBookingComponent(){
+    const modal = this._modal.create({
+      nzTitle: 'Modal Title',
+      nzContent: BookingComponent,
+      nzViewContainerRef: this._viewContainerRef,
+      nzWidth: this.maxSeatOfRow * 63
+    })
+  }
   
   changeSeletedDate(day: any){
     this.dateSelected = day.date;

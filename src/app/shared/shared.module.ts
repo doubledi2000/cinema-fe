@@ -8,6 +8,12 @@ import {NzCalendarModule} from 'ng-zorro-antd/calendar';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzTreeViewModule } from 'ng-zorro-antd/tree-view';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
@@ -28,6 +34,13 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzIconModule,
     NzInputModule,
     NzStepsModule
+    NzTabsModule,
+    NzCollapseModule,
+    NzBreadCrumbModule,
+    NzTreeViewModule,
+    NzSwitchModule,
+    NzModalModule,
+    NzTimePickerModule
   ],
   exports: [
     CommonModule,
@@ -42,6 +55,13 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzIconModule,
     NzInputModule,
     NzStepsModule
+    NzTabsModule,
+    NzCollapseModule,
+    NzBreadCrumbModule,
+    NzTreeViewModule,
+    NzSwitchModule,
+    NzModalModule,
+    NzTimePickerModule
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,50 @@
+<div class="content">
+    <ng-container>
+        <div class="row mt-3">
+            <div class="col-3">
+                <nz-input-group nzPrefixIcon="search-custom">
+                    <input type="text" trim nz-input [placeholder]="'search'">
+                </nz-input-group>
+            </div>
+            <div class="col-9 d-flex justify-content-end">
+                <button nz-button nzType="primary">Add</button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <nz-table
+                #table
+                [nzData]="[{}, {}]"
+                [nzTableLayout]="'fixed'"
+                >
+                <thead>
+                    <tr>
+                        <th nzAlign="center" nzWidth="80px">STT</th>
+                        <th nzAlign="center" nzWidth="150px" [nzSortFn]="true"> Mã nhân viên </th>
+                        <th nzAlign="center" [nzSortFn]="true">Ho ten</th>
+                        <th nzAlign="center">Chuc vu</th>
+                        <th nzAlign="center"> Toa nha</th>
+                        <th nzAlign="center">Trạng thái</th>
+                    </tr>
+                </thead>
+           
+                <tbody>
+                    <ng-container  *ngFor="let item of [{}, {}]">
+                        <tr>
+                            <td class="thead-border-top-left" nzAlign="center">
+                                1
+                            </td>
+                            <td nzAlign="center">AAAA</td>
+                            <td nzAlign="left">AAA/td>
+                            <td nzAlign="left">Giam doc</td>
+                            <td nzAlign="center">Chuc vu</td>
+                            <td nzAlign="center">ACTIVE</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </nz-table>
+            </div>
+        </div>
+    </ng-container>
+    
+</div>
