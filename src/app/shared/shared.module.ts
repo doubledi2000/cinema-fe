@@ -18,6 +18,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzSwitchModule,
     NzModalModule,
     NzTimePickerModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzUploadModule,
+    NzMessageModule
   ],
   exports: [
     CommonModule,
@@ -61,7 +65,9 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzSwitchModule,
     NzModalModule,
     NzTimePickerModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzUploadModule,
+    NzMessageModule
   ]
 })
 export class SharedModule { }

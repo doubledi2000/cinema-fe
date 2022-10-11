@@ -1,6 +1,8 @@
 import { componentFactoryName } from '@angular/compiler';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DrinkDetailComponent } from './drink-price/drink-detail/drink-detail.component';
+import { DrinkPriceComponent } from './drink-price/drink-price.component';
 import { RoleComponent } from './role/role.component';
 import { UpdatePermissionComponent } from './role/update-permission/update-permission.component';
 import { UpdateRoleComponent } from './role/update-role/update-role.component';
@@ -32,6 +34,14 @@ const routes: Routes = [
   {
     path: 'ticket-price',
     component: TicketPriceComponent
+  },
+  {
+    path: 'drink-detail',
+    component: DrinkDetailComponent
+  },
+  {
+    path: 'drinks',
+    component: DrinkPriceComponent
   }
 
 ];

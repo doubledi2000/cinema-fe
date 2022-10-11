@@ -1,0 +1,88 @@
+<div class="content">
+  <div class="row">
+    <div class="col-6 offset-3">
+        <div class="row">
+            <div class="col-3">
+                <div class="clearfix">
+                  <nz-upload
+                    nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                    nzListType="picture-card"
+                    [nzShowButton]="true"
+                    [nzPreview]="handlePreview"
+                  >
+                    <div>
+                      <span nz-icon nzType="plus"></span>
+                      <div style="margin-top: 8px">Upload</div>
+                    </div>
+                  </nz-upload>
+                  <nz-modal
+                    [nzVisible]="previewVisible"
+                    [nzContent]="modalContent"
+                    [nzFooter]="null"
+                    (nzOnCancel)="previewVisible = false"
+                  >
+                    <ng-template #modalContent>
+                      <img [src]="previewImage" [ngStyle]="{ width: '150%' }" />
+                    </ng-template>
+                  </nz-modal>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="d-flex flex-wrap">
+                  <div class="col-12 mt-3">
+                    <label
+                      >Mã sản phẩm
+                      <span class="text-danger">*</span></label
+                    >
+                    <input
+                      formControlName="code"
+                      nz-input
+                      [maxLength]="100"
+                      placeholder="'Mã sản phẩm'"
+                    />
+                 
+                  </div>
+                  <div class="col-12 mt-3">
+                    <label
+                      >Tên sản phẩm
+                      <span class="text-danger">*</span></label
+                    >
+                    <input
+                      formControlName="code"
+                      nz-input
+                      [maxLength]="100"
+                      placeholder="'Tên sản phẩm'"
+                    />
+                 
+                  </div>
+                  <div class="col-12 mt-3">
+                    <label
+                      >Giá
+                      <span class="text-danger">*</span></label
+                    >
+                    <input
+                      formControlName="code"
+                      nz-input
+                      [maxLength]="100"
+                      placeholder="'Giá'"
+                    />
+                 
+                  </div>
+                  <div class="col-12 mt-3">
+                    <label
+                      >Trạng thái: </label
+                    >
+                  </div>
+                  <div class="col-12 mt-3">
+                    <label for="">Mô tả</label>
+                    <textarea rows="4" nz-input ></textarea>
+                  </div>
+                  
+                </div>  
+              </div>
+        </div>
+    </div>
+   
+  </div>
+</div>
+<nz-switch [ngModel]="switchValue" (click)="toggleActive()"></nz-switch>

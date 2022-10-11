@@ -10,6 +10,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { UpdatePermissionComponent } from './role/update-permission/update-permission.component';
 import { TicketPriceComponent } from './ticket-price/ticket-price.component';
 import { DrinkPriceComponent } from './drink-price/drink-price.component';
+import { DrinkDetailComponent } from './drink-price/drink-detail/drink-detail.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { DrinkPriceComponent } from './drink-price/drink-price.component';
     UpdatePermissionComponent,
     TicketPriceComponent,
     DrinkPriceComponent,
+    DrinkDetailComponent,
   ],
   imports: [
     CommonModule,
