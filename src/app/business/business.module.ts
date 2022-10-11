@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { BusinessRoutingModule } from './business-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { TestComponent } from './test/test.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    TestComponent
+  ],
   imports: [
     CommonModule,
     BusinessRoutingModule,

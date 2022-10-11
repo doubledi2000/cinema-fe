@@ -9,6 +9,7 @@ import { UpdateRoleComponent } from './role/update-role/update-role.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UpdatePermissionComponent } from './role/update-permission/update-permission.component';
 import { TicketPriceComponent } from './ticket-price/ticket-price.component';
+import { DrinkPriceComponent } from './drink-price/drink-price.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TicketPriceComponent } from './ticket-price/ticket-price.component';
     UpdateRoleComponent,
     UpdatePermissionComponent,
     TicketPriceComponent,
+    DrinkPriceComponent,
   ],
   imports: [
     CommonModule,

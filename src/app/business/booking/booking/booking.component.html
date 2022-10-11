@@ -1,6 +1,7 @@
-<div class="container-fluid" style=" background-image: url('../../../../assets/2.jpg');">
+<div class="container-fluid" >
     <div class="row">
-        <div class="col-2" style="display:block; margin: 0 auto;">
+        <div class="col-2" style="display:block; margin: 0 auto; border: 1px solid">
+            <div class="mt-2">Tổng tiền: 150.000đ</div>
             <div style="display: block; margin-top: 150px;" >
                 <div class="d-flex align-items-center">
                     <div class="normal-seat-div available"></div>
@@ -52,18 +53,13 @@
                 <button nz-button nzType="primary">Đặt vé</button>
             </div>
         </div>
-        <div class="col-10">
-            <nz-steps [nzCurrent]="1" nzDirection="vertical">
-                <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
-                <nz-step nzTitle="In Progress" nzDescription="This is a description."></nz-step>
-                <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
-              </nz-steps>
-            <nz-tabset [nzSelectedIndex]="tabIndex" style="border: 1px solid;">
+        <div class="col-10" style="border: 1px solid">
+            <nz-tabset [nzSelectedIndex]="tabIndex" >
                 <nz-tab [nzTitle]="'buy ticket'" style="overflow: auto;">
                   <ng-template #titleTemplate>
                     <span nz-icon [nzType]="'apple'"></span>
-                    Buy ticket
                   </ng-template>
+
                   <div class="container d-flex justify-content-center">
                     <div class="appbackground">
                     </div>
@@ -274,10 +270,302 @@
             
                 <nz-tab [nzTitle]="'buy drink'" >
                     <ng-template #titleTemplate>
-                      <span nz-icon [nzType]="'apple'"></span>
-                      Buy ticket
+                      <span nz-icon [nzType]="'apple'">
+                      </span>
                     </ng-template>
-                     
+                      <div class="container" style="overflow-y: auto; max-height: 700px;">
+                        <div class="row mt-2 mb-2">
+                          <div class="col-7 offset-2">
+                            <div class="row">
+                              <div class="drink d-flex">
+                                <div class="col-3">
+                                  <img src="../../../../assets/combo1.png" alt="">
+                                </div>
+                                <div class="col-9">
+                                  <div class="title">
+                                      OL Couble Compo 220z - 108.000đ
+                                  </div>
+                                 
+                                  <div class="des mt-2">
+                                      01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
+                                  </div>
+                                  <div class="number">
+                                    <span>Số lượng: </span>
+                                    <nz-input-number ngModel="0"  style="width: 60px; margin: 0 5px; border-radius: 5px;" [nzMin]="0"></nz-input-number>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                            
+                          </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                          <div class="col-7 offset-2">
+                            <div class="row">
+                              <div class="drink d-flex">
+                                <div class="col-3">
+                                  <img src="../../../../assets/combo1.png" alt="">
+                                </div>
+                                <div class="col-9">
+                                  <div class="title">
+                                      OL Couble Compo 220z - 108.000đ
+                                  </div>
+                                 
+                                  <div class="des mt-2">
+                                      01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
+                                  </div>
+                                  <div class="number">
+                                    <span>Số lượng: </span>
+                                    <nz-input-number ngModel="0"  style="width: 60px; margin: 0 5px; border-radius: 5px;" [nzMin]="0"></nz-input-number>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                            
+                          </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                          <div class="col-7 offset-2">
+                            <div class="row">
+                              <div class="drink d-flex">
+                                <div class="col-3">
+                                  <img src="../../../../assets/combo1.png" alt="">
+                                </div>
+                                <div class="col-9">
+                                  <div class="title">
+                                      OL Couble Compo 220z - 108.000đ
+                                  </div>
+                                 
+                                  <div class="des mt-2">
+                                      01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
+                                  </div>
+                                  <div class="number">
+                                    <span>Số lượng: </span>
+                                    <nz-input-number ngModel="0"  style="width: 60px; margin: 0 5px; border-radius: 5px;" [nzMin]="0"></nz-input-number>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                            
+                          </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                          <div class="col-7 offset-2">
+                            <div class="row">
+                              <div class="drink d-flex">
+                                <div class="col-3">
+                                  <img src="../../../../assets/combo1.png" alt="">
+                                </div>
+                                <div class="col-9">
+                                  <div class="title">
+                                      OL Couble Compo 220z - 108.000đ
+                                  </div>
+                                 
+                                  <div class="des mt-2">
+                                      01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
+                                  </div>
+                                  <div class="number">
+                                    <span>Số lượng: </span>
+                                    <nz-input-number ngModel="0"  style="width: 60px; margin: 0 5px; border-radius: 5px;" [nzMin]="0"></nz-input-number>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                            
+                          </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                          <div class="col-7 offset-2">
+                            <div class="row">
+                              <div class="drink d-flex">
+                                <div class="col-3">
+                                  <img src="../../../../assets/combo1.png" alt="">
+                                </div>
+                                <div class="col-9">
+                                  <div class="title">
+                                      OL Couble Compo 220z - 108.000đ
+                                  </div>
+                                 
+                                  <div class="des mt-2">
+                                      01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
+                                  </div>
+                                  <div class="number">
+                                    <span>Số lượng: </span>
+                                    <nz-input-number ngModel="0"  style="width: 60px; margin: 0 5px; border-radius: 5px;" [nzMin]="0"></nz-input-number>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                            
+                          </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                          <div class="col-7 offset-2">
+                            <div class="row">
+                              <div class="drink d-flex">
+                                <div class="col-3">
+                                  <img src="../../../../assets/combo1.png" alt="">
+                                </div>
+                                <div class="col-9">
+                                  <div class="title">
+                                      OL Couble Compo 220z - 108.000đ
+                                  </div>
+                                 
+                                  <div class="des mt-2">
+                                      01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
+                                  </div>
+                                  <div class="number">
+                                    <span>Số lượng: </span>
+                                    <nz-input-number ngModel="0"  style="width: 60px; margin: 0 5px; border-radius: 5px;" [nzMin]="0"></nz-input-number>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                            
+                          </div>
+                        </div>
+                        <div class="row mt-2 mb-2">
+                          <div class="col-7 offset-2">
+                            <div class="row">
+                              <div class="drink d-flex">
+                                <div class="col-3">
+                                  <img src="../../../../assets/combo1.png" alt="">
+                                </div>
+                                <div class="col-9">
+                                  <div class="title">
+                                      OL Couble Compo 220z - 108.000đ
+                                  </div>
+                                 
+                                  <div class="des mt-2">
+                                      01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
+                                  </div>
+                                  <div class="number">
+                                    <span>Số lượng: </span>
+                                    <nz-input-number ngModel="0"  style="width: 60px; margin: 0 5px; border-radius: 5px;" [nzMin]="0"></nz-input-number>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>                            
+                          </div>
+                        </div>
+                        
+                      </div>
+                  </nz-tab>
+                  <nz-tab [nzTitle]="'Thanh toán'" >
+                    <ng-template #titleTemplate>
+                      <span nz-icon [nzType]="'apple'"></span>
+                    </ng-template>
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-5 offset-3" style="border: 1px solid pink; border-radius: 3px;">
+                            <div class="row" style="border-bottom: 1px #3f3f3f; margin-top: 10px;">
+                              <div class="col-3">
+                                <div class="category">
+                                  Rạp
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  BHD Star Phạm Ngọc Thạch
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row" style="border-bottom: 1px #3f3f3f; margin-top: 10px;">
+                              <div class="col-3">
+                                <div class="category">
+                                  Phim
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  Avatar
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px;">
+                              <div class="col-3">
+                                <div class="category">
+                                  Suất chiếu
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  11L:00 - Thứ 5, 13/10/2022
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px;">
+                              <div class="col-3">
+                                <div class="category">
+                                  Phòng chiếu
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  7
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px;">
+                              <div class="col-3">
+                                <div class="category">
+                                  Ghế
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  E01, E02
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px;">
+                              <div class="col-3">
+                                <div class="category">
+                                 Giá vé
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  150.000đ
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px;">
+                              <div class="col-3">
+                                <div class="category">
+                                  1x OL Combo1
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  120.000đ
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px;">
+                              <div class="col-3">
+                                <div class="category">
+                                  Khách hàng
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  Đoàn Mạnh Đông
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px;">
+                              <div class="col-3">
+                                <div class="category">
+                                  Tạm tính
+                                </div>
+                              </div>
+                              <div class="col-9">
+                                <div class="info text-end">
+                                  250.000đ
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
                   </nz-tab>
               </nz-tabset>
         </div>

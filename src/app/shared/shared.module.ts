@@ -17,7 +17,7 @@ import { NzTimePickerModule } from 'ng-zorro-antd/time-picker';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzStepsModule } from 'ng-zorro-antd/steps';
-
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 
 @NgModule({
   declarations: [
@@ -33,14 +33,14 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzTabsModule,
     NzIconModule,
     NzInputModule,
-    NzStepsModule
-    NzTabsModule,
+    NzStepsModule,
     NzCollapseModule,
     NzBreadCrumbModule,
     NzTreeViewModule,
     NzSwitchModule,
     NzModalModule,
-    NzTimePickerModule
+    NzTimePickerModule,
+    NzInputNumberModule
   ],
   exports: [
     CommonModule,
@@ -54,14 +54,14 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
     NzTabsModule,
     NzIconModule,
     NzInputModule,
-    NzStepsModule
-    NzTabsModule,
+    NzStepsModule,
     NzCollapseModule,
     NzBreadCrumbModule,
     NzTreeViewModule,
     NzSwitchModule,
     NzModalModule,
-    NzTimePickerModule
+    NzTimePickerModule,
+    NzInputNumberModule
   ]
 })
 export class SharedModule { }
