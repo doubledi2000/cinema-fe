@@ -10,6 +10,10 @@ import CommonUtil from 'src/app/shared/utils/common-util';
   styleUrls: ['./film-list.component.scss']
 })
 export class FilmListComponent implements OnInit {
+
+  listOfOption: string[] = ['Tâm lý', 'Hành động', 'Kinh dị'];
+  listOfSelectedValue = ['a10', 'c12'];
+
   dateSelected = new Date();
 
   public date = moment();

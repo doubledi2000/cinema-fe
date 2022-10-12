@@ -20,7 +20,7 @@ import { NzStepsModule } from 'ng-zorro-antd/steps';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzMessageModule } from 'ng-zorro-antd/message';
-
+import { NzSelectModule } from 'ng-zorro-antd/select';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
@@ -44,7 +44,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzTimePickerModule,
     NzInputNumberModule,
     NzUploadModule,
-    NzMessageModule
+    NzMessageModule,
+    NzSelectModule
   ],
   exports: [
     CommonModule,
@@ -67,7 +68,8 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzTimePickerModule,
     NzInputNumberModule,
     NzUploadModule,
-    NzMessageModule
+    NzMessageModule,
+    NzSelectModule
   ]
 })
 export class SharedModule { }
