@@ -13,3 +13,12 @@ export enum DATE_CONSTANT {
   export enum TIME_CONSTANT {
     HH_mm = 'HH:mm',
   }
+ export const DATE_NAME_EN = {
+  SUN: 'SUNDAY',
+  MON: 'MONDAY',
+  TUES: 'TUESDAY',
+  WED: 'WEDNESDAY',
+  THURS: 'THURSDAY',
+  FRI: 'FRIDAY',
+  SAT: 'SATURDAY'
+ }

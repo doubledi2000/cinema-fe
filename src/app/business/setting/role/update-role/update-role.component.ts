@@ -11,8 +11,6 @@ export class UpdateRoleComponent implements OnInit {
 
   constructor() {}
   ngOnInit(): void {
-    console.log(this.isVisible);
-    
   }
 
   showModal(): void {
@@ -20,12 +18,10 @@ export class UpdateRoleComponent implements OnInit {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isVisible = false;
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 

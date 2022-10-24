@@ -69,9 +69,6 @@ export class BookingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    setTimeout(()=>{
-      console.log(this.seats)
-    }, 5000)
   }
 
   change(item: any): void{

@@ -1,13 +1,43 @@
+
 <div class="container d-flex justify-content-center">
   <div class="appbackground">
   </div>
   <div class="zoom">
-    <div class="display"></div>
-    <div class="row-chair left-way right-way">
+    <div class="display">
+      <div class="text-center">màn hình</div>
+    </div>
+    <div class="row">
+      <div class="col-2 offset-8">
+        
+        <button nz-button nzType="primary" (click)="showModal()">
+          <span>Thêm hàng</span>
+        </button>
+        <nz-modal
+          [(nzVisible)]="isVisible"
+          nzTitle="Modal Title"
+          (nzOnCancel)="handleCancel()"
+          (nzOnOk)="handleOk()"
+          [nzOkLoading]="isOkLoading"
+        >
+          <div *nzModalContent>Hàng
+            <nz-input-number [(ngModel)]="demoValue" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number> 
+          </div>
+        </nz-modal>
+      </div>
+    </div>
+    <!-- <div class="row-chair left-way">
       <ng-container
         *ngFor="let item of seats; let i = index"
       >
         <button
+        nz-button
+        nzType="primary"
+        nz-popover
+        nzPopoverTitle="Title"
+        [(nzPopoverVisible)]="visible"
+        (nzPopoverVisibleChange)="changeS($event)"
+        nzPopoverTrigger="click"
+        [nzPopoverContent]="'<a>Hello</a>'" 
           [class.seat]="item.type=='normal'"
           [class.vip-seat]="item.type=='vip'"
           [class.sweet-seat]="item.type=='sweet'"
@@ -15,31 +45,122 @@
           [class.solded]="item.status=='SOLDED'"
           [class.your_select]="item.status=='YOUR_SELECT'"
           [class.holded]="item.status=='HOLDED'"
-          (click)="change(item)"
-        >A1</button>
+          (click)="change(item, i)"
+        >A12</button>          
       </ng-container>
-    </div>
-    <div class="row left-way right-way">
+    </div> -->
+   
+    <div class="row-chair left-way">
+
       <ng-container
         *ngFor="let item of seats; let i = index"
       >
-        <button
+    
+        <select
+          class="text-center"
           [class.seat]="item.type=='normal'"
           [class.vip-seat]="item.type=='vip'"
           [class.sweet-seat]="item.type=='sweet'"
           [class.available]="item.status=='AVAILABLE'"
           [class.solded]="item.status=='SOLDED'"
-          [class.your-select]="item.status=='YOUR_SELECT'"
+          [class.your_select]="item.status=='YOUR_SELECT'"
           [class.holded]="item.status=='HOLDED'"
-          (click)="change(item)"
-        >A1</button>
+          (click)="change(item, i)"
+        >
+        <option value="item.type">N</option>
+      </select>
       </ng-container>
     </div>
+    <br>
+    <div class="row-chair left-way">
+
+      <ng-container
+        *ngFor="let item of seats; let i = index"
+      >
     
-    <div class="btn-room">
-      <button nz-button nzType="primary">Primary Button</button>
-      <button class="btn-detail" nz-button nzType="primary">Huỷ</button>
-        <button class="btn-detail">Mua vé</button>
+        <select
+          class="text-center"
+          [class.seat]="item.type=='normal'"
+          [class.vip-seat]="item.type=='vip'"
+          [class.sweet-seat]="item.type=='sweet'"
+          [class.available]="item.status=='AVAILABLE'"
+          [class.solded]="item.status=='SOLDED'"
+          [class.your_select]="item.status=='YOUR_SELECT'"
+          [class.holded]="item.status=='HOLDED'"
+          (click)="change(item, i)"
+        >
+        <option value="item.type">N</option>
+        <option value="item.type">V</option>
+        <option value="item.type">C</option>
+        <option value="item.type">R</option>
+      </select>
+      </ng-container>
+      <button>+</button>
+      <button>X</button>
     </div>
+    <br>    <div class="row-chair left-way">
+
+      <ng-container
+        *ngFor="let item of seats; let i = index"
+      >
+    
+        <select
+          class="text-center"
+          [class.seat]="item.type=='normal'"
+          [class.vip-seat]="item.type=='vip'"
+          [class.sweet-seat]="item.type=='sweet'"
+          [class.available]="item.status=='AVAILABLE'"
+          [class.solded]="item.status=='SOLDED'"
+          [class.your_select]="item.status=='YOUR_SELECT'"
+          [class.holded]="item.status=='HOLDED'"
+          (click)="change(item, i)"
+        >
+        <option value="item.type">N</option>
+      </select>
+      </ng-container>
+    </div>
+    <br>    <div class="row-chair left-way">
+
+      <ng-container
+        *ngFor="let item of seats; let i = index"
+      >
+    
+        <select
+          class="text-center"
+          [class.seat]="item.type=='normal'"
+          [class.vip-seat]="item.type=='vip'"
+          [class.sweet-seat]="item.type=='sweet'"
+          [class.available]="item.status=='AVAILABLE'"
+          [class.solded]="item.status=='SOLDED'"
+          [class.your_select]="item.status=='YOUR_SELECT'"
+          [class.holded]="item.status=='HOLDED'"
+          (click)="change(item, i)"
+        >
+        <option value="item.type">N</option>
+      </select>
+      </ng-container>
+    </div>
+    <br>    <div class="row-chair left-way">
+
+      <ng-container
+        *ngFor="let item of seats; let i = index"
+      >
+    
+        <select
+          class="text-center"
+          [class.seat]="item.type=='normal'"
+          [class.vip-seat]="item.type=='vip'"
+          [class.sweet-seat]="item.type=='sweet'"
+          [class.available]="item.status=='AVAILABLE'"
+          [class.solded]="item.status=='SOLDED'"
+          [class.your_select]="item.status=='YOUR_SELECT'"
+          [class.holded]="item.status=='HOLDED'"
+          (click)="change(item, i)"
+        >
+        <option value="item.type">N</option>
+      </select>
+      </ng-container>
+    </div>
+    <br>
   </div>
 </div>

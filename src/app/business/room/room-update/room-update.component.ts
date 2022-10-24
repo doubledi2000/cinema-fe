@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { RoomDetailComponent } from '../room-detail/room-detail.component';
 
 @Component({
   selector: 'app-room-update',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoomUpdateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modalService: NzModalService) { }
 
   ngOnInit(): void {
   }
 
+  openRoomSetting() {
+    this.modalService.create(
+      {nzContent: RoomDetailComponent,
+        nzWidth: 600
+      }
+    )
+  }
 }

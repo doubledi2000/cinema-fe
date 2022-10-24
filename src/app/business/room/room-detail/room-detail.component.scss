@@ -5,13 +5,12 @@
     background-size:100% 100vh;
 }
 .zoom {
-    overflow: auto;
-    width: min-content;
-    transform: scale(1.6);
+    // overflow: auto;
+    // transform: scale(1.8);
 }
 
 .zoom .display {
-    height: 200px;
+    height: 100px;
 }
 
 .zoom .row-chair{
@@ -22,7 +21,7 @@
     margin-left: 100px;
 }
 
-.zoom .left-way{
+.zoom .right-way{
     margin-right: 100px;
 }
 
@@ -73,10 +72,6 @@
     background-color: #FF0000;
 }
 
-button {
-    cursor: pointer;
-}
-
 .btn-room {
     display: flex;
     align-items: center;
@@ -88,3 +83,10 @@ button {
 .btn-room .btn-detail{
     margin-left: 50px;
 }
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }

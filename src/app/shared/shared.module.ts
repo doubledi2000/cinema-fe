@@ -21,12 +21,17 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { PriceByTime } from './model/price-by-time.model';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     NzButtonModule,
     NzTableModule,
     NzToolTipModule,
@@ -45,7 +50,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzInputNumberModule,
     NzUploadModule,
     NzMessageModule,
-    NzSelectModule
+    NzSelectModule,
+    NzPopoverModule,
+    NzListModule
   ],
   exports: [
     CommonModule,
@@ -69,7 +76,9 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     NzInputNumberModule,
     NzUploadModule,
     NzMessageModule,
-    NzSelectModule
+    NzSelectModule,
+    NzPopoverModule,
+    NzListModule
   ]
 })
 export class SharedModule { }

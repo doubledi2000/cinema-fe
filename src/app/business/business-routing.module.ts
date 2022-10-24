@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   {
@@ -23,10 +22,6 @@ const routes: Routes = [
   {
     path: 'booking',
     loadChildren: ()=> import('./booking/booking.module').then(m => m.BookingModule)
-  },
-  {
-    path: 'test',
-    component: TestComponent
   }
 ];
 

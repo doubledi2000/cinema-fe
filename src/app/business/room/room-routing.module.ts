@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: '',
     component: RoomListComponent
+  },
+  {
+    path: 'seat-setting',
+    component: RoomDetailComponent
   }
 ];
 
