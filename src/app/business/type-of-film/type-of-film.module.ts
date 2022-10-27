@@ -16,6 +16,10 @@ import { TypeOfFilmListComponent } from './type-of-film-list/type-of-film-list.c
     CommonModule,
     TypeOfFilmRoutingModule,
     SharedModule
+  ],
+  exports: [
+    TypeOfFilmDetailComponent,
+    TypeOfFilmListComponent
   ]
 })
 export class TypeOfFilmModule { }
