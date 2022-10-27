@@ -20,6 +20,7 @@ export class TypeOfFilmListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    debugger;
     this.loadData();
   }
 

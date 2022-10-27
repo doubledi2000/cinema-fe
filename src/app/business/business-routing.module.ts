@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TypeOfFilmListComponent } from './type-of-film/type-of-film-list/type-of-film-list.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
   {
     path: 'type-of-films',
     loadChildren: ()=> import('./type-of-film/type-of-film.module').then(m=>m.TypeOfFilmModule)
+  },{
+    path: 'test',
+    component: TypeOfFilmListComponent
   }
 ];
 
