@@ -14,6 +14,5 @@ export class TypeOfFilm implements ITypeOfFilm{
         public description?: string,
         public status?: string
     ){
-
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilmService } from './shared/service/film.service';
+import { LoaderService } from './shared/service/loader/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +9,19 @@ import { FilmService } from './shared/service/film.service';
 })
 export class AppComponent implements OnInit{
   isCollapsed = false;
-  constructor(private filmService: FilmService){
+  constructor(private filmService: FilmService,
+      public loaderSerive: LoaderService
+    ){
 
   }
 
   ngOnInit(): void {
-      this.filmService.getById('6d353202-a988-4bdd-9125-0b8f62846980').subscribe(data => {
+      const params = {
+        keyword:'HOR',
+        pageIndex: 1,
+        pageSize: 30
+      };
+      this.filmService.search(params).subscribe(data => {
         console.log(data);
       })
   }

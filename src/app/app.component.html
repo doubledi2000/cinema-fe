@@ -1,4 +1,7 @@
-<nz-layout class="app-layout">
+
+
+  <nz-layout class="app-layout">
+
   <nz-sider class="menu-sidebar"
             nzCollapsible
             nzWidth="256px"
@@ -34,6 +37,7 @@
       </li>
     </ul>
   </nz-sider>
+
   <nz-layout>
     <nz-header>
       <div class="app-header">
@@ -52,3 +56,7 @@
     </nz-content>
   </nz-layout>
 </nz-layout>
+<div *ngIf="this.loaderSerive.isLoading | async" class="spin">
+  <nz-spin nzSimple style="margin: 20% 0% 0% 50%;" [nzSize]="'large'"></nz-spin>
+</div>
+

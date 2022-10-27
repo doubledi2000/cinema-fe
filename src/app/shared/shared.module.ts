@@ -23,7 +23,6 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzListModule } from 'ng-zorro-antd/list';
-import { PriceByTime } from './model/price-by-time.model';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,

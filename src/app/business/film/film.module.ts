@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     FilmListComponent,
-    FilmDetailComponent
+    FilmDetailComponent,
   ],
   imports: [
     CommonModule,
