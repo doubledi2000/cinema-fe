@@ -22,7 +22,7 @@ export class TypeOfFilmService {
   }
 
   update(id: string, body: any): Observable<IBaseResponse<ITypeOfFilm>> {
-    return this.httpClient.post(`${this.url}type-of-films/:${id}/updates`, body);
+    return this.httpClient.post(`${this.url}type-of-films/${id}/updates`, body);
   }
 
   create(body: any): Observable<IBaseResponse<ITypeOfFilm>>{

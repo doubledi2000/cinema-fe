@@ -1,9 +1,9 @@
 <div class="content">
     <ng-container>
-        <div class="row mt-3">
+        <div class="row mt-3" [formGroup]="searchForm">
             <div class="col-3">
                 <nz-input-group [nzSuffix]="suffixIconSearch">
-                    <input type="text" nz-input placeholder="input search text" />
+                    <input type="text" nz-input placeholder="input search text" formControlName="keyword" (keyup.enter)="search()"/>
                   </nz-input-group>
                   <ng-template #suffixIconSearch>
                     <span nz-icon nzType="search"></span>
@@ -69,13 +69,11 @@
                                 (click)="delete(item)">
                                 ></app-button-action>
                             </td>
-
-
-    
                         </tr>
                     </ng-container>
                 </tbody>
             </nz-table>
+            <app-pagination></app-pagination>
             </div>
         </div>
     </ng-container>

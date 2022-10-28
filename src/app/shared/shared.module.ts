@@ -23,16 +23,17 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzListModule } from 'ng-zorro-antd/list';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { AppRoutingModule } from '../app-routing.module';
 import { ButtonActionComponent } from './component/button-action/button-action.component';
 import { ButtonComponent } from './component/button/button.component';
+import { PaginationComponent } from './component/pagination/pagination.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
     ButtonActionComponent,
     ButtonComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -59,12 +60,8 @@ import { ButtonComponent } from './component/button/button.component';
     NzSelectModule,
     NzPopoverModule,
     NzListModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 2000
-    }),
-    AppRoutingModule
-  ],
+    NzDropDownModule
+    ],
   exports: [
     CommonModule,
     FormsModule,
@@ -91,7 +88,8 @@ import { ButtonComponent } from './component/button/button.component';
     NzPopoverModule,
     NzListModule,
     ButtonActionComponent,
-    ButtonComponent
+    ButtonComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule { }

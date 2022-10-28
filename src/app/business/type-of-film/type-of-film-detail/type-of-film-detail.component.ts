@@ -38,6 +38,7 @@ export class TypeOfFilmDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.initForm();
   }
 
   getUrlParam(){
@@ -93,7 +94,24 @@ export class TypeOfFilmDetailComponent implements OnInit {
   }
 
   create(){
-
+    const body = CommonUtil.trim({
+      ...this.form.value
+    });
+    this.typeOfFilmService.create(body).subscribe(data => {
+      if(data && data.code == STATUS.SUCCESS_200) {
+        this.toast.success('');
+        this.modalRef.close({
+          success: true,
+          value: data?.data as ITypeOfFilm
+        })
+      }else {
+        this.toast.error(`${data.message}`);
+        this.modalRef.close({
+          success: false,
+          value: null
+        })
+      }
+    })
   }
   update(){
     this.form.enable();

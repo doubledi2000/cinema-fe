@@ -15,6 +15,7 @@ import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { InterceptorService } from './shared/service/loader/interceptor.service';
+import { ToastrModule } from 'ngx-toastr';
 
 registerLocaleData(en);
 
@@ -31,7 +32,11 @@ registerLocaleData(en);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    NzSpinModule
+    NzSpinModule,
+    ToastrModule.forRoot({
+      timeOut: 2000
+    }),
+    
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { PAGINATION } from 'src/app/shared/constant/pagination.constant';
+import { IBaseRequestModel } from 'src/app/shared/model/request/base-request.model';
 import { ITypeOfFilm } from 'src/app/shared/model/type-of-film.model';
 import { TypeOfFilmService } from 'src/app/shared/service/type-of-film.service';
 import CommonUtil from 'src/app/shared/utils/common-util';
@@ -11,16 +14,25 @@ import { TypeOfFilmDetailComponent } from '../type-of-film-detail/type-of-film-d
 })
 export class TypeOfFilmListComponent implements OnInit {
 
-  typeOfFilmList: ITypeOfFilm[] = []
+  typeOfFilmList: ITypeOfFilm[] = [];
+  total = 0;
+  searchRequest: IBaseRequestModel = {
+    keyword: '',
+    pageIndex: PAGINATION.PAGE_DEFAULT,
+    pageSize: PAGINATION.SIZE_DEFAULT,
+    sortBy: '',
+  }
+
+  searchForm: FormGroup = new FormGroup({});
 
   constructor(
+    private fb: FormBuilder,
     private typeOfFilmService: TypeOfFilmService,
-    private modalRef: NzModalRef,
     private modalService: NzModalService
   ) { }
 
   ngOnInit(): void {
-    debugger;
+    this.initSearchForm();
     this.loadData();
   }
 
@@ -38,9 +50,9 @@ export class TypeOfFilmListComponent implements OnInit {
     const base = CommonUtil.modalBase(
       TypeOfFilmDetailComponent,
       {
-        isUpdate: true,
+        isCreate: true,
       },
-      '80%'
+      '40%'
     )
     const modal: NzModalRef = this.modalService.create(base);
     modal.afterClose.subscribe((result)=>{
@@ -57,7 +69,7 @@ export class TypeOfFilmListComponent implements OnInit {
         isUpdate: true,
         typeOfFilm,
       },
-      '80%'
+      '40%%'
     )
     const modal: NzModalRef = this.modalService.create(base);
     modal.afterClose.subscribe((result)=>{
@@ -74,12 +86,44 @@ export class TypeOfFilmListComponent implements OnInit {
         isDetail: true,
         typeOfFilm,
       },
-      '80%'
+      '40%'
     )
     const modal: NzModalRef = this.modalService.create(base);
   }
 
   delete(typeOfFilm: ITypeOfFilm){
 
+  }
+
+  getIndex(index: number): number {
+    return CommonUtil.getIndex(
+      index,
+      this.searchRequest.pageIndex,
+      this.searchRequest.pageSize
+    );
+  }
+
+  initSearchForm() {
+    this.searchForm = this.fb.group({
+      keyword: ''
+    })
+  }
+
+  search(){
+    const searchRequest = {
+      ...this.searchRequest,
+      ...this.searchForm
+    }
+    this.typeOfFilmService.search(searchRequest).subscribe(response=>{
+      this.typeOfFilmList = response?.data as ITypeOfFilm[];
+      this.total = response?.page.total || 0
+    })
+  }
+
+  onQuerySearch(params: { pageIndex: number; pageSize: number }): void {
+    const { pageIndex, pageSize } = params;
+    this.searchRequest.pageIndex = pageIndex;
+    this.searchRequest.pageSize = pageSize;
+    this.ngOnInit();
   }
 }
