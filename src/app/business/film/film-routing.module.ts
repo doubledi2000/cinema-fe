@@ -5,11 +5,19 @@ import { FilmListComponent } from './film-list/film-list.component';
 
 const routes: Routes = [
   {
-    path: 'list',
+    path: '',
     component: FilmListComponent
   },
   {
-    path: 'detail',
+    path: '/:id/detail',
+    component: FilmDetailComponent
+  },
+  {
+    path: '/:id/update',
+    component: FilmDetailComponent
+  },
+  {
+    path: '/create',
     component: FilmDetailComponent
   }
 ];

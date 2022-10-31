@@ -1,0 +1,29 @@
+<ng-container *ngIf="!isSameComponent">
+  <div class="d-flex title">
+    <span (click)="onBack()" class="pre-title"
+      >{{ secondTitle.title}} &nbsp;</span
+    >
+    <img
+      *ngIf="showBack"
+      src="assets/images/button/next.png"
+      alt="back"
+      (click)="onBack()"
+    />
+    <span class="current-title">{{ title }}</span>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="isSameComponent">
+  <div class="d-flex title">
+    <span (click)="onBackSameComponent()" class="pre-title"
+      >{{secondTitle.title}} &nbsp;</span
+    >
+    <img
+      *ngIf="showBack"
+      src="assets/images/button/back.png"
+      alt="back"
+      (click)="onBackSameComponent()"
+    />
+    <span class="current-title">{{title}}</span>
+  </div>
+</ng-container>

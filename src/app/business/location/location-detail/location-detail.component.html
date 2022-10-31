@@ -1,0 +1,65 @@
+<div class="content">
+  <div class="title-page" *nzModalTitle="">
+      <span>
+          {{isCreate ? 'Tạo mới thể loại phim' : isUpdate ? 'Cập nhật thể loại phim' : 'Chi tiết thể loại phim' }}
+      </span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+      <form [formGroup]="form">
+          <div class="row">
+              <div class="col-6 mb-2">
+                  <label>Mã chi nhánh <span class="text-danger">*</span></label>
+                  <input
+                      formControlName="code"
+                      nz-input
+                      [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
+                      placeholder="'Nhập mã chi nhánh'"
+                  >
+              </div>
+              <div class="col-6 mb-2">
+                  <label>Tên chi nhánh <span class="text-danger">*</span></label>
+                  <input
+                      formControlName="name"
+                      nz-input
+                      [maxLength]="LENGTH_VALIDATOR.NAME_MAX_LENGTH.MAX"
+                      placeholder="'Nhập tên chi nhánh'"
+                  >
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-12 mb-2">
+                  <label>Địa chỉ</label>
+                  <textarea
+                      rows="4"
+                      placeholder="Nhập mô tả"
+                      formControlName="address"
+                      nz-input
+                  ></textarea>
+              </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="row">
+      <div class="col-12 text-center" *nzModalFooter>
+          <ng-container *ngIf="isDetail">
+              <button nz-button nzType="default" (click)="onCancel()">
+                  Hủy
+              </button>
+              <button nz-button nzType="primary" class="mr-2" (click)="nextToUpdate()">
+                  Chỉnh sửa
+              </button>
+          </ng-container>
+          <ng-container *ngIf="!isDetail">
+              <button nz-button nzType="default" class="mr-2" (click)="onCancel()">
+                  Hủy
+              </button>
+              <button nz-button nzType="primary" class="mr-2" (click)="onSubmit()" [disabled]="form.invalid">
+                  Lưu
+              </button>
+          </ng-container>
+      </div>
+  </div>
+</div>

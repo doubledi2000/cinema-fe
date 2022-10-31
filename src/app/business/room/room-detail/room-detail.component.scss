@@ -25,17 +25,17 @@
     margin-right: 100px;
 }
 
-.zoom .seat {
-    width: 40px;
-    height: 30px;
+.seat {
+    width: 50px;
+    height: 40px;
     display: inline-block;
     margin: 5px 0px ;
     border-radius: 50%;
 }
 
-.zoom .vip-seat {
-    width: 40px;
-    height: 30px;
+ .vip-seat {
+    width: 50px;
+    height: 40px;
     display: inline-block;
     margin: 5px 0px ;
     border-radius: 50% 50% 10% 10%;
@@ -43,15 +43,15 @@
 }
 
 
-.zoom .sweet-seat{
-    width: 70px;
-    height: 30px;
+.sweet-seat{
+    width: 100px;
+    height: 40px;
     display: inline-block;
     margin: 5px 0px ;
     border-radius: 50% 50% 10% 10%;
 }
 
-.zoom .row-chair{
+.row-chair{
     width: fit-content;
     display: inline-flex;
 }

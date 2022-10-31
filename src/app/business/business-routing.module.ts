@@ -4,7 +4,7 @@ import { TypeOfFilmListComponent } from './type-of-film/type-of-film-list/type-o
 
 const routes: Routes = [
   {
-    path: 'room',
+    path: 'rooms',
     loadChildren: () => import('./room/room.module').then((m) => m.RoomModule),
   },
   {
@@ -27,9 +27,10 @@ const routes: Routes = [
   {
     path: 'type-of-films',
     loadChildren: ()=> import('./type-of-film/type-of-film.module').then(m=>m.TypeOfFilmModule)
-  },{
-    path: 'test',
-    component: TypeOfFilmListComponent
+  },
+  {
+    path: 'locations',
+    loadChildren: ()=> import('./location/location.module').then(m => m.LocationModule)
   }
 ];
 

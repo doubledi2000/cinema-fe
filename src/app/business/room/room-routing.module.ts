@@ -6,7 +6,15 @@ import { RoomUpdateComponent } from './room-update/room-update.component';
 
 const routes: Routes = [
   {
-    path: 'detail',
+    path: ':id/update',
+    component: RoomUpdateComponent
+  },
+  {
+    path: ':id/detail',
+    component: RoomUpdateComponent
+  },
+  {
+    path: 'create',
     component: RoomUpdateComponent
   },
   {

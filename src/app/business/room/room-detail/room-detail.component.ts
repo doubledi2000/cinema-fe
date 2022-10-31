@@ -1,91 +1,132 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+
+import { IChair } from '../../../shared/model/chair.model';
+import { IRoom, Room } from '../../../shared/model/room.model';
+import { IRow } from '../../../shared/model/row.model';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-room-detail',
   templateUrl: './room-detail.component.html',
-  styleUrls: ['./room-detail.component.scss']
+  styleUrls: ['./room-detail.component.scss'],
 })
 export class RoomDetailComponent implements OnInit {
-  isVisible = false;
-  isOkLoading = false;
-  scale = 1200/(45 * 10 +100);
-  showModal(): void {
-    this.isVisible = true;
-  }
+  @Input() room: IRoom = new Room();
+  scale = 1200 / (45 * 10 + 100);
 
-  handleOk(): void {
-    this.isOkLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isOkLoading = false;
-    }, 3000);
-  }
-  visible: boolean = false;
+  form: FormGroup = new FormGroup({});
 
-  clickMe(): void {
-    this.visible = false;
-  }
-
-  changeS(value: boolean): void {
-  }
-  handleCancel(): void {
-    this.isVisible = false;
-  }
-  demoValue = 3;
-  seats: any[] = [
-    {
-      type: 'normal',
-      status: 'AVAILABLE'
-    },{
-      type: 'normal',
-      status: 'AVAILABLE'
-    },{
-      type: 'normal',
-      status: 'HOLDED'
-    },{
-      type: 'vip',
-      status: 'HOLDED'
-    },{
-      type: 'sweet',
-      status: 'AVAILABLE'
-    },{
-      type: 'normal',
-      status: 'AVAILABLE'
-    },{
-      type: 'normal',
-      status: 'AVAILABLE'
-    },{
-      type: 'normal',
-      status: 'AVAILABLE'
-    },{
-      type: 'normal',
-      status: 'AVAILABLE'
-    },{
-      type: 'normal',
-      status: 'AVAILABLE'
-    }
-  
-  
-  ]
-  getIndex = 0;
-
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private modalRef: NzModalRef
+    ) {}
 
   ngOnInit(): void {
+    this.initForm();
   }
 
-  change(item: any, index: number): void{
-    
-    for(let i = 0; i < 10;i++){
-      if(i === index) {
-        this.getIndex = i;
-        if (item.status == 'AVAILABLE'){
-          item.status = 'YOUR_SELECT';
-        }else if(item.status == 'YOUR_SELECT'){
-          item.status = 'AVAILABLE';
-        }
-      }
+  initForm() {
+    let fArr: FormArray = new FormArray([]);
+    this.room.rows.forEach((e) => {
+      fArr.push(this.initRowGroup(e));
+    });
+    this.form = this.fb.group({
+      rows: fArr,
+    });
+  }
+
+  get rows() {
+    return this.form.controls['rows'] as FormArray;
+  }
+
+  initRowGroup(row: IRow) {
+    let farr: FormArray = new FormArray([]);
+    let chairs = row.chairs.forEach((ele) => {
+      farr.push(this.initChairGroup(ele));
+    });
+    console.log(row.chairs);
+    return this.fb.group({
+      id: [
+        {
+          value: row.id,
+        },
+      ],
+      name: [
+        {
+          value: row.name,
+        },
+      ],
+      code: [
+        {
+          value: row.code,
+        },
+      ],
+      chairs: farr,
+    });
+  }
+
+  initChairGroup(chair: IChair) {
+    return this.fb.group({
+      id: [
+        {
+          value: chair.id,
+        },
+      ],
+      chairType: [chair.chairType],
+    });
+  }
+
+  showForm() {
+    this.room = {
+      ...this.room,
+      ...this.form.value
     }
-    
+    this.modalRef.close({
+      success: true,
+      value: this.room
+    })
+  }
+
+  show(row: any, rIndex: number) {
+    // console.log(row.value.chairs.splice(0,1))
+    // console.log(row.value.chairs)
+    // this.form.get('rows')[0].get('chairs').push(this.initChairGroup(new Chair));
+    // console.log(this.form.get('rows')['controls'][0].get('chairs').push(this.initChairGroup(new Chair())));
+    // console.log(row.value.chairs)
+    if (this.countSeat(row) > this.room.maxChairPerRow) {
+      const index = this.getChairRemoveIndex(row);
+      console.log(index)
+      this.form.get('rows')['controls'][rIndex].get('chairs').removeAt(index);
+    } else if (this.countSeat(row) < this.room.maxChairPerRow) {
+      this.form.get('rows')['controls'][rIndex].get('chairs').push(this.initChairGroup({ id: null, chairType: 'NORMAL' }));
+    }
+  }
+
+  countSeat(row: any) {
+    const sum = row.value.chairs.reduce((pre, current) => {
+      if (current.chairType == 'SWEET') return pre + 2;
+      else return pre + 1;
+    }, 0);
+    return sum;
+  }
+
+  visibleSweet(row: any) {
+    const sum = row.value.chairs.reduce((pre, current) => {
+      if (current.chairType == 'SWEET') return pre + 1;
+      return pre;
+    }, 0);
+    return sum < (this.room.maxChairPerRow / 2 - 0.7);
+  }
+
+  getChairRemoveIndex(row:any) {
+    let index = 0;
+    row.value.chairs.forEach((pre, current) => {
+      if(pre.chairType != 'SWEET') {
+        index = current;
+      }
+    })
+    return index;
+
   }
 }

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { IRoom } from '../../../shared/model/room.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { RoomService } from '../../../shared/service/room.service';
+import { ILocation } from '../../../shared/model/location.model';
+import { LocationService } from '../../../shared/service/location.service';
 
 @Component({
   selector: 'app-room-list',
@@ -6,12 +12,36 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./room-list.component.scss']
 })
 export class RoomListComponent implements OnInit {
+  roomList: IRoom[] = [];
+  locationList: ILocation[] = [];
+  searchRequest = {
+    keyword: '',
+  }
 
-  data = [1, 2, 3];
+  searchForm: FormGroup = new FormGroup({});
 
-  constructor() { }
+  constructor(
+    private fb: FormBuilder,
+    private roomService: RoomService,
+    private locationService: LocationService
+  ) { }
 
   ngOnInit(): void {
+    this.initForm();
+
+  }
+
+  initForm(){
+    this.searchForm = this.fb.group({
+      keyword: '',
+      locationIds: []
+    })
+  }
+
+  loadLocation(data: any){
+    this.locationService.autoComplete({keyword: data}).subscribe(response =>{
+      this.locationList = response?.data;
+    })
   }
 
 }

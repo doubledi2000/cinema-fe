@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, Input, OnInit, Output } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, Input, OnInit, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { PAGINATION } from '../../constant/pagination.constant';
 
@@ -7,7 +7,7 @@ import { PAGINATION } from '../../constant/pagination.constant';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit, AfterViewChecked {
+export class PaginationComponent implements OnInit, AfterContentChecked  {
 
 
   index = 1;
@@ -20,6 +20,9 @@ export class PaginationComponent implements OnInit, AfterViewChecked {
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
   constructor() {
+  }
+  ngAfterContentInit(): void {
+    this.getIndex()
   }
 
   ngOnInit(): void {
@@ -63,8 +66,7 @@ export class PaginationComponent implements OnInit, AfterViewChecked {
     });
   }
 
-  ngAfterViewChecked(): void {
+  ngAfterContentChecked(): void {
     this.getIndex();
   }
-
 }

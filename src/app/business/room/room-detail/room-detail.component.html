@@ -2,28 +2,9 @@
 <div class="container d-flex justify-content-center">
   <div class="appbackground">
   </div>
-  <div class="zoom">
+  <div class="zoom" [formGroup]="form">
     <div class="display">
       <div class="text-center">màn hình</div>
-    </div>
-    <div class="row">
-      <div class="col-2 offset-8">
-        
-        <button nz-button nzType="primary" (click)="showModal()">
-          <span>Thêm hàng</span>
-        </button>
-        <nz-modal
-          [(nzVisible)]="isVisible"
-          nzTitle="Modal Title"
-          (nzOnCancel)="handleCancel()"
-          (nzOnOk)="handleOk()"
-          [nzOkLoading]="isOkLoading"
-        >
-          <div *nzModalContent>Hàng
-            <nz-input-number [(ngModel)]="demoValue" [nzMin]="1" [nzMax]="10" [nzStep]="1"></nz-input-number> 
-          </div>
-        </nz-modal>
-      </div>
     </div>
     <!-- <div class="row-chair left-way">
       <ng-container
@@ -37,7 +18,7 @@
         [(nzPopoverVisible)]="visible"
         (nzPopoverVisibleChange)="changeS($event)"
         nzPopoverTrigger="click"
-        [nzPopoverContent]="'<a>Hello</a>'" 
+        [nzPopoverContent]="'<a>Hello</a>'"
           [class.seat]="item.type=='normal'"
           [class.vip-seat]="item.type=='vip'"
           [class.sweet-seat]="item.type=='sweet'"
@@ -46,121 +27,52 @@
           [class.your_select]="item.status=='YOUR_SELECT'"
           [class.holded]="item.status=='HOLDED'"
           (click)="change(item, i)"
-        >A12</button>          
+        >A12</button>
       </ng-container>
     </div> -->
-   
-    <div class="row-chair left-way">
-
-      <ng-container
-        *ngFor="let item of seats; let i = index"
-      >
-    
-        <select
-          class="text-center"
-          [class.seat]="item.type=='normal'"
-          [class.vip-seat]="item.type=='vip'"
-          [class.sweet-seat]="item.type=='sweet'"
-          [class.available]="item.status=='AVAILABLE'"
-          [class.solded]="item.status=='SOLDED'"
-          [class.your_select]="item.status=='YOUR_SELECT'"
-          [class.holded]="item.status=='HOLDED'"
-          (click)="change(item, i)"
+    <div formArrayName="rows">
+      <ng-container *ngFor="let row of form.get('rows')['controls']; index as rIndex; index as r">
+        <div class="row-chair" [formGroupName]="rIndex">
+          <div formArrayName="chairs" class="d-flex">
+            <ng-container
+          *ngFor="let item of row.get('chairs')['controls']; let cIndex = index"
         >
-        <option value="item.type">N</option>
-      </select>
+          <div [formGroupName]="cIndex">
+            <select
+            formControlName="chairType"
+            class="text-center"
+            [class.seat]="item.get('chairType').value=='NORMAL'"
+            [class.vip-seat]="item.get('chairType').value =='VIP'"
+            [class.sweet-seat]="item.get('chairType').value=='SWEET'"
+            (change)="show(row, r)"
+          >
+          <option value="NORMAL">N</option>
+          <option value="VIP">V</option>
+          <ng-container *ngIf="this.visibleSweet(row)">
+            <option value="SWEET">S</option>
+          </ng-container>
+        </select>
+          </div>
+        </ng-container>
+          </div>
+        </div>
+        <br>
       </ng-container>
     </div>
-    <br>
-    <div class="row-chair left-way">
-
-      <ng-container
-        *ngFor="let item of seats; let i = index"
-      >
-    
-        <select
-          class="text-center"
-          [class.seat]="item.type=='normal'"
-          [class.vip-seat]="item.type=='vip'"
-          [class.sweet-seat]="item.type=='sweet'"
-          [class.available]="item.status=='AVAILABLE'"
-          [class.solded]="item.status=='SOLDED'"
-          [class.your_select]="item.status=='YOUR_SELECT'"
-          [class.holded]="item.status=='HOLDED'"
-          (click)="change(item, i)"
-        >
-        <option value="item.type">N</option>
-        <option value="item.type">V</option>
-        <option value="item.type">C</option>
-        <option value="item.type">R</option>
-      </select>
-      </ng-container>
-      <button>+</button>
-      <button>X</button>
-    </div>
-    <br>    <div class="row-chair left-way">
-
-      <ng-container
-        *ngFor="let item of seats; let i = index"
-      >
-    
-        <select
-          class="text-center"
-          [class.seat]="item.type=='normal'"
-          [class.vip-seat]="item.type=='vip'"
-          [class.sweet-seat]="item.type=='sweet'"
-          [class.available]="item.status=='AVAILABLE'"
-          [class.solded]="item.status=='SOLDED'"
-          [class.your_select]="item.status=='YOUR_SELECT'"
-          [class.holded]="item.status=='HOLDED'"
-          (click)="change(item, i)"
-        >
-        <option value="item.type">N</option>
-      </select>
-      </ng-container>
-    </div>
-    <br>    <div class="row-chair left-way">
-
-      <ng-container
-        *ngFor="let item of seats; let i = index"
-      >
-    
-        <select
-          class="text-center"
-          [class.seat]="item.type=='normal'"
-          [class.vip-seat]="item.type=='vip'"
-          [class.sweet-seat]="item.type=='sweet'"
-          [class.available]="item.status=='AVAILABLE'"
-          [class.solded]="item.status=='SOLDED'"
-          [class.your_select]="item.status=='YOUR_SELECT'"
-          [class.holded]="item.status=='HOLDED'"
-          (click)="change(item, i)"
-        >
-        <option value="item.type">N</option>
-      </select>
-      </ng-container>
-    </div>
-    <br>    <div class="row-chair left-way">
-
-      <ng-container
-        *ngFor="let item of seats; let i = index"
-      >
-    
-        <select
-          class="text-center"
-          [class.seat]="item.type=='normal'"
-          [class.vip-seat]="item.type=='vip'"
-          [class.sweet-seat]="item.type=='sweet'"
-          [class.available]="item.status=='AVAILABLE'"
-          [class.solded]="item.status=='SOLDED'"
-          [class.your_select]="item.status=='YOUR_SELECT'"
-          [class.holded]="item.status=='HOLDED'"
-          (click)="change(item, i)"
-        >
-        <option value="item.type">N</option>
-      </select>
-      </ng-container>
-    </div>
-    <br>
   </div>
+  <div class="row">
+    <div class="col-12 text-center" *nzModalFooter>
+            <button nz-button nzType="default" >
+                Hủy
+            </button>
+            <button nz-button nzType="primary" class="mr-2" (click)="showForm()">
+                Lưu
+            </button>
+    </div>
 </div>
+</div>
+<!--
+[class.available]="item.status=='AVAILABLE'"
+[class.solded]="item.status=='SOLDED'"
+[class.your_select]="item.status=='YOUR_SELECT'"
+[class.holded]="item.status=='HOLDED'" -->

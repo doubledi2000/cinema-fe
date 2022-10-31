@@ -28,12 +28,18 @@ import { ButtonActionComponent } from './component/button-action/button-action.c
 import { ButtonComponent } from './component/button/button.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { TableTitleComponent } from './component/table-title/table-title.component';
+import { UploadImageComponent } from './component/upload-image/upload-image.component';
+import { UploadComponent } from './component/upload/upload.component';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
     ButtonActionComponent,
     ButtonComponent,
     PaginationComponent,
+    TableTitleComponent,
+    UploadImageComponent,
+    UploadComponent,
   ],
   imports: [
     CommonModule,
@@ -89,7 +95,10 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
     NzListModule,
     ButtonActionComponent,
     ButtonComponent,
-    PaginationComponent
+    PaginationComponent,
+    TableTitleComponent,
+    UploadImageComponent,
+    UploadComponent
   ]
 })
 export class SharedModule { }

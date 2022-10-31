@@ -33,7 +33,7 @@ export class TypeOfFilmListComponent implements OnInit {
 
   ngOnInit(): void {
     this.initSearchForm();
-    this.loadData();
+    this.search();
   }
 
 
@@ -88,7 +88,7 @@ export class TypeOfFilmListComponent implements OnInit {
       },
       '40%'
     )
-    const modal: NzModalRef = this.modalService.create(base);
+    this.modalService.create(base);
   }
 
   delete(typeOfFilm: ITypeOfFilm){
@@ -110,9 +110,10 @@ export class TypeOfFilmListComponent implements OnInit {
   }
 
   search(){
+    console.log(this.searchForm);
     const searchRequest = {
       ...this.searchRequest,
-      ...this.searchForm
+      ...this.searchForm.value
     }
     this.typeOfFilmService.search(searchRequest).subscribe(response=>{
       this.typeOfFilmList = response?.data as ITypeOfFilm[];

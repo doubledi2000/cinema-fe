@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TypeOfFilmService } from '../../../shared/service/type-of-film.service';
 
 @Component({
   selector: 'app-booking',
@@ -66,9 +67,13 @@ export class BookingComponent implements OnInit {
     },
   ]
 
-  constructor() { }
+  constructor(private test: TypeOfFilmService) {
+   }
 
   ngOnInit(): void {
+    this.test.search({}).subscribe(data=>{
+
+    })
   }
 
   change(item: any): void{

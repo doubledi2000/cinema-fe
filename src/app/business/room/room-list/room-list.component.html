@@ -1,15 +1,40 @@
 <div class="content">
     <ng-container>
         <div class="row mt-3">
-            <div class="col-3">
-                <nz-input-group [nzSuffix]="suffixIconSearch">
-                    <input type="text" nz-input placeholder="input search text" />
-                  </nz-input-group>
-                  <ng-template #suffixIconSearch>
-                    <span nz-icon nzType="search"></span>
-                  </ng-template>
+            <div class="col-9">
+              <div class="row" [formGroup]="searchForm">
+                <div class="col-3">
+                    <nz-input-group [nzSuffix]="suffixIconSearch">
+                        <input type="text" nz-input placeholder="input search text" [nzSize]="'small'" formControlName="keyword"/>
+                      </nz-input-group>
+                      <ng-template #suffixIconSearch>
+                        <span nz-icon nzType="search"></span>
+                      </ng-template>
+                </div>
+                <div class="col-9">
+                    <div class="row d-flex">
+                        <div class="col-4">
+                            <nz-select
+                            [nzMaxTagCount]="2"
+                            [nzMaxTagPlaceholder]="tagPlaceHolder"
+                            nzMode="multiple"
+                            nzPlaceHolder="Chi nhánh"
+                            style="width: 100%; "
+                            [nzShowArrow]="true"
+                            [nzSize]="'large'"
+                            (nzOnSearch)="loadLocation($event)"
+                            formControlName="locationIds"
+                          >
+                            <nz-option *ngFor="let item of locationList" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
+                          </nz-select>
+                          <ng-template #tagPlaceHolder let-selectedList>+1</ng-template>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-            <div class="col-9 d-flex justify-content-end">
+            </div>
+            <div class="col-3 d-flex justify-content-end">
                 <button nz-button nzType="primary">Add</button>
             </div>
         </div>
@@ -17,7 +42,7 @@
             <div class="col-12">
                 <nz-table
                 #table
-                [nzData]="data"
+                [nzData]="roomList"
                 [nzTableLayout]="'fixed'"
                 >
                 <thead>
@@ -30,9 +55,9 @@
                         <th nzAlign="center">Trạng thái</th>
                     </tr>
                 </thead>
-           
+
                 <tbody>
-                    <ng-container  *ngFor="let item of data">
+                    <ng-container  *ngFor="let item of roomList">
                         <tr>
                             <td class="thead-border-top-left" nzAlign="center">
                                 1
@@ -42,7 +67,7 @@
                             <td nzAlign="center">Phòng 1</td>
                             <td nzAlign="center">50</td>
                             <td nzAlign="center">Hoạt động</td>
-    
+
                         </tr>
                     </ng-container>
                 </tbody>
@@ -50,5 +75,5 @@
             </div>
         </div>
     </ng-container>
-    
+
 </div>
