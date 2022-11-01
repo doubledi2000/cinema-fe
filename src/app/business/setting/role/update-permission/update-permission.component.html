@@ -1,0 +1,45 @@
+<div class="content">
+    <div class="title-page" *nzModalTitle>
+      <span>Cập nhật phân quyền</span>
+    </div>
+    <div class="row">
+        <nz-collapse [nzExpandIconPosition]='"right"'  [nzBordered]="false">
+          <nz-collapse-panel
+            *ngFor="let item of [{}, {}, {}, {}, {}, {}, {}], let isFirst = first"
+            [nzActive]="false"
+            [nzHeader]="'Permission'"
+            class="customStyle"
+          >
+            <div *ngFor="let per of [{},{}]">
+              <div class="row subLabel">
+                <div class="col-11">
+                  <span class="text-span">name</span>
+                </div>
+                <div class="col-1">
+                    <nz-switch nzSize="small"
+                    [ngModel]="false"
+                    ></nz-switch>
+                </div>
+                <hr class="custom-hr">
+              </div>
+            </div>
+            <ng-template #expandedIcon let-active>
+              {{ active }}
+              <i nz-icon nzType="caret-right" class="ant-collapse-arrow" ></i>
+            </ng-template>
+          </nz-collapse-panel>
+        </nz-collapse>
+    </div>
+    <div class="row">
+      <div class="col-12 mb-3 text-center" *nzModalFooter>
+        <button class="mr-2" nz-button nzType="default" >
+          huy
+        </button>
+        <button nz-button nzType="primary" \>
+          Lui
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  

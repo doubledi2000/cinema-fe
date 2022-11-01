@@ -1,0 +1,61 @@
+
+.film-header{
+    display: block;
+    background-color: azure;
+}
+.film-header .title{
+    font-size: larger;
+    font-weight: bold;
+}
+
+.avatar img{
+    width: 184px;
+    height: 273px;
+}
+
+.info{
+    display: flex;
+}
+
+.info .title{
+    font-weight: bolder;
+}
+.schedule{
+    display: flex;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+.schedule button{
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+
+.calendar-days {
+    width: 70px;
+    height: 60px;
+    border: 3px solid #c2c2c2;
+    cursor: pointer;
+}
+
+.calendar-days:hover{
+    background: peru;
+    padding: 1px
+}
+
+.default{
+    background: #669999;
+}
+
+.selected {
+    background: peru;
+}
+.today {
+    background-color: red;
+}
+
+.calendar-days  .text {
+    font-family: sans-serif;
+    font-weight: bold;
+}

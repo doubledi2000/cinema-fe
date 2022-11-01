@@ -1,1 +1,125 @@
+<div class="content">
+  <ng-container>
+    <div class="row mt-3">
+      <div class="col-9">
+        <div class="row" [formGroup]="searchForm">
+          <div class="col-3">
+            <nz-input-group [nzSuffix]="suffixIconSearch">
+              <input
+                type="text"
+                nz-input
+                placeholder="input search text"
+                [nzSize]="'small'"
+                formControlName="keyword"
+                (keyup.enter)="search()"
+              />
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+              <span nz-icon nzType="search"></span>
+            </ng-template>
+          </div>
+          <div class="col-9">
+            <div class="row d-flex">
+              <div class="col-4">
+                <nz-select
+                  [nzMaxTagCount]="2"
+                  [nzMaxTagPlaceholder]="tagPlaceHolder"
+                  nzMode="multiple"
+                  nzPlaceHolder="Chi nhánh"
+                  style="width: 100%"
+                  [nzShowArrow]="true"
+                  [nzSize]="'large'"
+                  (nzOnSearch)="loadLocation($event)"
+                  formControlName="locationIds"
+                  (ngModelChange)="search()"
+                >
+                  <nz-option
+                    *ngFor="let item of locationList"
+                    [nzLabel]="item.name"
+                    [nzValue]="item.id"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #tagPlaceHolder let-selectedList>+1</ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 d-flex justify-content-end">
+        <button nz-button nzType="primary" (click)="create()" >Add</button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <nz-table #table [nzData]="roomList" [nzTableLayout]="'fixed'">
+          <thead>
+            <tr>
+              <th nzAlign="center" nzWidth="80px">STT</th>
+              <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
+                Chi nhánh
+              </th>
+              <th nzAlign="center" [nzSortFn]="true">Mã phòng</th>
+              <th nzAlign="center" [nzSortFn]="true">Tên phòng</th>
+              <th nzAlign="center">Số ghế</th>
+              <th nzAlign="center">Trạng thái</th>
+              <th nzAlign="center">Hành động</th>
+            </tr>
+          </thead>
 
+          <tbody>
+            <ng-container *ngFor="let item of roomList">
+              <tr>
+                <td class="thead-border-top-left" nzAlign="center">1</td>
+                <td nzAlign="center">{{item.location.name}}</td>
+                <td nzAlign="center">{{item.code}}</td>
+                <td nzAlign="center">{{item.name}}</td>
+                <td nzAlign="center">50</td>
+                <td nzAlign="center">{{item.status}}</td>
+                <td nzAlign="center">
+                  <app-button-action
+                    [action]="'view'"
+                    className="first"
+                    nzTooltipTitle="Chi tiết"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="view(item)"
+                  >
+                    ></app-button-action
+                  >
+
+                  <app-button-action
+                    [action]="'edit'"
+                    className="first"
+                    nzTooltipTitle="Cập nhật"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="update(item)"
+                  >
+                    ></app-button-action
+                  >
+
+                  <app-button-action
+                    [action]="'delete'"
+                    className="last"
+                    nzTooltipTitle="Xóa"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="delete(item)"
+                  >
+                    ></app-button-action
+                  >
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+        <app-pagination
+        [pageIndex]="searchRequest.pageIndex"
+        [pageSize]="searchRequest.pageSize"
+        [total]="total"
+        (onChange)="onQuerySearch($event)"
+      ></app-pagination>
+      </div>
+    </div>
+  </ng-container>
+</div>

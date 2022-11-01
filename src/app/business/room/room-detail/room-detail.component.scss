@@ -1,12 +1,16 @@
-
-.zoom {
+.appBackground {
+    position: relative;
     background-image: url("../../../../assets/1.jpg");
-    overflow: scroll;
-    width: min-content;
+    background-repeat:no-repeat;
+    background-size:100% 100vh;
+}
+.zoom {
+    // overflow: auto;
+    // transform: scale(1.8);
 }
 
 .zoom .display {
-    height: 200px;
+    height: 100px;
 }
 
 .zoom .row-chair{
@@ -17,21 +21,21 @@
     margin-left: 100px;
 }
 
-.zoom .left-way{
+.zoom .right-way{
     margin-right: 100px;
 }
 
-.zoom .seat {
-    width: 40px;
-    height: 30px;
+.seat {
+    width: 50px;
+    height: 40px;
     display: inline-block;
     margin: 5px 0px ;
     border-radius: 50%;
 }
 
-.zoom .vip-seat {
-    width: 40px;
-    height: 30px;
+ .vip-seat {
+    width: 50px;
+    height: 40px;
     display: inline-block;
     margin: 5px 0px ;
     border-radius: 50% 50% 10% 10%;
@@ -39,15 +43,15 @@
 }
 
 
-.zoom .sweet-seat{
-    width: 70px;
-    height: 30px;
+.sweet-seat{
+    width: 100px;
+    height: 40px;
     display: inline-block;
     margin: 5px 0px ;
     border-radius: 50% 50% 10% 10%;
 }
 
-.zoom .row-chair{
+.row-chair{
     width: fit-content;
     display: inline-flex;
 }
@@ -68,10 +72,6 @@
     background-color: #FF0000;
 }
 
-button {
-    cursor: pointer;
-}
-
 .btn-room {
     display: flex;
     align-items: center;
@@ -83,3 +83,10 @@ button {
 .btn-room .btn-detail{
     margin-left: 50px;
 }
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }

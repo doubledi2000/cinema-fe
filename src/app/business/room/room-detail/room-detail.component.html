@@ -1,11 +1,24 @@
-<div class="container">
-  <div class="zoom">
-    <div class="display"></div>
-    <div class="row-chair left-way right-way">
+
+<div class="container d-flex justify-content-center">
+  <div class="appbackground">
+  </div>
+  <div class="zoom" [formGroup]="form">
+    <div class="display">
+      <div class="text-center">màn hình</div>
+    </div>
+    <!-- <div class="row-chair left-way">
       <ng-container
         *ngFor="let item of seats; let i = index"
       >
         <button
+        nz-button
+        nzType="primary"
+        nz-popover
+        nzPopoverTitle="Title"
+        [(nzPopoverVisible)]="visible"
+        (nzPopoverVisibleChange)="changeS($event)"
+        nzPopoverTrigger="click"
+        [nzPopoverContent]="'<a>Hello</a>'"
           [class.seat]="item.type=='normal'"
           [class.vip-seat]="item.type=='vip'"
           [class.sweet-seat]="item.type=='sweet'"
@@ -13,31 +26,51 @@
           [class.solded]="item.status=='SOLDED'"
           [class.your_select]="item.status=='YOUR_SELECT'"
           [class.holded]="item.status=='HOLDED'"
-          (click)="change(item)"
-        >A1</button>
+          (click)="change(item, i)"
+        >A12</button>
       </ng-container>
-    </div>
-    <div class="row left-way right-way">
-      <ng-container
-        *ngFor="let item of seats; let i = index"
-      >
-        <button
-          [class.seat]="item.type=='normal'"
-          [class.vip-seat]="item.type=='vip'"
-          [class.sweet-seat]="item.type=='sweet'"
-          [class.available]="item.status=='AVAILABLE'"
-          [class.solded]="item.status=='SOLDED'"
-          [class.your-select]="item.status=='YOUR_SELECT'"
-          [class.holded]="item.status=='HOLDED'"
-          (click)="change(item)"
-        >A1</button>
+    </div> -->
+    <div formArrayName="rows">
+      <ng-container *ngFor="let row of form.get('rows')['controls']; index as rIndex; index as r">
+        <div class="row-chair" [formGroupName]="rIndex">
+          <div formArrayName="chairs" class="d-flex">
+            <ng-container
+          *ngFor="let item of row.get('chairs')['controls']; let cIndex = index"
+        >
+          <div [formGroupName]="cIndex">
+            <select
+            formControlName="chairType"
+            class="text-center"
+            [class.seat]="item.get('chairType').value=='NORMAL'"
+            [class.vip-seat]="item.get('chairType').value =='VIP'"
+            [class.sweet-seat]="item.get('chairType').value=='SWEET'"
+            (change)="show(row, r)"
+          >
+          <option value="NORMAL">N</option>
+          <option value="VIP">V</option>
+            <option [disabled]="!this.visibleSweet(row)" value="SWEET">S</option>
+        </select>
+          </div>
+        </ng-container>
+          </div>
+        </div>
+        <br>
       </ng-container>
-    </div>
-    
-    <div class="btn-room">
-      <button nz-button nzType="primary">Primary Button</button>
-      <button class="btn-detail" nz-button nzType="primary">Huỷ</button>
-        <button class="btn-detail">Mua vé</button>
     </div>
   </div>
+  <div class="row">
+    <div class="col-12 text-center" *nzModalFooter>
+            <button nz-button nzType="default" >
+                Hủy
+            </button>
+            <button nz-button nzType="primary" class="mr-2" (click)="showForm()">
+                Lưu
+            </button>
+    </div>
 </div>
+</div>
+<!--
+[class.available]="item.status=='AVAILABLE'"
+[class.solded]="item.status=='SOLDED'"
+[class.your_select]="item.status=='YOUR_SELECT'"
+[class.holded]="item.status=='HOLDED'" -->

@@ -1,0 +1,35 @@
+* {
+  font-family: Roboto-bold !important;
+}
+
+span {
+  font-size: 20px;
+  font-weight: 900;
+  color: #323232;
+}
+
+img {
+  cursor: pointer;
+  height: 12px;
+  width: 8px;
+  color: #0f172a;
+  margin-right: 8px;
+}
+
+.title {
+  align-items: center;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px !important;
+  line-height: 20px;
+  color: var(--white);
+  margin-left: 5px;
+}
+.pre-title {
+  cursor: pointer;
+  color: var(--blue-primary);
+}
+.current-title {
+  color: var(--text);
+}

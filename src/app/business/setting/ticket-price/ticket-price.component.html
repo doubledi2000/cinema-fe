@@ -1,0 +1,89 @@
+<h1>Ngày thường</h1>
+<form [formGroup]="form">
+    <div formArrayName="configPrices">
+        <nz-collapse>
+            <nz-collapse-panel *ngFor="let panel of form.get('configPrices')['controls']; index as i" [nzHeader]="panel.name" [nzActive]="panel.active" >
+                <div class="d-flex flex-wrap" >
+                    <ng-container *ngFor="let configPrice of panel.configPrice;index as configPriceIndex">
+                    <div class="col-6 mt-5" formGroupName="{{configPriceIndex}}">
+                        <div class="row">
+                            <div class="col-6 d-flex align-items-center">
+                                <nz-time-picker nzFormat="HH:mm" nzBorderless="nzBorderless" [nzDefaultOpenValue]="" nzInputReadOnly></nz-time-picker>
+                                <span>-</span>
+                                <nz-time-picker nzFormat="HH:mm" nzBorderless="nzBorderless"></nz-time-picker>
+                                
+                                <button (click)="deletePriceByTime(panel, configPriceIndex)">
+                                  delete
+                                </button>
+                            </div>
+                            <div class="col-6" >
+                                <ng-container *ngFor="let item of configPrice.priceByTimes">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span>Vé Thường</span>
+                                        </div>
+                                        <div class="col-9">
+                                            <input nz-input="nz-input" placeholder="Basic usage" style="width: 100px; margin-left: 10px;"/>
+                                            <span>VND</span>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                  </ng-container>
+                    <div>
+                        <button style="width: 70%; padding:0px 100px 10px 90px;" class="d-flex justify-content-center" (click)="showModal(panel)">
+                            <span nz-icon="nz-icon" nzType="plus" nzTheme="outline"></span>
+                        </button>
+                    </div>
+        
+                </div>
+            </nz-collapse-panel>
+        </nz-collapse>
+        
+    </div>
+</form>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+      <ng-container *nzModalContent>
+        <div class="row">
+          <div class="col-6 d-flex align-items-center">
+              <nz-time-picker nzFormat="HH:mm" nzBorderless="nzBorderless" [(ngModel)]="startTime"></nz-time-picker>
+              <span>-</span>
+              <nz-time-picker nzFormat="HH:mm" nzBorderless="nzBorderless" ></nz-time-picker>
+          </div>
+          <div class="col-6">
+              <div class="row">
+                  <div class="col-4">
+                      <span>Thường</span>
+                  </div>
+                  <div class="col-8">
+                      <input nz-input="nz-input" placeholder="Basic usage" value="1000000" style="width: 100px; margin-left: 10px;"/>
+                      <span>VND</span>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-4">
+                      <span>Vip</span>
+                  </div>
+                  <div class="col-8">
+                      <input nz-input="nz-input" placeholder="Basic usage" value="1000000" style="width: 100px; margin-left: 10px;"/>
+                      <span>VND</span>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-4">
+                      <span>đôi</span>
+                  </div>
+                  <div class="col-8">
+                      <input nz-input="nz-input" placeholder="Basic usage" value="1000000" style="width: 100px; margin-left: 10px;"/>
+                      <span>VND</span>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      </ng-container>
+    </nz-modal>
+
+<h1>Ngày đặc biệt</h1>
