@@ -23,7 +23,6 @@ export class FilmDetailComponent implements OnInit {
   }
 
   async getFiles(files: any): Promise<void> {
-    console.log(files);
     if (files) {
       this.files = files[0];
       getBase64(files[0]).then((data) => {

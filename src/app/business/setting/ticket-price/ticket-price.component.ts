@@ -68,7 +68,7 @@ export class TicketPriceComponent implements OnInit {
   form: FormGroup = new FormGroup({});
 
   object: any;
-  
+
 
   constructor(
     private fb: FormBuilder
@@ -212,7 +212,6 @@ export class TicketPriceComponent implements OnInit {
     this.intitData();
     this.date = new Date();
     this.initForm();
-    console.log(this.form.get('configPrices'))
   }
   startTime: Date = new Date();
   endTime: Date = new Date();
@@ -221,7 +220,7 @@ export class TicketPriceComponent implements OnInit {
     this.priceByTime.push(new PriceByTime('1',100000,'NORMAL','1'));
     this.priceByTime.push(new PriceByTime('2',150000,'VIP','1'));
     this.priceByTime.push(new PriceByTime('3',175000,'DOUBLE','1'));
-  
+
 
     this.mondayConfigPrice.push(new ConfigPrice('1','TICKET',false,0,600,undefined,'ACTIVE',this.priceByTime));
   }
@@ -231,7 +230,7 @@ export class TicketPriceComponent implements OnInit {
     priceTmp.push(new PriceByTime('4',110000,'NORMAL','2'));
     priceTmp.push(new PriceByTime('5', 160000,'VIP','2'));
     priceTmp.push(new PriceByTime('6',185000,'DOUBLE','2'));
-  
+
     this.getListConfigPrice(data.data).push(new ConfigPrice('1','TICKET',false, 601, 1000,undefined,'ACTIVE',priceTmp));
   }
 
@@ -286,16 +285,13 @@ export class TicketPriceComponent implements OnInit {
 
   showModal(panel: any): void {
     this.isVisible = true;
-    console.log(this.form);
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isVisible = false;
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
   }
 }

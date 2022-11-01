@@ -48,9 +48,7 @@
           >
           <option value="NORMAL">N</option>
           <option value="VIP">V</option>
-          <ng-container *ngIf="this.visibleSweet(row)">
-            <option value="SWEET">S</option>
-          </ng-container>
+            <option [disabled]="!this.visibleSweet(row)" value="SWEET">S</option>
         </select>
           </div>
         </ng-container>

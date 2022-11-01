@@ -24,7 +24,7 @@ export class RoomService {
   }
 
   update(id?: string, data?: any): Observable<IBaseResponse<IRoom>>{
-    return this.http.post<IBaseResponse<IRoom>>(`${RESOURCE.URL}/rooms/${id}/update`, data);
+    return this.http.post<IRoom>(`${RESOURCE.URL}/rooms/${id}/update`, data);
   }
 
   getById(id?: string): Observable<IBaseResponse<IRoom>>{

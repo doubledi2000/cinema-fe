@@ -110,7 +110,6 @@ export class TypeOfFilmListComponent implements OnInit {
   }
 
   search(){
-    console.log(this.searchForm);
     const searchRequest = {
       ...this.searchRequest,
       ...this.searchForm.value

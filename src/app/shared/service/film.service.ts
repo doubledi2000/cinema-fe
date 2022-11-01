@@ -1,3 +1,4 @@
+import { RESOURCE } from './../constant/resource.constant';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -21,9 +22,21 @@ export class FilmService {
   }
 
   search(data: any): Observable<IBaseResponse<IFilm[]>>{
-  const body = new HttpParams({fromObject: data})
-    return this.http.get<IBaseResponse<IFilm[]>>(`${this.url}/type-of-films`, {params: body});
+  const params = new HttpParams({fromObject: data})
+    return this.http.get<IBaseResponse<IFilm[]>>(`${this.url}/films`, {params});
   }
-// 
-  // create(data: any)
+
+  create(data: any): Observable<IBaseResponse<IFilm>> {
+    return this.http.post<IBaseResponse<IFilm>>(`${RESOURCE.URL}/films`, data);
+  }
+
+  update(id: string, data: any): Observable<IBaseResponse<IFilm>> {
+    return this.http.post<IBaseResponse<IFilm>>(`${RESOURCE.URL}/films/${id}/update`, data);
+  }
+
+
+  autoComplete(data: any): Observable<IBaseResponse<IFilm[]>>{
+    const params = new HttpParams({fromObject: data})
+      return this.http.get<IBaseResponse<IFilm[]>>(`${this.url}/films/auto-complete`, {params});
+    }
 }

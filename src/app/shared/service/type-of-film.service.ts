@@ -22,10 +22,15 @@ export class TypeOfFilmService {
   }
 
   update(id: string, body: any): Observable<IBaseResponse<ITypeOfFilm>> {
-    return this.httpClient.post(`${this.url}type-of-films/${id}/updates`, body);
+    return this.httpClient.post(`${this.url}/type-of-films/${id}/update`, body);
   }
 
   create(body: any): Observable<IBaseResponse<ITypeOfFilm>>{
     return this.httpClient.post(`${this.url}/type-of-films`, body);
+  }
+
+  autoComplete(data: any): Observable<IBaseResponse<ITypeOfFilm[]>>{
+    const params = new HttpParams({fromObject: data});
+    return this.httpClient.get<IBaseResponse<ITypeOfFilm[]>>(`${this.url}/type-of-films/auto-complete`, {params})
   }
 }

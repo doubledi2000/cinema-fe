@@ -8,6 +8,7 @@ import { ILocation, Location } from '../../../shared/model/location.model';
 import { Room, IRoom } from '../../../shared/model/room.model';
 import CommonUtil from '../../../shared/utils/common-util';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-room-update',
@@ -30,7 +31,8 @@ export class RoomUpdateComponent implements OnInit {
       private roomService: RoomService,
       private fb: FormBuilder,
       private router: Router,
-      private activatedRoute: ActivatedRoute
+      private activatedRoute: ActivatedRoute,
+      private toastr: ToastrService
     ) {
 
      }
@@ -62,13 +64,19 @@ export class RoomUpdateComponent implements OnInit {
     const modal: NzModalRef = this.modalService.create(base);
     modal.afterClose.subscribe((result)=>{
       if(result && result?.success) {
-        console.log(result.value)
+        this.room = {
+          ...this.room,
+          ...result.value
+        }
       }
     })
   }
 
   initForm(){
     this.form = this.fb.group({
+      id: [
+        this.room.id
+      ],
       code: [
         {
           value: this.room.code,
@@ -86,21 +94,21 @@ export class RoomUpdateComponent implements OnInit {
       locationId: [
         {
           value: this.room.locationId,
-          disabled: this.isDetail ? true : false
+          disabled: !this.isCreate ? true : false
         },
         [Validators.required]
       ],
       maxRow: [
         {
           value: this.room.maxRow,
-          disabled: this.isDetail ? true : false
+          disabled: !this.isCreate ? true : false
         },
         [Validators.required]
       ],
       maxChairPerRow: [
         {
           value: this.room.maxChairPerRow,
-          disabled: this.isDetail ? true : false
+          disabled: !this.isCreate ? true : false
         },
         [Validators.required]
       ],
@@ -142,6 +150,17 @@ export class RoomUpdateComponent implements OnInit {
   }
 
   update(){
+    this.room = {
+      ...this.room,
+      ...this.form.value
+    }
+    const body = CommonUtil.trim(this.room);
+    this.roomService.update(this.room.id, body).subscribe(res =>{
+      if(res && res.code == 200) {
+        this.room = res?.data;
+        this.toastr.success('Cập nhật thông tin thành công');
+      }
+    })
   }
 
   findRoomById(id?: string){

@@ -22,7 +22,7 @@
                                 style="width: 100%; "
                                 [nzShowArrow]="true"
                               >
-                                <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
+                                <nz-option *ngFor="let item of typeOfFilmList" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
                               </nz-select>
                               <ng-template #tagPlaceHolder let-selectedList>+1</ng-template>
                             </div>
@@ -33,8 +33,10 @@
                                 nzMode="multiple"
                                 nzPlaceHolder="Nhà sản xuất"
                                 style="width: 100%; "
+                                (nzOnSearch)="loadTypeOfFilm()"
+                                formControlName="typeOfFilmIds"
                               >
-                                <nz-option *ngFor="let item of listOfOption" [nzLabel]="item" [nzValue]="item"></nz-option>
+                                <nz-option *ngFor="let item of typeOfFilmList" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
                               </nz-select>
                               <ng-template #tagPlaceHolder let-selectedList>+1</ng-template>
                             </div>
@@ -62,7 +64,7 @@
             <div class="col-12">
                 <nz-table
                 #table
-                [nzData]="[{}, {}]"
+                [nzData]="filmList"
                 [nzTableLayout]="'fixed'"
                 >
                 <thead>
@@ -80,7 +82,7 @@
                 </thead>
 
                 <tbody>
-                    <ng-container  *ngFor="let item of [{}, {}]">
+                    <ng-container  *ngFor="let item of filmList">
                         <tr>
                             <td class="thead-border-top-left" nzAlign="center">
                                 1

@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
-import { IChair } from '../../../shared/model/chair.model';
+import { IChair, Chair } from '../../../shared/model/chair.model';
 import { IRoom, Room } from '../../../shared/model/room.model';
-import { IRow } from '../../../shared/model/row.model';
+import { IRow, Row } from '../../../shared/model/row.model';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
@@ -45,22 +45,12 @@ export class RoomDetailComponent implements OnInit {
     let chairs = row.chairs.forEach((ele) => {
       farr.push(this.initChairGroup(ele));
     });
-    console.log(row.chairs);
     return this.fb.group({
-      id: [
-        {
-          value: row.id,
-        },
+      id: [row.id,
       ],
-      name: [
-        {
-          value: row.name,
-        },
+      name: [ row.name
       ],
-      code: [
-        {
-          value: row.code,
-        },
+      code: [row.code,
       ],
       chairs: farr,
     });
@@ -68,11 +58,7 @@ export class RoomDetailComponent implements OnInit {
 
   initChairGroup(chair: IChair) {
     return this.fb.group({
-      id: [
-        {
-          value: chair.id,
-        },
-      ],
+      id: [chair.id],
       chairType: [chair.chairType],
     });
   }
@@ -89,14 +75,8 @@ export class RoomDetailComponent implements OnInit {
   }
 
   show(row: any, rIndex: number) {
-    // console.log(row.value.chairs.splice(0,1))
-    // console.log(row.value.chairs)
-    // this.form.get('rows')[0].get('chairs').push(this.initChairGroup(new Chair));
-    // console.log(this.form.get('rows')['controls'][0].get('chairs').push(this.initChairGroup(new Chair())));
-    // console.log(row.value.chairs)
     if (this.countSeat(row) > this.room.maxChairPerRow) {
       const index = this.getChairRemoveIndex(row);
-      console.log(index)
       this.form.get('rows')['controls'][rIndex].get('chairs').removeAt(index);
     } else if (this.countSeat(row) < this.room.maxChairPerRow) {
       this.form.get('rows')['controls'][rIndex].get('chairs').push(this.initChairGroup({ id: null, chairType: 'NORMAL' }));
@@ -128,5 +108,13 @@ export class RoomDetailComponent implements OnInit {
     })
     return index;
 
+  }
+
+  getRowArray(): FormArray {
+    return this.form.get('rows') as FormArray;
+  }
+
+  getChairArray(fb: FormGroup): FormArray {
+    return fb.get('chairs') as FormArray;
   }
 }

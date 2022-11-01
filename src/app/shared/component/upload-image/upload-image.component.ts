@@ -63,7 +63,6 @@ export class UploadImageComponent implements OnInit {
   }
 
   handleChange(event: any): void {
-    console.log(event);
     const file = event.target.files[0];
     this.files = this.valid([file]);
     this.emitter.emit(this.files);
