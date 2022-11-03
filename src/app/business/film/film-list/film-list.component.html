@@ -2,7 +2,7 @@
     <ng-container>
         <div class="row mt-3">
             <div class="col-9">
-                <div class="row">
+                <div class="row" [formGroup]="searchForm">
                     <div class="col-3">
                         <nz-input-group [nzSuffix]="suffixIconSearch">
                             <input type="text" nz-input placeholder="input search text" [nzSize]="'small'"/>
@@ -34,7 +34,6 @@
                                 nzPlaceHolder="Nhà sản xuất"
                                 style="width: 100%; "
                                 (nzOnSearch)="loadTypeOfFilm()"
-                                formControlName="typeOfFilmIds"
                               >
                                 <nz-option *ngFor="let item of typeOfFilmList" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
                               </nz-select>
@@ -57,7 +56,7 @@
                       </button>
                     </nz-upload>
                   </div>
-                <button nz-button nzType="primary">Add</button>
+                <button nz-button nzType="primary" (click)="create()">Add</button>
             </div>
         </div>
         <div class="row mt-3">
@@ -100,6 +99,7 @@
                               className="first"
                               nzTooltipTitle="Chi tiết"
                               nzTooltipPlacement="top"
+                              (click)="view(item)"
                               nz-tooltip
                               >
                               </app-button-action>
@@ -109,6 +109,7 @@
                               className="last"
                               nzTooltipTitle="Cập nhật"
                               nzTooltipPlacement="top"
+                              (click)="update(item)"
                               nz-tooltip
                               >
                               </app-button-action>
@@ -117,6 +118,12 @@
                     </ng-container>
                 </tbody>
             </nz-table>
+            <app-pagination
+            [pageIndex]="searchRequest.pageIndex"
+            [pageSize]="searchRequest.pageSize"
+            [total]="total"
+            (onChange)="onQuerySearch($event)"
+          ></app-pagination>
             </div>
         </div>
     </ng-container>

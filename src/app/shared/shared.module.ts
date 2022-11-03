@@ -31,6 +31,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { TableTitleComponent } from './component/table-title/table-title.component';
 import { UploadImageComponent } from './component/upload-image/upload-image.component';
 import { UploadComponent } from './component/upload/upload.component';
+import { LimitWordPipe } from './pipe/limit-word.pipe';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
@@ -40,6 +41,7 @@ import { UploadComponent } from './component/upload/upload.component';
     TableTitleComponent,
     UploadImageComponent,
     UploadComponent,
+    LimitWordPipe,
   ],
   imports: [
     CommonModule,
@@ -98,7 +100,8 @@ import { UploadComponent } from './component/upload/upload.component';
     PaginationComponent,
     TableTitleComponent,
     UploadImageComponent,
-    UploadComponent
+    UploadComponent,
+    LimitWordPipe
   ]
 })
 export class SharedModule { }

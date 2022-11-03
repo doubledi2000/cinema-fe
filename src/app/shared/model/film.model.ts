@@ -12,6 +12,7 @@ export interface IFilm{
     duration?: number;
     producerId?: string;
     typeOfFilms?: ITypeOfFilm;
+    filmTypeIds?: string[];
 }
 
 export class Film implements IFilm{
@@ -26,7 +27,8 @@ export class Film implements IFilm{
         public ownershipDate?: Date,
         public duration?: number,
         public producerId?: string,
-        public typeOfFilms?: ITypeOfFilm
+        public typeOfFilms?: ITypeOfFilm,
+        public filmTypeIds?: string[]
     ){
 
     }

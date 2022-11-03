@@ -1,0 +1,78 @@
+<div class="content">
+  <div class="title-page" *nzModalTitle="">
+      <span>
+          {{isCreate ? 'Tạo mới nhà sản xuất' : isUpdate ? 'Cập nhật nhà sản xuất' : 'Chi tiết nhà sản xuất' }}
+      </span>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+      <form [formGroup]="form">
+          <div class="row">
+              <div class="col-6 mb-2">
+                  <label>Mã nhà sản xuất <span class="text-danger">*</span></label>
+                  <input
+                      formControlName="code"
+                      nz-input
+                      [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
+                      placeholder="'Nhập mã nhà sản xuất'"
+                  >
+              </div>
+              <div class="col-6 mb-2">
+                  <label>Tên nhà sản xuất <span class="text-danger">*</span></label>
+                  <input
+                      formControlName="name"
+                      nz-input
+                      [maxLength]="LENGTH_VALIDATOR.NAME_MAX_LENGTH.MAX"
+                      placeholder="'Nhập tên nhà sản xuất'"
+                  >
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-6 mb-2">
+                <label>Người đại diện</label>
+                <input
+                    formControlName="representative"
+                    nz-input
+                    [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
+                    placeholder="'Người đại diện'"
+                >
+            </div>
+            <div class="col-6 mb-2">
+                <label>Quốc gia</label>
+                <input
+                    formControlName="nationally"
+                    nz-input
+                    [maxLength]="LENGTH_VALIDATOR.NAME_MAX_LENGTH.MAX"
+                    placeholder="'Quốc tịch'"
+                >
+            </div>
+        </div>
+        <div class="row">
+          <nz-textarea-count [nzMaxCharacterCount]="1000" >
+            <textarea rows="6" formControlName="description" nz-input></textarea>
+          </nz-textarea-count>
+        </div>
+      </form>
+  </div>
+  <div class="row">
+      <div class="col-12 text-center" *nzModalFooter>
+          <ng-container *ngIf="isDetail">
+              <button nz-button nzType="default" (click)="onCancel()">
+                  Hủy
+              </button>
+              <button nz-button nzType="primary" class="mr-2" (click)="nextToUpdate()">
+                  Chỉnh sửa
+              </button>
+          </ng-container>
+          <ng-container *ngIf="!isDetail">
+              <button nz-button nzType="default" class="mr-2" (click)="onCancel()">
+                  Hủy
+              </button>
+              <button nz-button nzType="primary" class="mr-2" (click)="onSubmit()" [disabled]="form.invalid">
+                  Lưu
+              </button>
+          </ng-container>
+      </div>
+  </div>
+</div>
