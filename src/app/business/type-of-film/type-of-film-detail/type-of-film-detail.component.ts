@@ -39,7 +39,6 @@ export class TypeOfFilmDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    console.log(this.form.value);
   }
 
   getUrlParam(){

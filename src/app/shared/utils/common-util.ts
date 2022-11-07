@@ -48,5 +48,27 @@ export default class CommonUtil{
         },
       };
     }
+
+    static printTime(time: number){
+      const hourStart = Math.floor(time/ 60);
+    const miniuteStart = time - hourStart * 60;
+    let hourStartStr = '';
+    let miniuteStartStr = '';
+    if(hourStart < 10) {
+      hourStartStr = '0' + hourStart;
+    }else {
+      hourStartStr += hourStart;
+    }
+    if(miniuteStart < 10) {
+      miniuteStartStr = '0' + miniuteStart;
+    }else {
+      miniuteStartStr+=miniuteStart
+    }
+    return hourStartStr + ':' + miniuteStartStr ;
+    }
+
+    static getTime(time: any){
+      return time.getHours() * 60 + time.getMinutes();
+    }
 }
 

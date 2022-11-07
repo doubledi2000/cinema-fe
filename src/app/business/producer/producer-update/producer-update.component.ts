@@ -80,7 +80,6 @@ export class ProducerUpdateComponent implements OnInit {
         }
       ]
     })
-    console.log(this.form.value);
   }
 
   create(){

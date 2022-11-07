@@ -22,13 +22,23 @@
 }
 .schedule{
     display: flex;
-    margin-top: 40px;
+    margin-top: 20px;
     flex-wrap: wrap;
     align-items: flex-end;
 }
 .schedule button{
     margin-right: 5px;
     margin-top: 5px;
+    width: 50px;
+    height: 30px;
+    border-radius: 8px;
+    border: 1px solid #0054A5;
+    color: #0054A5;
+    position: relative;
+    white-space: nowrap;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    background-color: #fff;
 }
 
 

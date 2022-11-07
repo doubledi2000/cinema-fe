@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe} from '@angular/common';
 import { ChairDirectiveDirective } from './chair-directive.directive';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzTableModule } from 'ng-zorro-antd/table';
@@ -102,6 +102,7 @@ import { LimitWordPipe } from './pipe/limit-word.pipe';
     UploadImageComponent,
     UploadComponent,
     LimitWordPipe
-  ]
+  ],
+  providers: [DatePipe]
 })
 export class SharedModule { }

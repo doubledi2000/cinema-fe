@@ -69,6 +69,43 @@
               </div>
               <div class="col-12 mb-3">
                 <div class="row">
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Đạo diễn<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <input
+                          nz-input
+                          [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
+                          placeholder="'đạo diễn'"
+                          formControlName="directors"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 ml-2">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Diễn viên<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <input
+                          nz-input
+                          placeholder="'Nhập tên diễn viên'"
+                          formControlName="actors"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mb-3">
+                <div class="row">
                   <div class="col-6 ml-2">
                     <div class="row">
                       <div class="col-3">
@@ -78,10 +115,11 @@
                       </div>
                       <div class="col-9">
                         <nz-select
+                          nzMode="multiple"
                           nzShowSearch
                           nzAllowClear
                           nzPlaceHolder="Nhà sản xuất"
-                          formControlName="producerId"
+                          formControlName="producerIds"
                           nzSize="large"
                           style="width: 80%"
                         >
@@ -99,8 +137,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Trạng thái phim
-                          <span class="text-danger">*</span></label
+                          >Trạng thái phim<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -130,7 +167,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Ngày sở hữu <span class="text-danger">*</span></label
+                          >Ngày sở hữu<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -146,8 +183,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Ngày công chiếu
-                          <span class="text-danger">*</span></label
+                          >Ngày công chiếu<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -167,8 +203,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label style="margin-right: 20px"
-                          >Thời lượng phim
-                          <span class="text-danger">*</span></label
+                          >Thời lượng phim<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -185,8 +220,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Giới hạn tuổi(từ)
-                          <span class="text-danger">*</span></label
+                          >Giới hạn tuổi(từ)<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -203,7 +237,7 @@
                 </div>
               </div>
               <div class="col-12 mb-3">
-                <label>Thể loại phim <span class="text-danger">*</span></label>
+                <label>Thể loại phim<span class="text-danger">*</span></label>
                 <div>
                   <nz-select
                     nzMode="multiple"
@@ -225,7 +259,7 @@
                 </div>
               </div>
               <div class="col-12 mb-3">
-                <label>Tóm tắt <span class="text-danger">*</span></label>
+                <label>Tóm tắt<span class="text-danger">*</span></label>
                 <nz-textarea-count [nzMaxCharacterCount]="1000">
                   <textarea
                     rows="10"

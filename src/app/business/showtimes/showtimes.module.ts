@@ -6,13 +6,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ShowtimeListComponent } from './showtime-list/showtime-list.component';
 import { FormsModule } from '@angular/forms';
 import { BookingComponent } from './booking/booking.component';
+import { ShowtimeCreateComponent } from './showtime-create/showtime-create.component';
 
 
 
 @NgModule({
   declarations: [
     ShowtimeListComponent,
-    BookingComponent
+    BookingComponent,
+    ShowtimeCreateComponent
   ],
   imports: [
     CommonModule,

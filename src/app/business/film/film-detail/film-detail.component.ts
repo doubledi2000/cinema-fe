@@ -8,7 +8,9 @@ import { Producer, IProducer } from '../../../shared/model/producer.model';
 import { TypeOfFilmService } from '../../../shared/service/type-of-film.service';
 import { ProducerService } from '../../../shared/service/producer.service';
 import { FilmService } from '../../../shared/service/film.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import CommonUtil from '../../../shared/utils/common-util';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-film-detail',
@@ -35,9 +37,11 @@ export class FilmDetailComponent implements OnInit {
     private typeOfFilmService: TypeOfFilmService,
     private producerService: ProducerService,
     private filmService: FilmService,
-    private router: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private toastr: ToastrService
   ) {
-    this.router.paramMap.subscribe( params => {
+    this.activatedRoute.paramMap.subscribe( params => {
       this.filmId = params.get('id');
     });
   }
@@ -116,37 +120,57 @@ export class FilmDetailComponent implements OnInit {
         },
         [Validators.required]
       ],
-      producerId: [
+      producerIds: [
         {
-          value: this.film.producerId,
+          value: this.film.producerIds || [],
+          disabled: this.isDetail ? true : false
+        },
+        [Validators.required]
+      ],
+      directors: [
+        {
+          value: this.film.directors,
+          disabled: this.isDetail ? true : false
+        },
+        [Validators.required]
+      ],
+      actors: [
+        {
+          value: this.film.actors,
           disabled: this.isDetail ? true : false
         },
         [Validators.required]
       ]
   })
-  console.log(this.film)
   }
 
   async getFiles(files: any): Promise<void> {
     if (files) {
       this.files = files[0];
-      console.log(this.files)
       getBase64(files[0]).then((data) => {
         this.imageUrl = data;
       });
     }
   }
   onCancel(){
+    this.router.navigateByUrl(`/business/film`);
 
   }
 
   nextToUpdate(){
-
+    // this.isDetail = false;
+    // this.isUpdate = true;
+    // this.initForm();
+    // this.form.controls.filmTypeIds.enable();
+    // console.log(this.form)
+    this.router.navigateByUrl(`/business/film/${this.film.id}/update`);
   }
 
   onSubmit(){
     if(this.isCreate) {
       this.create();
+    } else {
+      this.update();
     }
   }
 
@@ -155,7 +179,6 @@ export class FilmDetailComponent implements OnInit {
       this.filmService.getById(this.filmId || '').subscribe(response=>{
         if(response.success) {
           this.film = response.data as IFilm;
-          console.log(response)
         }
        this.initForm();
       })
@@ -163,12 +186,27 @@ export class FilmDetailComponent implements OnInit {
   }
 
   create(){
-    const body = {
+    const body = CommonUtil.trim({
       ...this.form.value
-    }
+    });
     this.filmService.create(body).subscribe(response =>{
       if(response.success) {
         this.film = response.data as IFilm;
+        this.router.navigateByUrl(`/business/film/${this.film.id}/update`);
+        this.toastr.success('Thêm mới phim thành công');
+      }
+    })
+  }
+
+  update(){
+    const body = CommonUtil.trim({
+      ...this.form.value
+    });
+    this.filmService.update(this.film.id, body).subscribe(response =>{
+      if(response.success) {
+        this.film = response.data as IFilm;
+        this.toastr.success('Cập nhập phim thành công');
+
       }
     })
   }

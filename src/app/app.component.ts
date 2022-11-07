@@ -11,5 +11,6 @@ export class AppComponent implements OnInit{
   constructor(public loaderService: LoaderService){
   }
   ngOnInit(): void {
+    console.log(this.isCollapsed)
   }
 }

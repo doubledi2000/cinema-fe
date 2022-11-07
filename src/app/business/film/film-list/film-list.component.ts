@@ -6,6 +6,7 @@ import { TypeOfFilmService } from '../../../shared/service/type-of-film.service'
 import { PAGINATION } from '../../../shared/constant/pagination.constant';
 import { IFilm } from '../../../shared/model/film.model';
 import { Router } from '@angular/router';
+import CommonUtil from '../../../shared/utils/common-util';
 
 @Component({
   selector: 'app-film-list',
@@ -72,6 +73,7 @@ export class FilmListComponent implements OnInit {
       if(response.success) {
         this.filmList = response?.data;
         this.total = response.page.total | 0
+        console.log(this.filmList)
       }
     })
   }
@@ -86,6 +88,29 @@ export class FilmListComponent implements OnInit {
 
   view(item: IFilm) {
     this.router.navigateByUrl(`/business/film/${item.id}/detail`)
+  }
+
+  getIndex(index: number): number {
+    return CommonUtil.getIndex(
+      index,
+      this.searchRequest.pageIndex,
+      this.searchRequest.pageSize
+    );
+  }
+
+  getProducer(item: IFilm) {
+    if(item.filmProducers) {
+      return item.filmProducers.map(ele => ele.producerName).join(', ');
+    }else {
+      return '';
+    }
+  }
+
+  getType(item: IFilm) {
+    if(item.filmTypes) {
+      return item.filmTypes.map(ele => ele.typeName).join(', ');
+    }
+    return '';
   }
 
   onQuerySearch(params: { pageIndex: number; pageSize: number }): void {

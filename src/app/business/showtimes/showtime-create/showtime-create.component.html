@@ -1,0 +1,120 @@
+<div class="content" [formGroup]="form">
+  <div class="row">
+    <div class="col-4">
+      <label>Chi nhánh<span class="text-danger">*</span></label>
+      <br />
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Chi nhánh"
+        formControlName="locationId"
+        style="width: 80%"
+      >
+        <ng-container *ngFor="let location of locationList">
+          <nz-option
+            nzValue="{{ location.id }}"
+            nzLabel="{{ location.name | limitWord: 30 }}"
+          ></nz-option>
+        </ng-container>
+      </nz-select>
+    </div>
+    <div class="col-4">
+      <label>Phòng<span class="text-danger">*</span></label>
+      <br />
+      <nz-select
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Phòng"
+        formControlName="roomId"
+        style="width: 80%"
+      >
+        <ng-container *ngFor="let room of roomList">
+          <nz-option
+            nzValue="{{ room.id }}"
+            nzLabel="{{ room.name | limitWord: 30 }}"
+          ></nz-option>
+        </ng-container>
+      </nz-select>
+    </div>
+    <div class="col-4">
+      <label>Ngày công chiếu<span class="text-danger">*</span></label>
+      <br />
+      <nz-date-picker
+        formControlName="premierDate"
+        [nzFormat]="'dd-MM-yyyy'"
+      ></nz-date-picker>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">Lịch chiếu phim</div>
+    <div class="col-6 d-flex justify-content-end">
+      <button nz-button nzType="primary" (click)="showModal()">Add</button>
+    </div>
+  </div>
+  <div class="row d-flex flex-wrap">
+    <ng-container *ngFor="let item of showtimeList; index as i">
+      <div class="col-3">
+        {{ printTime(item) }}: {{ item.filmName }}
+        <app-button-action
+          [action]="'delete'"
+          className="last"
+          nzTooltipTitle="Xóa"
+          nzTooltipPlacement="top"
+          nz-tooltip
+          (click)="delete(i)"
+        >
+          ></app-button-action
+        >
+      </div>
+    </ng-container>
+  </div>
+  <button nz-button nzType="default" class="mr-2" (click)="onCancel()">
+    Hủy
+  </button>
+  <button
+    nz-button
+    nzType="primary"
+    class="mr-2"
+    (click)="onSubmit()"
+    [disabled]="form.invalid"
+  >
+    Lưu
+  </button>
+</div>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="The first Modal"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+>
+  <ng-container *nzModalContent>
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <label>Phim<span class="text-danger">*</span></label>
+          <br />
+          <nz-select
+            nzShowSearch
+            nzAllowClear
+            nzPlaceHolder="Phim"
+            style="width: 80%"
+            [(ngModel)]="filmId"
+          >
+            <ng-container *ngFor="let film of filmList">
+              <nz-option
+                nzValue="{{ film.id }}"
+                nzLabel="{{ film.name | limitWord: 30 }}"
+              ></nz-option>
+            </ng-container>
+          </nz-select>
+        </div>
+        <div class="col-6">
+          <label>Ngày công chiếu<span class="text-danger">*</span></label>
+          <br />
+          <nz-time-picker [(ngModel)]="time" nzFormat="HH:mm"></nz-time-picker>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>
