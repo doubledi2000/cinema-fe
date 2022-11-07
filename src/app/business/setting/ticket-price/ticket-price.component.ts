@@ -279,7 +279,6 @@ export class TicketPriceComponent implements OnInit {
   }
 
   getDateByNumber(config: any): Date{
-    console.log(moment(this.formatNumberToTime(config.endAt), TIME_CONSTANT.HH_mm).toDate());
     return  moment(this.formatNumberToTime(config.endAt), TIME_CONSTANT.HH_mm).toDate();
   }
 

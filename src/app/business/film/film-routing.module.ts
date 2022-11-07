@@ -9,15 +9,15 @@ const routes: Routes = [
     component: FilmListComponent
   },
   {
-    path: '/:id/detail',
+    path: ':id/detail',
     component: FilmDetailComponent
   },
   {
-    path: '/:id/update',
+    path: ':id/update',
     component: FilmDetailComponent
   },
   {
-    path: '/create',
+    path: 'create',
     component: FilmDetailComponent
   }
 ];

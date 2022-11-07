@@ -1,4 +1,6 @@
 import { ITypeOfFilm } from "./type-of-film.model";
+import { IFilmProducer } from './film-producer.model';
+import { IFilmType } from './film-type.model';
 
 export interface IFilm{
     id?: string;
@@ -10,8 +12,13 @@ export interface IFilm{
     releaseDate?: Date;
     ownershipDate?: Date;
     duration?: number;
-    producerId?: string;
+    producerIds?: string[];
+    actors?: string;
+    directors?: string;
     typeOfFilms?: ITypeOfFilm;
+    filmTypeIds?: string[];
+    filmProducers?: IFilmProducer[],
+    filmTypes?: IFilmType[]
 }
 
 export class Film implements IFilm{
@@ -25,10 +32,13 @@ export class Film implements IFilm{
         public releaseDate?: Date,
         public ownershipDate?: Date,
         public duration?: number,
-        public producerId?: string,
-        public typeOfFilms?: ITypeOfFilm
+        public producerIds?: string[],
+        public typeOfFilms?: ITypeOfFilm,
+        public filmTypeIds?: string[],
+        public actors?: string,
+        public directors?: string,
+        public filmProducers?: IFilmProducer[],
+        public filmTypes?: IFilmType[]
     ){
-
     }
-
 }

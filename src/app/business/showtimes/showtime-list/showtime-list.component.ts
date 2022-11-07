@@ -1,4 +1,4 @@
-import { getLocaleFirstDayOfWeek } from '@angular/common';
+import { getLocaleFirstDayOfWeek, DatePipe } from '@angular/common';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { NzCalendarMode } from 'ng-zorro-antd/calendar';
 import { getISOWeek } from 'date-fns';
@@ -9,8 +9,11 @@ import * as moment from 'moment';
 import { DATE_CONSTANT } from 'src/app/shared/constant/date.constant';
 import { DatePickerCustom } from 'src/app/shared/model/date-picker.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 import { BookingComponent } from '../booking/booking.component';
+import { ShowtimeService } from '../../../shared/service/showtime.service';
+import { IShowtime, Showtime } from '../../../shared/model/showtime.model';
+import { IShowtimeByFilm } from '../../../shared/model/response/IShowtimeByFilm.model';
 @Component({
   selector: 'app-showtime-list',
   templateUrl: './showtime-list.component.html',
@@ -19,19 +22,23 @@ import { BookingComponent } from '../booking/booking.component';
 export class ShowtimeListComponent implements OnInit {
   rangeDate = null;
   dateSelected = new Date();
+  detail?: Showtime
 
   public date = moment();
-  public dateForm?: FormGroup = new FormGroup({});
 
   public isReserved: any;
 
   public daysArr:DatePickerCustom[] = [];
 
   public maxSeatOfRow = 18;
+  public showtimeList: IShowtimeByFilm[] = [];
 
   constructor(private _fb: FormBuilder,
     private _modal: NzModalService,
-    private _viewContainerRef: ViewContainerRef
+    private _viewContainerRef: ViewContainerRef,
+    private showtimeService: ShowtimeService,
+    private datePipe: DatePipe,
+    private modalService: NzModalService
     ) {
   }
 
@@ -39,9 +46,38 @@ export class ShowtimeListComponent implements OnInit {
   public ngOnInit() {
     this.getDays();
     this.dateSelected = new Date();
+    this.loadShowtimes();
   }
 
+  loadShowtimes(){
+    const params = {
+      startTime: 0,
+      premierDate: '2022-11-06'
+    }
+    this.showtimeService.search(params).subscribe(response=>{
+      if(response && response.success) {
+        this.showtimeList = response.data as IShowtime[];
+      }
+    })
+  }
 
+  printTime(data: any){
+    const hourStart = Math.floor(data.startAt / 60);
+    const miniuteStart = data.startAt - hourStart * 60;
+    let hourStartStr = '';
+    let miniuteStartStr = '';
+    if(hourStart < 10) {
+      hourStartStr = '0' + hourStart;
+    }else {
+      hourStartStr += hourStart;
+    }
+    if(miniuteStart < 10) {
+      miniuteStartStr = '0' + miniuteStart;
+    }else {
+      miniuteStartStr+=miniuteStart
+    }
+    return hourStartStr + ':' + miniuteStartStr ;
+  }
   getDays(){
     let date = new Date();
     for(let i = 0; i < 10;i++){
@@ -50,15 +86,29 @@ export class ShowtimeListComponent implements OnInit {
     }
   }
 
-  openBookingComponent(){
-    const modal = this._modal.create({
-      nzTitle: 'Modal Title',
-      nzContent: BookingComponent,
-      nzViewContainerRef: this._viewContainerRef,
-      nzWidth: this.maxSeatOfRow * 63
+  booking(detail: Showtime){
+    let modal: NzModalRef;
+    this.showtimeService.findById(detail.id).subscribe(res => {
+      if(res && res.success) {
+        const base = CommonUtil.modalBase(
+          BookingComponent,
+          {
+            isUpdate: true,
+            detail: res.data,
+          },
+          '40%%'
+        )
+        modal = this.modalService.create(base);
+        modal.afterClose.subscribe((result)=>{
+          if(result && result?.success) {
+          }
+        })
+      }
     })
+
+
   }
-  
+
   changeSeletedDate(day: any){
     this.dateSelected = day.date;
     this.daysArr.forEach((d)=>{

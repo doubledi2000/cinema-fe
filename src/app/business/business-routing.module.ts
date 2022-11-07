@@ -4,7 +4,7 @@ import { TypeOfFilmListComponent } from './type-of-film/type-of-film-list/type-o
 
 const routes: Routes = [
   {
-    path: 'rooms',
+    path: 'room',
     loadChildren: () => import('./room/room.module').then((m) => m.RoomModule),
   },
   {
@@ -14,24 +14,35 @@ const routes: Routes = [
   },
   {
     path: 'film',
-    loadChildren: ()=> import('./film/film.module').then(m => m.FilmModule)
+    loadChildren: () => import('./film/film.module').then((m) => m.FilmModule),
   },
   {
     path: 'setting',
-    loadChildren: () => import('./setting/setting.module').then(m=>m.SettingModule )
+    loadChildren: () =>
+      import('./setting/setting.module').then((m) => m.SettingModule),
   },
   {
     path: 'booking',
-    loadChildren: ()=> import('./booking/booking.module').then(m => m.BookingModule)
+    loadChildren: () =>
+      import('./booking/booking.module').then((m) => m.BookingModule),
   },
   {
-    path: 'type-of-films',
-    loadChildren: ()=> import('./type-of-film/type-of-film.module').then(m=>m.TypeOfFilmModule)
+    path: 'type-of-film',
+    loadChildren: () =>
+      import('./type-of-film/type-of-film.module').then(
+        (m) => m.TypeOfFilmModule
+      ),
   },
   {
-    path: 'locations',
-    loadChildren: ()=> import('./location/location.module').then(m => m.LocationModule)
-  }
+    path: 'location',
+    loadChildren: () =>
+      import('./location/location.module').then((m) => m.LocationModule),
+  },
+  {
+    path: 'producer',
+    loadChildren: () =>
+      import('./producer/producer.module').then((m) => m.ProducerModule),
+  },
 ];
 
 @NgModule({

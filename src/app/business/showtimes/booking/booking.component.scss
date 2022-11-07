@@ -1,6 +1,6 @@
 
 .zoom {
-    background-image: url("../../../../assets/1.jpg");
+    // background-image: url("../../../../assets/1.jpg");
     overflow: auto;
 }
 
@@ -9,17 +9,8 @@
 }
 
 .zoom .row-chair{
-    display: block;
+  display: flex;
 }
-
-.zoom .left-way{
-    margin-left: 100px;
-}
-
-.zoom .left-way{
-    margin-right: 100px;
-}
-
 .zoom .seat {
     width: 45px;
     height: 30px;
@@ -70,16 +61,4 @@
 
 button {
     cursor: pointer;
-}
-
-.btn-room {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.btn-room .btn-detail{
-    margin-left: 50px;
 }

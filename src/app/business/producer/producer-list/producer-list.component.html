@@ -1,0 +1,96 @@
+<div class="content">
+  <app-table-title [title]="'Quản lý nhà sản xuất'"></app-table-title>
+  <ng-container>
+    <div class="row mt-3" [formGroup]="searchForm">
+      <div class="col-3">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input
+            type="text"
+            nz-input
+            placeholder="input search text"
+            formControlName="keyword"
+            (keyup.enter)="search()"
+          />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <span nz-icon nzType="search"></span>
+        </ng-template>
+      </div>
+      <div class="col-9 d-flex justify-content-end">
+        <button nz-button nzType="primary" (click)="create()">Add</button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <nz-table #table [nzData]="producerList" [nzTableLayout]="'auto'">
+          <thead>
+            <tr>
+              <th nzAlign="center" nzWidth="80px">STT</th>
+              <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
+                Mã thể loại
+              </th>
+              <th nzAlign="center" [nzSortFn]="true">Tên thể loại</th>
+              <th nzAlign="center" [nzSortFn]="true">Mô tả</th>
+              <th nzAlign="center">Trạng thái</th>
+              <th nzAlign="center">Hành động</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <ng-container *ngFor="let item of producerList; index as i">
+              <tr>
+                <td class="thead-border-top-left" nzAlign="center">
+                  {{ getIndex(i) }}
+                </td>
+                <td nzAlign="center">{{ item.code }}</td>
+                <td nzAlign="center">{{ item.name }}</td>
+                <td nzAlign="center">{{ item.description | limitWord:100 }}</td>
+                <td nzAlign="center">{{ item.status }}</td>
+                <td nzAlign="center">
+                  <app-button-action
+                    [action]="'view'"
+                    className="first"
+                    nzTooltipTitle="Chi tiết"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="view(item)"
+                  >
+                    ></app-button-action
+                  >
+
+                  <app-button-action
+                    [action]="'edit'"
+                    className="first"
+                    nzTooltipTitle="Cập nhật"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="update(item)"
+                  >
+                    ></app-button-action
+                  >
+
+                  <app-button-action
+                    [action]="'delete'"
+                    className="last"
+                    nzTooltipTitle="Xóa"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="delete(item)"
+                  >
+                    ></app-button-action
+                  >
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+        <app-pagination
+          [pageIndex]="searchRequest.pageIndex"
+          [pageSize]="searchRequest.pageSize"
+          [total]="total"
+          (onChange)="onQuerySearch($event)"
+        ></app-pagination>
+      </div>
+    </div>
+  </ng-container>
+</div>

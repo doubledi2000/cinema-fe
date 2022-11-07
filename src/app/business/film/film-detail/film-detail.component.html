@@ -1,5 +1,9 @@
 <div class="title mb-3">
-  <app-table-title [showBack]="true" [title]="'Cập nhật'" [secondTitle]="{title: 'Cập nhật', url: ''}"></app-table-title>
+  <app-table-title
+    [showBack]="true"
+    [title]="'Cập nhật'"
+    [secondTitle]="{ title: 'Cập nhật', url: '' }"
+  ></app-table-title>
 </div>
 
 <section class="content">
@@ -10,92 +14,295 @@
           <div class="col-6 mb-5 pl-5">
             <div class="row mb-4">
               <div class="col-12">
-                <app-upload-image [disable]="!isDetail" [action]="imageUrl ? imageUrl : null" [acceptTypeFiles]="['image']" className="image"
-                nzTooltipPlacement="top" (emitter)="getFiles($event)" nz-tooltip>
-              </app-upload-image>
+                <app-upload-image
+                  [disable]="isDetail"
+                  [action]="imageUrl ? imageUrl : null"
+                  [acceptTypeFiles]="['image']"
+                  className="image"
+                  nzTooltipPlacement="top"
+                  (emitter)="getFiles($event)"
+                  nz-tooltip
+                >
+                </app-upload-image>
               </div>
             </div>
           </div>
           <div class="col-6 mb-5 pl-5">
             <div class="row">
               <div class="col-12 mb-3">
-               <div class="row">
-                <div class="col-6">
-                  <label>Mã phim <span class="text-danger">*</span></label>
-                  <input
-                      nz-input
-                      [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
-                      placeholder="'Nhập mã phim'"
-                  >
-                </div>
-                <div class="col-6 ml-2">
-                  <label>Tên bộ phim <span class="text-danger">*</span></label>
-                  <input
-                      nz-input
-                      [maxLength]="LENGTH_VALIDATOR.NAME_MAX_LENGTH.MAX"
-                      placeholder="'Nhập tên bộ phim'"
-                  >
-                </div>
-               </div>
-              </div>
-              <div class="col-12 mb-3">
                 <div class="row">
                   <div class="col-6">
-                    <label>Giới hạn tuổi(từ) <span class="text-danger">*</span></label>
-                    <input
-                        nz-input
-                        placeholder="'Nhập độ tuổi giới hạn'"
-                    >
-                  </div>
-                  <div class="col-6 ml-2">
-                    <label>Trạng thái bộ phim <span class="text-danger">*</span></label>
-                    <input
-                        nz-input
-                        placeholder="Trạng thái bộ phim"
-                    >
-                  </div>
-                 </div>
-              </div>
-              <div class="col-12 mb-3">
-                <div class="row">
-                  <div class="col-6">
-                    <label>Ngày sở hữu <span class="text-danger">*</span></label>
-                    <nz-date-picker [nzFormat]="'dd/MM/YYYY'" [nzSize]="'large'"></nz-date-picker>
-                  </div>
-                  <div class="col-6 ml-2">
-                    <label>Ngày công chiếu <span class="text-danger">*</span></label>
-                    <nz-date-picker [nzFormat]="'dd/MM/YYYY'" [nzSize]="'large'"></nz-date-picker>
-                  </div>
-                 </div>
-              </div>
-              <div class="col-12 mb-3">
-                <div class="row">
-                  <div class="col-6">
-                    <div class="d-flex">
-                      <label style="margin-right: 20px;">Thời lượng phim <span class="text-danger">*</span></label>
-                      <nz-input-number [nzMin]="1" [nzMax]="1000" [nzStep]="1"></nz-input-number>
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Mã phim <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <input
+                          nz-input
+                          [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
+                          placeholder="'Nhập mã phim'"
+                          formControlName="code"
+                        />
+                      </div>
                     </div>
                   </div>
                   <div class="col-6 ml-2">
-                    <label style="margin-right: 20px;">Nhà sản xuất<span class="text-danger">*</span></label>
-                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select OS">
-                    </nz-select>
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Tên bộ phim <span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <input
+                          nz-input
+                          [maxLength]="LENGTH_VALIDATOR.NAME_MAX_LENGTH.MAX"
+                          placeholder="'Nhập tên bộ phim'"
+                          formControlName="name"
+                        />
+                      </div>
+                    </div>
                   </div>
-                 </div>
+                </div>
               </div>
               <div class="col-12 mb-3">
-                <label>Thể loại phim <span class="text-danger">*</span></label>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Đạo diễn<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <input
+                          nz-input
+                          [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
+                          placeholder="'đạo diễn'"
+                          formControlName="directors"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 ml-2">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Diễn viên<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <input
+                          nz-input
+                          placeholder="'Nhập tên diễn viên'"
+                          formControlName="actors"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mb-3">
+                <div class="row">
+                  <div class="col-6 ml-2">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Nhà sản xuất<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <nz-select
+                          nzMode="multiple"
+                          nzShowSearch
+                          nzAllowClear
+                          nzPlaceHolder="Nhà sản xuất"
+                          formControlName="producerIds"
+                          nzSize="large"
+                          style="width: 80%"
+                        >
+                        <ng-container *ngFor="let producer of producerList">
+                          <nz-option
+                          nzValue="{{ producer.id }}"
+                          nzLabel="{{ producer.name | limitWord:30 }}"
+                        ></nz-option>
+                        </ng-container>
+                        </nz-select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 ml-2">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Trạng thái phim<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <nz-select
+                          nzShowSearch
+                          nzAllowClear
+                          nzPlaceHolder="Trạng thái"
+                          formControlName="status"
+                          style="width: 80%"
+                          [nzSize]="'large'"
+                        >
+                          <ng-container *ngFor="let status of FILM_STATUS_LIST">
+                            <nz-option
+                              nzValue="{{ status.value }}"
+                              nzLabel="{{ status.label| limitWord:30 }}"
+                            ></nz-option>
+                          </ng-container>
+                        </nz-select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mb-3">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Ngày sở hữu<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <nz-date-picker
+                          [nzFormat]="'dd/MM/YYYY'"
+                          [nzSize]="'large'"
+                          formControlName="ownershipDate"
+                        ></nz-date-picker>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6 ml-2">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Ngày công chiếu<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <nz-date-picker
+                          [nzFormat]="'dd/MM/YYYY'"
+                          [nzSize]="'large'"
+                          formControlName="releaseDate"
+                        ></nz-date-picker>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mb-3">
+                <div class="row">
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col-3">
+                        <label style="margin-right: 20px"
+                          >Thời lượng phim<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <nz-input-number
+                          [nzMin]="1"
+                          [nzMax]="1000"
+                          [nzStep]="1"
+                          formControlName="duration"
+                        ></nz-input-number>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="row">
+                      <div class="col-3">
+                        <label
+                          >Giới hạn tuổi(từ)<span class="text-danger">*</span></label
+                        >
+                      </div>
+                      <div class="col-9">
+                        <nz-input-number
+                          [nzMin]="1"
+                          [nzMax]="100"
+                          [nzStep]="1"
+                          formControlName="allowedAgeFrom"
+                        >
+                        </nz-input-number>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mb-3">
+                <label>Thể loại phim<span class="text-danger">*</span></label>
                 <div>
-                  <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select OS" style="width: 100%;">
+                  <nz-select
+                    nzMode="multiple"
+                    nzShowSearch
+                    nzAllowClear
+                    nzPlaceHolder="Thể loại phim"
+                    style="width: 100%"
+                    formControlName="filmTypeIds"
+                    [nzMaxTagCount]="3"
+                    size="large"
+                  >
+                  <ng-container *ngFor="let type of typeOfFilmList">
+                    <nz-option
+                              nzValue="{{ type.id }}"
+                              nzLabel="{{ type.name }}"
+                            ></nz-option>
+                  </ng-container>
                   </nz-select>
                 </div>
               </div>
               <div class="col-12 mb-3">
-                <label>Tóm tắt <span class="text-danger">*</span></label>
-                <nz-textarea-count [nzMaxCharacterCount]="100">
-                  <textarea rows="10"  nz-input></textarea>
+                <label>Tóm tắt<span class="text-danger">*</span></label>
+                <nz-textarea-count [nzMaxCharacterCount]="1000">
+                  <textarea
+                    rows="10"
+                    nz-input
+                    formControlName="description"
+                  ></textarea>
                 </nz-textarea-count>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center">
+              <ng-container *ngIf="isDetail">
+                <button nz-button nzType="default" (click)="onCancel()">
+                  Hủy
+                </button>
+                <button
+                  nz-button
+                  nzType="primary"
+                  class="mr-2"
+                  (click)="nextToUpdate()"
+                >
+                  Chỉnh sửa
+                </button>
+              </ng-container>
+              <ng-container *ngIf="!isDetail">
+                <button
+                  nz-button
+                  nzType="default"
+                  class="mr-2"
+                  (click)="onCancel()"
+                >
+                  Hủy
+                </button>
+                <button
+                  nz-button
+                  nzType="primary"
+                  class="mr-2"
+                  (click)="onSubmit()"
+                >
+                  Lưu
+                </button>
+              </ng-container>
             </div>
           </div>
         </div>

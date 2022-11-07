@@ -5,6 +5,8 @@ import { FilmService } from '../../../shared/service/film.service';
 import { TypeOfFilmService } from '../../../shared/service/type-of-film.service';
 import { PAGINATION } from '../../../shared/constant/pagination.constant';
 import { IFilm } from '../../../shared/model/film.model';
+import { Router } from '@angular/router';
+import CommonUtil from '../../../shared/utils/common-util';
 
 @Component({
   selector: 'app-film-list',
@@ -14,6 +16,7 @@ import { IFilm } from '../../../shared/model/film.model';
 export class FilmListComponent implements OnInit {
   typeOfFilmList: ITypeOfFilm[] = [];
   filmList: IFilm[] = [];
+  total = 0;
   searchForm:FormGroup = new FormGroup({});
   searchRequest = {
     keyword: '',
@@ -26,10 +29,13 @@ export class FilmListComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private typeOfFilmService: TypeOfFilmService,
-    private filmService: FilmService
+    private filmService: FilmService,
+    private router: Router,
     ) {}
 
   public ngOnInit() {
+    this.initForm();
+    this.search();
     this.loadTypeOfFilm();
   }
 
@@ -42,7 +48,6 @@ export class FilmListComponent implements OnInit {
   }
 
   loadTypeOfFilm(){
-
     const param = {
       keyword: ''
     }
@@ -67,8 +72,51 @@ export class FilmListComponent implements OnInit {
     this.filmService.search(param).subscribe(response=>{
       if(response.success) {
         this.filmList = response?.data;
+        this.total = response.page.total | 0
+        console.log(this.filmList)
       }
     })
   }
 
+  create(){
+    this.router.navigateByUrl('/business/film/create');
+  }
+
+  update(item: IFilm){
+    this.router.navigateByUrl(`/business/film/${item.id}/update`)
+  }
+
+  view(item: IFilm) {
+    this.router.navigateByUrl(`/business/film/${item.id}/detail`)
+  }
+
+  getIndex(index: number): number {
+    return CommonUtil.getIndex(
+      index,
+      this.searchRequest.pageIndex,
+      this.searchRequest.pageSize
+    );
+  }
+
+  getProducer(item: IFilm) {
+    if(item.filmProducers) {
+      return item.filmProducers.map(ele => ele.producerName).join(', ');
+    }else {
+      return '';
+    }
+  }
+
+  getType(item: IFilm) {
+    if(item.filmTypes) {
+      return item.filmTypes.map(ele => ele.typeName).join(', ');
+    }
+    return '';
+  }
+
+  onQuerySearch(params: { pageIndex: number; pageSize: number }): void {
+    const { pageIndex, pageSize } = params;
+    this.searchRequest.pageIndex = pageIndex;
+    this.searchRequest.pageSize = pageSize;
+    this.search();
+  }
 }
