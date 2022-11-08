@@ -21,9 +21,9 @@
             [class.sweet-seat]="item.type=='SWEET'"
             [class.available]="item.status=='AVAILABLE'"
             [class.solded]="item.status=='SOLDED'"
-            [class.your_select]="item.status=='YOUR_SELECT'"
+            [class.your-select]="item.status=='SELECTED'"
             [class.holded]="item.status=='HOLDED'"
-            (click)="change(item)"
+            (click)="_send(item)"
           >A1</button>
         </ng-container>
         </div>
