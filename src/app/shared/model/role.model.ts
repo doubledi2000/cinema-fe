@@ -1,3 +1,4 @@
+import { IRolePermission } from './role-permission.model';
 export interface IRole{
   id?: string;
   code?:string;
@@ -6,6 +7,7 @@ export interface IRole{
   isRoot?: boolean;
   roleStatus?: string;
   deleted?: boolean;
+  permissions?: IRolePermission[];
 }
 
 export class Role implements IRole{
@@ -16,7 +18,8 @@ export class Role implements IRole{
     public description?: string,
     public isRoot?: boolean,
     public roleStatus?: string,
-    public deleted?: boolean
+    public deleted?: boolean,
+    public permissions?: IRolePermission[]
   ){
 
   }

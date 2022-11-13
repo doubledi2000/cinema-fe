@@ -7,6 +7,7 @@ import { RoleService } from '../../../shared/service/role.service';
 import { IRole } from '../../../shared/model/role.model';
 import CommonUtil from '../../../shared/utils/common-util';
 import { UpdateRoleComponent } from './update-role/update-role.component';
+import { UpdatePermissionComponent } from './update-permission/update-permission.component';
 
 @Component({
   selector: 'app-role',
@@ -81,7 +82,14 @@ export class RoleComponent implements OnInit {
   }
 
   updatePermission(item: any){
-
+    const base = CommonUtil.modalBase(
+      UpdatePermissionComponent,
+      {
+        role: item
+      },
+      '50%'
+    )
+    const modal = this.modalService.create(base);
   }
 
   update(item: any){
