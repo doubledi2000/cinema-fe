@@ -11,6 +11,7 @@ import { UpdatePermissionComponent } from './role/update-permission/update-permi
 import { TicketPriceComponent } from './ticket-price/ticket-price.component';
 import { DrinkPriceComponent } from './drink-price/drink-price.component';
 import { DrinkDetailComponent } from './drink-price/drink-detail/drink-detail.component';
+import { AddPriceModalComponent } from './ticket-price/add-price-modal/add-price-modal.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { DrinkDetailComponent } from './drink-price/drink-detail/drink-detail.co
     TicketPriceComponent,
     DrinkPriceComponent,
     DrinkDetailComponent,
+    AddPriceModalComponent,
   ],
   imports: [
     CommonModule,

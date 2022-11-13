@@ -1,52 +1,82 @@
 <div class="content">
-    <ng-container>
-        <div class="row mt-3">
-            <div class="col-3">
-                <nz-input-group nzPrefixIcon="search-custom">
-                    <input type="text" trim nz-input [placeholder]="'search'">
-                </nz-input-group>
-            </div>
-            <div class="col-9 d-flex justify-content-end">
-                <button nz-button nzType="primary">Add</button>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12">
-                <nz-table
-                #table
-                [nzData]="[{}, {}]"
-                [nzTableLayout]="'fixed'"
-                >
-                <thead>
-                    <tr>
-                        <th nzAlign="center" nzWidth="80px">STT</th>
-                        <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">Mã phân quyền</th>
-                        <th nzAlign="center" [nzSortFn]="true">Tên phân quyền </th>
-                        <th nzAlign="center">Người cập nhật</th>
-                        <th nzAlign="center">Trạng thái</th>
-                        <th>xxx</th>
-                    </tr>
-                </thead>
-           
-                <tbody>
-                    <ng-container  *ngFor="let item of [{}, {}]">
-                        <tr>
-                            <td class="thead-border-top-left" nzAlign="center">
-                                1
-                            </td>
-                            <td nzAlign="center">AAAA</td>
-                            <td nzAlign="left">Quản trị hệ thống </td>
-                            <td nzAlign="center">ADMIN</td>
-                            <td nzAlign="center">ACTIVE</td>
-                            <td>
-                                <button (click)="showModal()">click</button>
-                            </td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-            </nz-table>
-            </div>
-        </div>
-    </ng-container>
-    
+  <ng-container>
+    <div class="row mt-3" [formGroup]="searchForm">
+      <div class="col-3">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input
+            type="text"
+            nz-input
+            placeholder="input search text"
+            formControlName="keyword"
+            (keyup.enter)="search()"
+          />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <span nz-icon nzType="search"></span>
+        </ng-template>
+      </div>
+      <div class="col-9 d-flex justify-content-end">
+        <button nz-button nzType="primary" (click)="create()">Add</button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <nz-table #table [nzData]="roleList" [nzTableLayout]="'fixed'">
+          <thead>
+            <tr>
+              <th nzAlign="center" nzWidth="80px">STT</th>
+              <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
+                Mã phân quyền
+              </th>
+              <th nzAlign="center" [nzSortFn]="true">Tên phân quyền</th>
+              <th nzAlign="center">Mô tả</th>
+              <th nzAlign="center">Trạng thái</th>
+              <th nzAlign="center">Hành động</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <ng-container *ngFor="let item of roleList; index as i">
+              <tr>
+                <td class="thead-border-top-left" nzAlign="center">
+                  {{ getIndex(i) }}
+                </td>
+                <td nzAlign="center">{{ item.code }}</td>
+                <td nzAlign="center">{{ item.name }}</td>
+                <td nzAlign="center">{{ item.description }}</td>
+                <td nzAlign="center">ACTIVE</td>
+                <td>
+                  <app-button-action
+                    [action]="'edit'"
+                    className="first"
+                    nzTooltipTitle="Cập nhật"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="update(item)"
+                  >
+                  </app-button-action>
+                  <app-button-action
+                    [action]="'permission'"
+                    [isRoot]="!!item.isRoot"
+                    className="center"
+                    nzTooltipTitle="Phân quyền"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="!item.isRoot ? updatePermission(item) : ''"
+                  >
+                  </app-button-action>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+        <app-pagination
+          [pageIndex]="searchRequest.pageIndex"
+          [pageSize]="searchRequest.pageSize"
+          [total]="total"
+          (onChange)="onQuerySearch($event)"
+        ></app-pagination>
+      </div>
+    </div>
+  </ng-container>
 </div>

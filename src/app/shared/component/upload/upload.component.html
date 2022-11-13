@@ -1,23 +1,13 @@
-<div class="clearfix" style="width: 100%;">
-  <nz-upload
-    nzListType="picture-card"
-    [(nzFileList)]="fileList"
-    [nzShowButton]="fileList.length < 1"
-    [nzPreview]="handlePreview"
-  >
-    <div>
-      <span nz-icon nzType="plus"></span>
-      <div style="margin-top: 8px">Upload</div>
+<div>
+  <div class="image">
+    <img [ngClass]="action + ' ' + className" [src]="getSource()" alt="action">
+    <div class="camera">
+      <label for="file-input">
+        <img id="img-camera" [src]="getSourceAvatar()" alt="">
+      </label>
+      <input [accept]="acceptFiles" (change)="handleChange($event)" id="file-input" type="file"/>
     </div>
-  </nz-upload>
-  <nz-modal
-    [nzVisible]="previewVisible"
-    [nzContent]="modalContent"
-    [nzFooter]="null"
-    (nzOnCancel)="previewVisible = false"
-  >
-    <ng-template #modalContent>
-      <img [src]="previewImage" [ngStyle]="{ width: '100%' }" />
-    </ng-template>
-  </nz-modal>
+  </div>
 </div>
+
+

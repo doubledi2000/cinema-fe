@@ -4,6 +4,9 @@ import * as moment from 'moment';
 import { DATE_CONSTANT, DATE_NAME_EN, TIME_CONSTANT } from 'src/app/shared/constant/date.constant';
 import { ConfigPrice } from 'src/app/shared/model/config-price.model';
 import { PriceByTime } from 'src/app/shared/model/price-by-time.model';
+import CommonUtil from '../../../shared/utils/common-util';
+import { AddPriceModalComponent } from './add-price-modal/add-price-modal.component';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-ticket-price',
@@ -67,175 +70,43 @@ export class TicketPriceComponent implements OnInit {
   ];
   form: FormGroup = new FormGroup({});
 
+
   object: any;
 
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: NzModalService
   ) { }
 
   initForm(){
-    let configPrices: FormArray = new FormArray([]);
 
-    configPrices = new FormArray([
-      new FormGroup({
-      name: new FormControl('Thu 2'),
-      active: new FormControl(true),
-      disable: new FormControl(true),
-      configPrice: new FormArray([
-        new FormGroup({
-         id: new FormControl('1'),
-         startAt: new FormControl(0),
-         endAt: new FormControl(600),
-         priceByTimes: new FormArray([
-          new FormGroup({
-            id: new FormControl('1'),
-            price: new FormControl(1000000),
-            type: new FormControl('NORMAL')
-          }),
-          new FormGroup({
-            id: new FormControl('2'),
-            price: new FormControl(1200000),
-            type: new FormControl('VIP')
-          }),
-          new FormGroup({
-            id: new FormControl('3'),
-            price: new FormControl(1300000),
-            type: new FormControl('DOUBLE')
-          })
-         ]),
-        })
-      ])
-    })
-    ])
-    // configPrices.push(this.fb.group({
-    //   name: new FormControl('Thứ 3'),
-    //   active: new FormControl(false),
-    //   disable: new FormControl(false),
-    //   configPrice: new FormControl(this.tuesdayConfigprice)
-    // }));
-    // configPrices.push(this.fb.group(this.wednesdayConfigPrice));
-    // configPrices.push(this.fb.group(this.thursdayConfigPrice));
-    // configPrices.push(this.fb.group(this.fridayConfigPrice));
-    // configPrices.push(this.fb.group(this.saturdayConfigPrice));
-    // configPrices.push(this.fb.group(this.mondayConfigPrice));
     this.form = this.fb.group({
-      id: this.object.id,
-      basement: this.object.basement,
+      id: '',
+      basement: '',
       configPrices: this.fb.array([
         this.fb.group({
-          name: this.object.configPrice[0].name,
-          startAt: this.object.configPrice[0].startAt,
-          endAt: this.object.configPrice[0].endAt,
+          name: 'Thứ 2',
           priceByTimes: this.fb.array([
-            this.fb.group({
-              id: this.object.configPrice[0].priceByTimes[0].id,
-              price:this.object.configPrice[0].priceByTimes[0].price,
-              type: this.object.configPrice[0].priceByTimes[0].type
-            }),this.fb.group({
-              id: this.object.configPrice[1].priceByTimes[1].id,
-              price:this.object.configPrice[1].priceByTimes[1].price,
-              type: this.object.configPrice[1].priceByTimes[1].type
-            }),this.fb.group({
-              id: this.object.configPrice[2].priceByTimes[2].id,
-              price:this.object.configPrice[2].priceByTimes[2].price,
-              type: this.object.configPrice[2].priceByTimes[2].type
-            }),
+
           ])
         })
       ])
-      // new FormArray([
-      //   new FormGroup({
-      //   name: new FormControl('Thu 2'),
-      //   active: new FormControl(true),
-      //   disable: new FormControl(true),
-      //   configPrice: new FormArray([
-      //     new FormGroup({
-      //      id: new FormControl('1'),
-      //      startAt: new FormControl(0),
-      //      endAt: new FormControl(600),
-      //      priceByTimes: new FormArray([
-      //       new FormGroup({
-      //         id: new FormControl('1'),
-      //         price: new FormControl(1000000),
-      //         type: new FormControl('NORMAL')
-      //       }),
-      //       new FormGroup({
-      //         id: new FormControl('2'),
-      //         price: new FormControl(1200000),
-      //         type: new FormControl('VIP')
-      //       }),
-      //       new FormGroup({
-      //         id: new FormControl('3'),
-      //         price: new FormControl(1300000),
-      //         type: new FormControl('DOUBLE')
-      //       })
-      //      ]),
-      //     })
-      //   ])
-      // }),
-      // new FormGroup({
-      //   name: new FormControl('Thu 2'),
-      //   active: new FormControl(true),
-      //   disable: new FormControl(true),
-      //   configPrice: new FormArray([
-      //     new FormGroup({
-      //      id: new FormControl('1'),
-      //      startAt: new FormControl(0),
-      //      endAt: new FormControl(600),
-      //      priceByTimes: new FormArray([
-      //       new FormGroup({
-      //         id: new FormControl('1'),
-      //         price: new FormControl(1000000),
-      //         type: new FormControl('NORMAL')
-      //       }),
-      //       new FormGroup({
-      //         id: new FormControl('2'),
-      //         price: new FormControl(1200000),
-      //         type: new FormControl('VIP')
-      //       }),
-      //       new FormGroup({
-      //         id: new FormControl('3'),
-      //         price: new FormControl(1300000),
-      //         type: new FormControl('DOUBLE')
-      //       })
-      //      ]),
-      //     })
-      //   ])
-      // })
-      // ])
     })
+    console.log(this.form)
   }
 
   date!: Date;
   ngOnInit(): void {
-    this.intitData();
     this.date = new Date();
     this.initForm();
+
   }
   startTime: Date = new Date();
   endTime: Date = new Date();
-  intitData(){
-    this.startTime = moment(this.formatNumberToTime(100), TIME_CONSTANT.HH_mm).toDate();
-    this.priceByTime.push(new PriceByTime('1',100000,'NORMAL','1'));
-    this.priceByTime.push(new PriceByTime('2',150000,'VIP','1'));
-    this.priceByTime.push(new PriceByTime('3',175000,'DOUBLE','1'));
-
-
-    this.mondayConfigPrice.push(new ConfigPrice('1','TICKET',false,0,600,undefined,'ACTIVE',this.priceByTime));
-  }
-
-  addToPanel(data: any){
-    let priceTmp: PriceByTime[] = [];
-    priceTmp.push(new PriceByTime('4',110000,'NORMAL','2'));
-    priceTmp.push(new PriceByTime('5', 160000,'VIP','2'));
-    priceTmp.push(new PriceByTime('6',185000,'DOUBLE','2'));
-
-    this.getListConfigPrice(data.data).push(new ConfigPrice('1','TICKET',false, 601, 1000,undefined,'ACTIVE',priceTmp));
-  }
 
   deletePriceByTime(data: any, index: number){
-    this.getListConfigPrice(data.data).splice(index,1);
+    data.get('priceByTimes').removeAt(index);
   }
 
   getListConfigPrice(data: any): ConfigPrice[]{
@@ -283,7 +154,22 @@ export class TicketPriceComponent implements OnInit {
   }
 
   showModal(panel: any): void {
-    this.isVisible = true;
+    const base = CommonUtil.modalBase(
+      AddPriceModalComponent,
+      {},
+      '30%'
+    )
+    const modal: NzModalRef = this.modalService.create(base);
+    modal.afterClose.subscribe((result)=>{
+      if(result && result?.success) {
+        panel.push(this.fb.group({
+          id:'',
+          startAt: CommonUtil.getTime(result.value.startTime),
+          endAt:  CommonUtil.getTime(result.value.getEndTime),
+        }))
+      }
+      console.log(this.form.value)
+    })
   }
 
   handleOk(): void {
