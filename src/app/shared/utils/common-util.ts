@@ -68,7 +68,8 @@ export default class CommonUtil{
     }
 
     static getTime(time: any){
-      return time.getHours() * 60 + time.getMinutes();
+      const d = new Date(time)
+      return  d.getHours() * 60 +  d.getMinutes();
     }
 }
 

@@ -69,7 +69,7 @@ export class TypeOfFilmListComponent implements OnInit {
         isUpdate: true,
         typeOfFilm,
       },
-      '40%%'
+      '40%'
     )
     const modal: NzModalRef = this.modalService.create(base);
     modal.afterClose.subscribe((result)=>{

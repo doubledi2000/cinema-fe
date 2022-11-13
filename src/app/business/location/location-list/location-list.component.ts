@@ -32,7 +32,6 @@ export class LocationListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    debugger;
     this.initSearchForm();
     this.search();
   }

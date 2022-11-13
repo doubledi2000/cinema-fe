@@ -20,7 +20,7 @@ const routes: Routes = [
     component: UpdateUserComponent
   },
   {
-    path: 'role-list',
+    path: 'role',
     component: RoleComponent
   },
   {

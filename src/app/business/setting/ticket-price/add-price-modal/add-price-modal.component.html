@@ -1,0 +1,75 @@
+<div class="content">
+  <div class="title-page" *nzModalTitle="">
+    <span> Thêm moi gia </span>
+  </div>
+</div>
+<div class="row" [formGroup]="form">
+  <div class="col-6 d-flex align-items-center">
+    <nz-time-picker
+      nzFormat="HH:mm"
+      nzBorderless="nzBorderless"
+      formControlName="startTime"
+    ></nz-time-picker>
+    <span>-</span>
+    <nz-time-picker
+      nzFormat="HH:mm"
+      nzBorderless="nzBorderless"
+      formControlName="endTime"
+    ></nz-time-picker>
+  </div>
+  <div class="col-6" formGroupName="prices">
+    <div class="row">
+      <div class="col-4">
+        <span>Thường</span>
+      </div>
+      <div class="col-8">
+        <input
+          formControlName="normalSeat"
+          nz-input="nz-input"
+          placeholder="Basic usage"
+          value="1000000"
+          style="width: 100px; margin-left: 10px"
+        />
+        <span>VND</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <span>Vip</span>
+      </div>
+      <div class="col-8">
+        <input
+          formControlName="vipSeat"
+          nz-input="nz-input"
+          placeholder="Basic usage"
+          value="1000000"
+          style="width: 100px; margin-left: 10px"
+        />
+        <span>VND</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <span>đôi</span>
+      </div>
+      <div class="col-8">
+        <input
+          formControlName="sweetSeat"
+          nz-input="nz-input"
+          placeholder="Basic usage"
+          value="1000000"
+          style="width: 100px; margin-left: 10px"
+        />
+        <span>VND</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 text-center" *nzModalFooter>
+    <button nz-button nzType="default" (click)="handleOk()">Hủy</button>
+    <button nz-button nzType="primary" class="mr-2" (click)="handleOk()">
+      Chỉnh sửa
+    </button>
+  </div>
+</div>
