@@ -5,19 +5,20 @@
     <div class="row">
         <nz-collapse [nzExpandIconPosition]='"right"'  [nzBordered]="false">
           <nz-collapse-panel
-            *ngFor="let item of [{}, {}, {}, {}, {}, {}, {}], let isFirst = first"
+            *ngFor="let item of rolePermissions; let isFirst = first"
             [nzActive]="false"
-            [nzHeader]="'Permission'"
+            [nzHeader]="item.resourceCode"
             class="customStyle"
           >
-            <div *ngFor="let per of [{},{}]">
+            <div *ngFor="let per of item.per">
               <div class="row subLabel">
                 <div class="col-11">
-                  <span class="text-span">name</span>
+                  <span class="text-span">{{per.scope}}</span>
                 </div>
                 <div class="col-1">
                     <nz-switch nzSize="small"
-                    [ngModel]="false"
+                    [ngModel]="per.checked"
+                    (ngModelChange)="changeCheckPermission(per)"
                     ></nz-switch>
                 </div>
                 <hr class="custom-hr">
@@ -29,17 +30,18 @@
             </ng-template>
           </nz-collapse-panel>
         </nz-collapse>
+
     </div>
     <div class="row">
       <div class="col-12 mb-3 text-center" *nzModalFooter>
-        <button class="mr-2" nz-button nzType="default" >
-          huy
+        <button class="mr-2" nz-button nzType="default">
+          Hủy
         </button>
-        <button nz-button nzType="primary" \>
-          Lui
+        <button nz-button nzType="primary" (click)="updatePermission()">
+          Lưu
         </button>
       </div>
     </div>
   </div>
-  
-  
+
+

@@ -37,6 +37,7 @@ export class AddPriceModalComponent implements OnInit {
     const body = CommonUtil.trim({
       ...this.form.value
     })
+    console.log(body)
     this.modalRef.close({
       success: true,
       value: body
