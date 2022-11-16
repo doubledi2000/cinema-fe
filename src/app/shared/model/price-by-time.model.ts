@@ -1,15 +1,18 @@
+import { IPrice } from './price.model';
 export interface IPriceByTime{
     id?: string;
-    price?: number;
-    ticketType?: string;
-    configPriceId?: string;
+    startAt?: number;
+    endAt?: number;
+    priceConfigId?: string;
+    prices?: IPrice[]
 }
 
 export class PriceByTime implements IPriceByTime{
     constructor(
         public id?: string,
-        public price?: number,
-        public ticketType?: string,
-        public configPriceId?: string
+        public startAt?: number,
+        public endAt?: number,
+        public priceConfigId?: string,
+        public prices?: IPrice[]
     ){}
 }
