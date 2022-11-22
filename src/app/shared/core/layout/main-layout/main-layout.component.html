@@ -1,0 +1,100 @@
+<nz-layout style="height: 100%">
+  <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <ng-container *ngFor="let menu of sidebar">
+        <ng-container *ngIf="!menu.root">
+          <li nz-submenu [nzTitle]="menu.title" [nzIcon]="menu.icon">
+            <ul>
+              <ng-container *ngFor="let item of menu.submenu">
+                <li nz-menu-item [routerLink]="item.path">{{ item.title }}</li>
+              </ng-container>
+            </ul>
+          </li>
+        </ng-container>
+        <ng-container *ngIf="menu.root">
+          <li nz-submenu [nzTitle]="menu.title" [nzIcon]="menu.icon" [routerLink]="menu.path"></li>
+        </ng-container>
+      </ng-container>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header class="d-flex justify-content-between">
+      <span
+        class="trigger"
+        nz-icon
+        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        (click)="isCollapsed = !isCollapsed"
+      ></span>
+      <div class="pr-3 text-right" style="margin-right: 40px">
+        <div class="layout-header-information">
+          <button
+            class="btn-language"
+            nz-button
+            nz-popover
+            nzPopoverTrigger="click"
+            [(nzPopoverVisible)]="visible"
+            [nzPopoverContent]="languageTemplate"
+          >
+            <img
+              *ngIf="currentLanguage === VI"
+              src="assets/images/icon/vn-flag.png"
+              alt="vi"
+            />
+            <img
+              style="width: 51px; height: 36px"
+              *ngIf="currentLanguage === EN"
+              src="assets/images/icon/en-flag.svg"
+              alt="en"
+            />
+          </button>
+          <ng-template #languageTemplate>
+            <div class="language-form">
+              <p (click)="onChangeLanguage(VI)">
+                <img src="assets/images/icon/vietnam.png" alt="vi" />
+                <span class="ml-2">{{ "common.vi" }}</span>
+              </p>
+              <p (click)="onChangeLanguage(EN)">
+                <img src="assets/images/icon/english.png" alt="en" />
+                <span class="ml-2">{{ "common.en" }}</span>
+              </p>
+            </div>
+          </ng-template>
+          <button
+            class="btn-user ant-btn"
+            nz-dropdown
+            [nzDropdownMenu]="menu1"
+            [nzTrigger]="'click'"
+            [nzOverlayClassName]="'user-dropdown-menu'"
+            nzPlacement="bottomRight"
+          >
+            <span class="me-1">ADMIN</span>
+            <span class="font-weight-bold">
+              {{ getShortName(currentUser?.fullName) }}
+            </span>
+          </button>
+          <nz-dropdown-menu #menu1="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item class="card-item" (click)="toChangeProfile()">
+                {{ "model.dashboard.myInfo" }}
+              </li>
+              <li nz-menu-item class="card-item-logout" (click)="logout()">
+                {{ "model.logout.title" }}
+                <em
+                  class="logout-icon ml-2"
+                  nz-icon
+                  [nzType]="'logout-btn'"
+                ></em>
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

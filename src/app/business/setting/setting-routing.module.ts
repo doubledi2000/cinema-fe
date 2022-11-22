@@ -12,11 +12,11 @@ import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
   {
-    path: 'user-list',
+    path: 'user',
     component: UserComponent
   },
   {
-    path: 'user-detail',
+    path: 'user/:id/detail',
     component: UpdateUserComponent
   },
   {
@@ -24,7 +24,7 @@ const routes: Routes = [
     component: RoleComponent
   },
   {
-    path: 'role-update',
+    path: ':/id/update',
     component: UpdateRoleComponent
   },
   {

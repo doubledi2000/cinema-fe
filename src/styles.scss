@@ -1,3 +1,13 @@
+
+/* Global styling follows Figma design */
+@import "assets/css/variables";
+
+/* Global base styles */
+@import "assets/css/global.scss";
+
+@import "~ng-zorro-antd/style/index.min.css";
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+
 body {
   margin: 0;
   color: rgba(0, 0, 0, .85);
