@@ -16,8 +16,16 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { InterceptorService } from './shared/service/loader/interceptor.service';
 import { ToastrModule } from 'ngx-toastr';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
 
 registerLocaleData(en);
+
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesignIcons[key]);
 
 @NgModule({
   declarations: [
@@ -36,7 +44,7 @@ registerLocaleData(en);
     ToastrModule.forRoot({
       timeOut: 2000
     }),
-    
+
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

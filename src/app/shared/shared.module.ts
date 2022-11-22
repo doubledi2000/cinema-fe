@@ -32,6 +32,10 @@ import { TableTitleComponent } from './component/table-title/table-title.compone
 import { UploadImageComponent } from './component/upload-image/upload-image.component';
 import { UploadComponent } from './component/upload/upload.component';
 import { LimitWordPipe } from './pipe/limit-word.pipe';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { RouterModule } from '@angular/router';
+import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
@@ -42,6 +46,7 @@ import { LimitWordPipe } from './pipe/limit-word.pipe';
     UploadImageComponent,
     UploadComponent,
     LimitWordPipe,
+    MainLayoutComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +73,11 @@ import { LimitWordPipe } from './pipe/limit-word.pipe';
     NzSelectModule,
     NzPopoverModule,
     NzListModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzIconModule,
+    NzMenuModule,
+    NzLayoutModule,
+    RouterModule
     ],
   exports: [
     CommonModule,
@@ -101,7 +110,8 @@ import { LimitWordPipe } from './pipe/limit-word.pipe';
     TableTitleComponent,
     UploadImageComponent,
     UploadComponent,
-    LimitWordPipe
+    LimitWordPipe,
+    MainLayoutComponent
   ],
   providers: [DatePipe]
 })
