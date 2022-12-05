@@ -1,13 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
-
-const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = error => reject(error);
-  });
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FileService } from '../../../../shared/service/file.service';
+import { IDrink } from '../../../../shared/model/drinks.model';
 
 @Component({
   selector: 'app-drink-detail',
@@ -15,30 +9,77 @@ const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
   styleUrls: ['./drink-detail.component.scss']
 })
 export class DrinkDetailComponent implements OnInit {
-  switchValue = true;
-  showUploadBtn = true;
-  previewImage: string | undefined = '';
-  previewVisible = false;
+  @Input() isDetail;
+  @Input() isUpdate;
+  @Input() isCreate;
+  @Input() drink: IDrink;
+  imageUrl;
+  files: [] | any;
 
-  handlePreview = async (file: NzUploadFile): Promise<void> => {
-    if (!file.url && !file.preview) {
-      file.preview = await getBase64(file.originFileObj!);
-    }
-    this.previewImage = file.url || file.preview;
-    this.previewVisible = true;
-  };
-  constructor() { }
+  form: FormGroup = new FormGroup({});
+  constructor(
+    private fb: FormBuilder,
+    private fileService: FileService
+  ) { }
 
   ngOnInit(): void {
-    this.switchValue = true;
+    this.initForm();
+    this.imageUrl = this.drink.imagePath;
   }
 
-  toggleActive(){
-    if(this.switchValue) {
-      this.switchValue = false;
-    }else{
-      this.switchValue = true;
+  initForm(){
+    this.form = this.fb.group({
+      code: [
+        {
+          value: this.drink.code,
+          disabled: true
+        }
+      ],
+      name: [
+        {
+          value: this.drink.name,
+          disabled: this.isDetail
+        },
+        [Validators.required]
+      ],
+      price: [
+        {
+          value: this.drink.price,
+          disabled: this.isDetail
+        },
+        [Validators.required]
+      ],
+      description: [
+        {
+          value: this.drink.description,
+          disabled: this.isDetail
+        }
+      ],
+       status: [
+        this.drink.status
+       ]
+    })
+  }
+
+
+  async getFiles(files: any): Promise<void> {
+    if (files) {
+      this.files = files[0];
+      getBase64(files[0]).then((data) => {
+        this.imageUrl = data;
+      });
+      this.fileService.upload(files[0]).subscribe(res=>{
+        if(res && res.success) {
+          this.imageUrl = res.data.path;
+        }
+      })
     }
   }
-
 }
+const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });

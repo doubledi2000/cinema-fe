@@ -36,6 +36,8 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
+import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.component';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
@@ -46,7 +48,8 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout.compo
     UploadImageComponent,
     UploadComponent,
     LimitWordPipe,
-    MainLayoutComponent
+    MainLayoutComponent,
+    AuthLayoutComponent
   ],
   imports: [
     CommonModule,
@@ -77,7 +80,8 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout.compo
     NzIconModule,
     NzMenuModule,
     NzLayoutModule,
-    RouterModule
+    RouterModule,
+    NzCheckboxModule
     ],
   exports: [
     CommonModule,
@@ -111,7 +115,9 @@ import { MainLayoutComponent } from './core/layout/main-layout/main-layout.compo
     UploadImageComponent,
     UploadComponent,
     LimitWordPipe,
-    MainLayoutComponent
+    MainLayoutComponent,
+    AuthLayoutComponent,
+    NzCheckboxModule
   ],
   providers: [DatePipe]
 })

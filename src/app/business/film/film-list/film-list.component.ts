@@ -79,15 +79,15 @@ export class FilmListComponent implements OnInit {
   }
 
   create(){
-    this.router.navigateByUrl('/business/film/create');
+    this.router.navigateByUrl('/film/create');
   }
 
   update(item: IFilm){
-    this.router.navigateByUrl(`/business/film/${item.id}/update`)
+    this.router.navigateByUrl(`/film/${item.id}/update`)
   }
 
   view(item: IFilm) {
-    this.router.navigateByUrl(`/business/film/${item.id}/detail`)
+    this.router.navigateByUrl(`/film/${item.id}/detail`)
   }
 
   getIndex(index: number): number {

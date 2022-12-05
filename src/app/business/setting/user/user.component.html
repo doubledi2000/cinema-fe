@@ -44,11 +44,11 @@
                             <td class="thead-border-top-left" nzAlign="center">
                                 1
                             </td>
-                            <td nzAlign="center">AAAA</td>
-                            <td nzAlign="left">AAA</td>
-                            <td nzAlign="left">Giam doc</td>
-                            <td nzAlign="center">Chuc vu</td>
-                            <td nzAlign="center">ACTIVE</td>
+                            <td nzAlign="center">{{item.employeeCode}}</td>
+                            <td nzAlign="left">{{item.fullName}}</td>
+                            <td nzAlign="left">{{item.title}}</td>
+                            <td nzAlign="center">{{item.gender}}</td>
+                            <td nzAlign="center">{{item.status}}</td>
                             <td nzAlign="center">
                               <app-button-action
                                 [action]="'view'"
@@ -56,6 +56,7 @@
                                 nzTooltipTitle="Chi tiết"
                                 nzTooltipPlacement="top"
                                 nz-tooltip
+                                (click)="view(item.id)"
                               >
                                 ></app-button-action
                               >

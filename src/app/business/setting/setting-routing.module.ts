@@ -40,7 +40,7 @@ const routes: Routes = [
     component: DrinkDetailComponent
   },
   {
-    path: 'drinks',
+    path: 'drink',
     component: DrinkPriceComponent
   }
 
