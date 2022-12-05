@@ -14,6 +14,7 @@ import { BookingComponent } from '../booking/booking.component';
 import { ShowtimeService } from '../../../shared/service/showtime.service';
 import { IShowtime, Showtime } from '../../../shared/model/showtime.model';
 import { IShowtimeByFilm } from '../../../shared/model/response/IShowtimeByFilm.model';
+import { AuthService } from '../../../shared/auth/auth.service';
 @Component({
   selector: 'app-showtime-list',
   templateUrl: './showtime-list.component.html',
@@ -22,7 +23,8 @@ import { IShowtimeByFilm } from '../../../shared/model/response/IShowtimeByFilm.
 export class ShowtimeListComponent implements OnInit {
   rangeDate = null;
   dateSelected = new Date();
-  detail?: Showtime
+  detail?: Showtime;
+  userId ?: string;
 
   public date = moment();
 
@@ -38,7 +40,8 @@ export class ShowtimeListComponent implements OnInit {
     private _viewContainerRef: ViewContainerRef,
     private showtimeService: ShowtimeService,
     private datePipe: DatePipe,
-    private modalService: NzModalService
+    private modalService: NzModalService,
+    private authService: AuthService
     ) {
   }
 
@@ -47,12 +50,15 @@ export class ShowtimeListComponent implements OnInit {
     this.getDays();
     this.dateSelected = new Date();
     this.loadShowtimes();
+    this.authService.myAuthorities().subscribe(res => {
+      this.userId = res.data.userId;
+    })
   }
 
   loadShowtimes(){
     const params = {
       startTime: 0,
-      premierDate: '2022-11-06'
+      premierDate: '2022-10-27'
     }
     this.showtimeService.search(params).subscribe(response=>{
       if(response && response.success) {
@@ -95,8 +101,9 @@ export class ShowtimeListComponent implements OnInit {
           {
             isUpdate: true,
             detail: res.data,
+            userId: this.userId
           },
-          '40%%'
+          '80%'
         )
         modal = this.modalService.create(base);
         modal.afterClose.subscribe((result)=>{

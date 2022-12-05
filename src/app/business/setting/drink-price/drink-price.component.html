@@ -30,25 +30,61 @@
                         <th nzAlign="center">Thao tác</th>
                     </tr>
                 </thead>
-           
+
                 <tbody>
-                    <ng-container  *ngFor="let item of [{},{}]">
-                        <tr>
-                            <td class="thead-border-top-left" nzAlign="center">
-                                1
-                            </td>
-                            <td nzAlign="center">COMBO1</td>
-                            <td nzAlign="left">Trà tranh full topping</td>
-                            <td nzAlign="right">100.000đ</td>
-                            <td nzAlign="center">Hoạt động</td>
-                            <td nzAlign="center"><button>edit</button></td>
-    
-                        </tr>
-                    </ng-container>
+                  <ng-container *ngFor="let item of dinkList; index as i">
+                    <tr>
+                      <td class="thead-border-top-left" nzAlign="center">
+                        {{ getIndex(i) }}
+                      </td>
+                      <td nzAlign="center">{{ item.code }}</td>
+                      <td nzAlign="center">{{ item.name }}</td>
+                      <td nzAlign="center">{{ item.price }}</td>
+                      <td nzAlign="center"><nz-switch [ngModel]="item.status == 'ACTIVE'" (click)="toggleActive(item)"></nz-switch></td>
+                      <td nzAlign="center">
+                        <app-button-action
+                          [action]="'view'"
+                          className="first"
+                          nzTooltipTitle="Chi tiết"
+                          nzTooltipPlacement="top"
+                          nz-tooltip
+                          (click)="view(item)"
+                        >
+                          ></app-button-action
+                        >
+
+                        <app-button-action
+                          [action]="'edit'"
+                          className="first"
+                          nzTooltipTitle="Cập nhật"
+                          nzTooltipPlacement="top"
+                          nz-tooltip
+                        >
+                          ></app-button-action
+                        >
+
+                        <app-button-action
+                          [action]="'delete'"
+                          className="last"
+                          nzTooltipTitle="Xóa"
+                          nzTooltipPlacement="top"
+                          nz-tooltip
+                        >
+                          ></app-button-action
+                        >
+                      </td>
+                    </tr>
+                  </ng-container>
                 </tbody>
-            </nz-table>
+              </nz-table>
+              <app-pagination
+                [pageIndex]="searchRequest.pageIndex"
+                [pageSize]="searchRequest.pageSize"
+                [total]="total"
+                (onChange)="onQuerySearch($event)"
+              ></app-pagination>
             </div>
         </div>
     </ng-container>
-    
+
 </div>

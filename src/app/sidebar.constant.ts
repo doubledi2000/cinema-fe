@@ -12,7 +12,7 @@ export const SidebarConstant: IMenu[] = [
     authorities: []
   },
   {
-    path: ROUTER_UTILS.booking.root,
+    path: ROUTER_UTILS.showtime.root,
     title: 'Đặt phim',
     icon: 'appstore',
     root: true,
@@ -51,6 +51,16 @@ export const SidebarConstant: IMenu[] = [
       {
         path: ROUTER_UTILS.setting.ticketPrice.root,
         title: 'Quản lý giá vé',
+        authorities: []
+      },
+      {
+        path: ROUTER_UTILS.room.root,
+        title: 'Quản lý phòng',
+        authorities: []
+      },
+      {
+        path: ROUTER_UTILS.setting.drink.root,
+        title: 'Quản lý đồ uống',
         authorities: []
       }
     ]

@@ -14,8 +14,10 @@ export interface IUser{
   description?: string;
   status?: string;
   avatartFileId?: string;
+  viewAvatarUrl?: string;
   locationIds?: string[];
   locations?: IUserLocation[];
+  roleIds?: string[]
 }
 
 export class User implements IUser{
@@ -35,7 +37,9 @@ export class User implements IUser{
     public status?: string,
     public avatarFileIds?: string,
     public locationIds?: string[],
-    public locations?: IUserLocation[]
+    public locations?: IUserLocation[],
+    public viewAvatarUrl?: string,
+    public roleIds?: string[]
   ){
 
   }

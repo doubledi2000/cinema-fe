@@ -4,6 +4,7 @@ import * as Stomp from 'stompjs';
 
 import { IShowtime, Showtime } from '../../../shared/model/showtime.model';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../shared/auth/auth.service';
 
 @Component({
   selector: 'app-booking',
@@ -14,6 +15,7 @@ export class BookingComponent implements OnInit {
   webSocketEndPoint: string = 'http://localhost:8070/ws';
   topic: string = "/topic/greetings/";
   stompClient: any;
+  currentUserId = '';
 
 _connect(id?: string) {
   console.log("Initialize WebSocket Connection");
@@ -48,14 +50,27 @@ errorCallBack(error: any) {
 * @param {*} message
 */
 _send(message: any) {
-  console.log("calling logout api via web socket");
-  const body = {
-    showtimeId: this.detail.id,
-    ticketId: message.id,
-    userId: 'AAAA',
-    type: 'SELECT'
+  console.log(message);
+  let body;
+  if(message.status == 'AVAILABLE') {
+    body = {
+      showtimeId: this.detail.id,
+      ticketId: message.id,
+      userId: this.userId,
+      type: 'SELECT'
+    }
+  } else if(message.status = 'SELECTED') {
+    body = {
+      showtimeId: this.detail.id,
+      ticketId: message.id,
+      userId: this.userId,
+      type: 'UNSELECT'
+    }
   }
-  this.stompClient.send("/app/hello/" + this.detail.id, {}, JSON.stringify(body));
+
+  if(body) {
+    this.stompClient.send("/app/hello/" + this.detail.id, {}, JSON.stringify(body));
+  }
 }
 
 handle(data: any) {
@@ -79,11 +94,14 @@ changeStatus(ticketId?: string, status?: string){
 
 
   @Input() detail?: IShowtime = new Showtime();
-  constructor(private toastrService: ToastrService) { }
+  @Input() userId?: string;
+  constructor(private toastrService: ToastrService, private authServie: AuthService) { }
 
   ngOnInit(): void {
-    console.log(this.detail)
     this._connect(this.detail.id);
+    // this.authServie.myAuthorities().subscribe(resposne => {
+    //   this.currentUserId = resposne.data.userId;
+    // })
   }
 
   change(item: any): void{

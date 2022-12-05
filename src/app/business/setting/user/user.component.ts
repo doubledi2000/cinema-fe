@@ -3,6 +3,7 @@ import { UserService } from '../../../shared/service/user.service';
 import { IUser } from '../../../shared/model/user.model';
 import { PAGINATION } from '../../../shared/constant/pagination.constant';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -23,7 +24,10 @@ export class UserComponent implements OnInit {
     pageSize: PAGINATION.SIZE_DEFAULT
   }
 
-  constructor(private userService: UserService, private fb: FormBuilder) { }
+  constructor(private userService: UserService,
+    private fb: FormBuilder,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -34,6 +38,10 @@ export class UserComponent implements OnInit {
       keyword: '',
       locationIds: []
     })
+  }
+
+  view(id?: string) {
+    this.router.navigateByUrl(`setting/user/${id}/detail`)
   }
 
   search(){

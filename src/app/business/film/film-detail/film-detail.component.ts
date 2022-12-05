@@ -153,7 +153,7 @@ export class FilmDetailComponent implements OnInit {
     }
   }
   onCancel(){
-    this.router.navigateByUrl(`/business/film`);
+    this.router.navigateByUrl(`/film`);
 
   }
 
@@ -163,7 +163,7 @@ export class FilmDetailComponent implements OnInit {
     // this.initForm();
     // this.form.controls.filmTypeIds.enable();
     // console.log(this.form)
-    this.router.navigateByUrl(`/business/film/${this.film.id}/update`);
+    this.router.navigateByUrl(`/film/${this.film.id}/update`);
   }
 
   onSubmit(){
@@ -192,7 +192,7 @@ export class FilmDetailComponent implements OnInit {
     this.filmService.create(body).subscribe(response =>{
       if(response.success) {
         this.film = response.data as IFilm;
-        this.router.navigateByUrl(`/business/film/${this.film.id}/update`);
+        this.router.navigateByUrl(`/film/${this.film.id}/update`);
         this.toastr.success('Thêm mới phim thành công');
       }
     })

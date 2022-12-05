@@ -69,11 +69,11 @@ export class RoomListComponent implements OnInit {
   }
 
   view(data: any) {
-    this.router.navigateByUrl(`/business/rooms/${data.id}/detail`);
+    this.router.navigateByUrl(`/room/${data.id}/detail`);
   }
 
   update(data: any) {
-    this.router.navigateByUrl(`/business/rooms/${data.id}/update`);
+    this.router.navigateByUrl(`/room/${data.id}/update`);
   }
 
   delete(data: any) {
@@ -81,7 +81,7 @@ export class RoomListComponent implements OnInit {
   }
 
   create(){
-    this.router.navigateByUrl(`/business/rooms/create`);
+    this.router.navigateByUrl(`/room/create`);
   }
 
   onQuerySearch(params: { pageIndex: number; pageSize: number }): void {

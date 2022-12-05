@@ -5,7 +5,7 @@ export const ROUTER_UTILS = {
       freeRoute: '**'
     },
     authentication: {
-      root: 'authentication',
+      root: 'authenticate',
       login: 'login'
     },
     film: {
@@ -33,6 +33,9 @@ export const ROUTER_UTILS = {
       ticketPrice: {
         root: 'setting/ticket-price'
       },
+      drink: {
+        root: 'setting/drink'
+      }
     },
     location: {
       root: 'location',
@@ -42,6 +45,9 @@ export const ROUTER_UTILS = {
     },
     typeOfFilm: {
       root: 'type-of-film'
+    },
+    room:{
+      root: 'room'
     },
     booking: {
       root: 'booking'

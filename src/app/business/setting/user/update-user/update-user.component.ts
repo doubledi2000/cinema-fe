@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { UserService } from '../../../../shared/service/user.service';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { LocationService } from '../../../../shared/service/location.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 import { ILocation } from '../../../../shared/model/location.model';
 import { IUser, User } from '../../../../shared/model/user.model';
+import { LocationService } from '../../../../shared/service/location.service';
+import { UserService } from '../../../../shared/service/user.service';
+import { FileService } from '../../../../shared/service/file.service';
+import { IRole } from '../../../../shared/model/role.model';
 
 @Component({
   selector: 'app-update-user',
@@ -20,91 +24,85 @@ export class UpdateUserComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   locationList: ILocation[] = [];
   user: IUser = new User();
+  userId: string = '';
+  roles: IRole[] = [];
+  locations: ILocation[] = [];
+
+
   constructor(
     private userService: UserService,
     private toastrSerice: ToastrService,
     private locationService: LocationService,
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private fileService: FileService
+  ) {
+    this.activatedRoute.paramMap.subscribe( params => {
+      this.userId = params.get('id');
+    });
+   }
 
   ngOnInit(): void {
     this.initForm();
+    this.loadLocation();
+    this.loadUser();
+  }
+
+  loadUser(){
+    this.userService.getById(this.userId).subscribe(res =>{
+      this.user = res.data as IUser;
+      this.initForm();
+      this.imageUrl = this.user.viewAvatarUrl;
+    })
   }
 
   initForm(){
     this.form = this.fb.group({
       id: [
-        {
-          value: this.user.id
-        }
+        this.user.id || ''
       ],
       username: [
-        {
-          value: this.user.username
-        }
+        this.user.username || ''
       ],
       password: [
-        {
-          value: this.user.password
-        }
+        this.user.password || ''
+
       ],
       fullName: [
-        {
-          value: this.user.fullName
-        }
+        this.user.fullName || ''
       ],
       email: [
-        {
-          value: this.user.email
-        }
+        this.user.email || ''
       ],
       phoneNumber: [
-        {
-          value: this.user.phoneNumber
-        }
+        this.user.phoneNumber || ''
       ],
       dayOfBirth: [
         this.user.dayOfBirth || new Date()
       ],
       gender: [
-        {
-          value: this.user.gender
-        }
+        this.user.gender || ''
       ],
       employeeCode: [
-        {
-          value: this.user.employeeCode
-        }
+        this.user.employeeCode ||''
       ],
       title: [
-        {
-          value: this.user.title
-        }
+        this.user.title ||''
       ],
       departmentName: [
-        {
-          value: this.user.departmentName
-        }
+        this.user.departmentName || ''
       ],
       description: [
-        {
-          value: this.user.description
-        }
+        this.user.description || ''
       ],
       status: [
-        {
-          value: this.user.status
-        }
+        this.user.status || ''
       ],
       locationIds: [
-        {
-          value: []
-        }
+        []
       ],
-      roleIds: [
-        {
-          value: []
-        }
+      roleIds:[
+        this.user.roleIds || []
       ]
     })
   }
@@ -115,6 +113,11 @@ export class UpdateUserComponent implements OnInit {
       getBase64(files[0]).then((data) => {
         this.imageUrl = data;
       });
+      this.fileService.upload(files[0]).subscribe(res=>{
+        if(res && res.success) {
+          this.imageUrl = res.data.path;
+        }
+      })
     }
   }
 
