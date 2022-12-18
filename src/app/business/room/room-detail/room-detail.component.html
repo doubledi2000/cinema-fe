@@ -6,30 +6,6 @@
     <div class="display">
       <div class="text-center">màn hình</div>
     </div>
-    <!-- <div class="row-chair left-way">
-      <ng-container
-        *ngFor="let item of seats; let i = index"
-      >
-        <button
-        nz-button
-        nzType="primary"
-        nz-popover
-        nzPopoverTitle="Title"
-        [(nzPopoverVisible)]="visible"
-        (nzPopoverVisibleChange)="changeS($event)"
-        nzPopoverTrigger="click"
-        [nzPopoverContent]="'<a>Hello</a>'"
-          [class.seat]="item.type=='normal'"
-          [class.vip-seat]="item.type=='vip'"
-          [class.sweet-seat]="item.type=='sweet'"
-          [class.available]="item.status=='AVAILABLE'"
-          [class.solded]="item.status=='SOLDED'"
-          [class.your_select]="item.status=='YOUR_SELECT'"
-          [class.holded]="item.status=='HOLDED'"
-          (click)="change(item, i)"
-        >A12</button>
-      </ng-container>
-    </div> -->
     <div formArrayName="rows">
       <ng-container *ngFor="let row of form.get('rows')['controls']; index as rIndex; index as r">
         <div class="row-chair" [formGroupName]="rIndex">
@@ -49,6 +25,7 @@
           <option value="NORMAL">N</option>
           <option value="VIP">V</option>
             <option [disabled]="!this.visibleSweet(row)" value="SWEET">S</option>
+            <option value="BOGY">B</option>
         </select>
           </div>
         </ng-container>

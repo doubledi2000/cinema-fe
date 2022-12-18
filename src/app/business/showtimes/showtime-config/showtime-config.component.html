@@ -1,0 +1,97 @@
+<div class="content">
+    <app-table-title [title]="'Quản lý thể loại phim'"></app-table-title>
+    <ng-container>
+      <div class="row mt-3" [formGroup]="searchForm">
+        <div class="col-3">
+          <nz-input-group [nzSuffix]="suffixIconSearch">
+            <input
+              type="text"
+              nz-input
+              placeholder="input search text"
+              formControlName="keyword"
+              (keyup.enter)="search()"
+            />
+          </nz-input-group>
+          <ng-template #suffixIconSearch>
+            <span nz-icon nzType="search"></span>
+          </ng-template>
+        </div>
+        <div class="col-9 d-flex justify-content-end">
+          <button nz-button nzType="primary" type="file">Add</button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-12">
+          <nz-table #table [nzData]="showtimeList" [nzTableLayout]="'auto'">
+            <thead>
+              <tr>
+                <th nzAlign="center" nzWidth="80px">STT</th>
+                <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
+                  Tên phim
+                </th>
+                <th nzAlign="center" [nzSortFn]="true">Tên phòng</th>
+                <th nzAlign="center" [nzSortFn]="true">Chi nhánh</th>
+                <th nzAlign="center">Ngày công chiếu</th>
+                <th nzAlign="center">Xuất chiếu</th>
+                <th nzAlign="center">Trạng thái</th>
+                <th nzAlign="center">Hành Động</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <ng-container *ngFor="let item of showtimeList; index as i">
+                <tr>
+                  <td class="thead-border-top-left" nzAlign="center">
+                    {{getIndex(i)}}
+                  </td>
+                  <td nzAlign="center">{{ item.film.name }}</td>
+                  <td nzAlign="center">{{ item.room.name }}</td>
+                  <td nzAlign="center">{{ item?.location?.name }}</td>
+                  <td nzAlign="center">{{ item.premiereDate }}</td>
+                  <td nzAlign="center">{{item.startAt}}</td>
+                  <td nzAlign="center">{{item.status}}</td>
+                  <td nzAlign="center">
+                    <app-button-action
+                      [action]="'view'"
+                      className="first"
+                      nzTooltipTitle="Chi tiết"
+                      nzTooltipPlacement="top"
+                      nz-tooltip
+                    >
+                      ></app-button-action
+                    >
+
+                    <app-button-action
+                      [action]="'edit'"
+                      className="first"
+                      nzTooltipTitle="Cập nhật"
+                      nzTooltipPlacement="top"
+                      nz-tooltip
+                    >
+                      ></app-button-action
+                    >
+
+                    <app-button-action
+                      [action]="'delete'"
+                      className="last"
+                      nzTooltipTitle="Xóa"
+                      nzTooltipPlacement="top"
+                      nz-tooltip
+                    >
+                      ></app-button-action
+                    >
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </nz-table>
+          <app-pagination
+          [pageIndex]="searchRequest.pageIndex"
+          [pageSize]="searchRequest.pageSize"
+          [total]="total"
+          (onChange)="onQuerySearch($event)"
+        ></app-pagination>
+        </div>
+      </div>
+    </ng-container>
+  </div>

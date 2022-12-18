@@ -47,11 +47,12 @@ const routes: Routes = [
         loadChildren: () =>
           import('./producer/producer.module').then((m) => m.ProducerModule),
       },
+      {
+        path: 'dashboard',
+        loadChildren: ()=> import('./dashboard/dashboard.module').then((m) => m.DashboardModule)
+      }
     ]
   }
-
-
-
 ];
 
 @NgModule({

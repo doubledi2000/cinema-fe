@@ -27,4 +27,9 @@ export class ShowtimeService {
   findById(id?:string): Observable<IBaseResponse<IShowtime>>{
     return this.http.get<IBaseResponse<IShowtime>>(`${RESOURCE.URL}/showtimes/${id}`, );
   }
+
+  searchConfig(data?: any): Observable<IBaseResponse<IShowtime[]>> {
+    const params = new HttpParams({fromObject: data});
+    return this.http.get<IBaseResponse<IShowtime[]>>(`${RESOURCE.URL}/showtimes/config`, {params});
+  }
 }

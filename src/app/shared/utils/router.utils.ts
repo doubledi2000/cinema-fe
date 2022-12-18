@@ -15,7 +15,8 @@ export const ROUTER_UTILS = {
       detail: ':id/detail'
     },
     showtime: {
-      root: 'showtime'
+      root: 'showtime',
+      config: 'showtime/config'
     },
     setting: {
       root:'setting',
