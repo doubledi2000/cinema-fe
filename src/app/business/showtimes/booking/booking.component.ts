@@ -1,10 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import * as SockJS from 'sockjs-client';
 import * as Stomp from 'stompjs';
 
-import { IShowtime, Showtime } from '../../../shared/model/showtime.model';
-import { ToastrService } from 'ngx-toastr';
 import { AuthService } from '../../../shared/auth/auth.service';
+import { IDrink } from '../../../shared/model/drinks.model';
+import { IShowtime, Showtime } from '../../../shared/model/showtime.model';
+import { DrinkService } from '../../../shared/service/drink.service';
 
 @Component({
   selector: 'app-booking',
@@ -12,10 +14,39 @@ import { AuthService } from '../../../shared/auth/auth.service';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent implements OnInit {
+
+
   webSocketEndPoint: string = 'http://localhost:8070/ws';
   topic: string = "/topic/greetings/";
   stompClient: any;
   currentUserId = '';
+  buyTicket?:boolean = false;
+  buyDrink?:boolean = false;
+  payment?: boolean = true;
+  drinks: IDrink[] = [];
+  @Input() detail?: IShowtime = new Showtime();
+  @Input() userId?: string;
+  constructor(
+    private toastrService: ToastrService,
+    private authServie: AuthService,
+    private drinkService: DrinkService
+    ) { }
+
+  ngOnInit(): void {
+    this._connect(this.detail.id);
+    this.loadDrink();
+    // this.authServie.myAuthorities().subscribe(resposne => {
+    //   this.currentUserId = resposne.data.userId;
+    // })
+  }
+
+  public loadDrink(){
+    this.drinkService.search({locationId: this.detail?.locationId}).subscribe(res => {
+      if(res && res.success) {
+        this.drinks = res?.data as IDrink[];
+      }
+    })
+  }
 
 _connect(id?: string) {
   console.log("Initialize WebSocket Connection");
@@ -50,7 +81,6 @@ errorCallBack(error: any) {
 * @param {*} message
 */
 _send(message: any) {
-  console.log(message);
   let body;
   if(message.status == 'AVAILABLE') {
     body = {
@@ -92,23 +122,33 @@ changeStatus(ticketId?: string, status?: string){
   })
 }
 
-
-  @Input() detail?: IShowtime = new Showtime();
-  @Input() userId?: string;
-  constructor(private toastrService: ToastrService, private authServie: AuthService) { }
-
-  ngOnInit(): void {
-    this._connect(this.detail.id);
-    // this.authServie.myAuthorities().subscribe(resposne => {
-    //   this.currentUserId = resposne.data.userId;
-    // })
-  }
-
   change(item: any): void{
     if (item.status == 'AVAILABLE'){
       item.status = 'YOUR_SELECT';
     }else if(item.status == 'YOUR_SELECT'){
       item.status = 'AVAILABLE';
+    }
+  }
+
+  switchToBuyDrink(){
+    this.buyDrink = true;
+    this.buyTicket = false;
+    this.payment = false;
+  }
+
+  switchToBooking(){
+    this.buyDrink = false;
+    this.buyTicket = true;
+    this.payment = false;
+  }
+
+  handlerPayment(){
+    if(!!this.payment) {
+
+    }else{
+      this.buyDrink = false;
+      this.buyTicket = false;
+      this.payment = true;
     }
   }
 }

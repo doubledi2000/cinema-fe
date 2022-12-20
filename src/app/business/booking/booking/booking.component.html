@@ -1,273 +1,8 @@
 <div class="container-fluid" >
     <div class="row">
-        <div class="col-2" style="display:block; margin: 0 auto; border: 1px solid">
-            <div class="mt-2">Tổng tiền: 150.000đ</div>
-            <div style="display: block; margin-top: 150px;" >
-                <div class="d-flex align-items-center">
-                    <div class="normal-seat-div available"></div>
-                    <div style="margin-left: 5px;">Ghế thường</div>
-                </div>
-            </div>
-            <div style="display: block;" >
-                <div class="d-flex align-items-center">
-                    <div class="vip-seat-div available"></div>
-                    <div style="margin-left: 5px;">Ghế Vip</div>
-                </div>
-            </div>
-            <div style="display: block;" >
-                <div class="d-flex align-items-center">
-                    <div class="sweet-seat-div available"></div>
-                    <div style="margin-left: 5px;">Ghế đôi</div>
-                </div>
-            </div>
-            <br>
-            <br>
-            <div style="display: block;" >
-                <div class="d-flex align-items-center">
-                    <div class="normal-seat-div available"></div>
-                    <div style="margin-left: 5px;">Còn trống</div>
-                </div>
-            </div>
-            <div style="display: block;" >
-                <div class="d-flex align-items-center">
-                    <div class="normal-seat-div holded"></div>
-                    <div style="margin-left: 5px;">Đang được chọn</div>
-                </div>
-            </div>
-            <div style="display: block;" >
-                <div class="d-flex align-items-center">
-                    <div class="normal-seat-div your-select"></div>
-                    <div style="margin-left: 5px;">Bạn chọn</div>
-                </div>
-            </div>
-            <div style="display: block;" >
-                <div class="d-flex align-items-center">
-                    <div class="normal-seat-div solded"></div>
-                    <div style="margin-left: 5px;">Đã bán</div>
-                </div>
-            </div>
-
-            <div class="mt-5">
-                <button style="margin-right: 5px;" nz-button nzType="primary" nzDanger>Huỷ</button>
-                <button style="margin-right: 5px;" nz-button nzType="default">Về trước</button>
-                <button nz-button nzType="primary">Đặt vé</button>
-            </div>
-        </div>
         <div class="col-10" style="border: 1px solid">
             <nz-tabset [nzSelectedIndex]="tabIndex" >
-                <nz-tab [nzTitle]="'buy ticket'" style="overflow: auto;">
-                  <ng-template #titleTemplate>
-                    <span nz-icon [nzType]="'apple'"></span>
-                  </ng-template>
 
-                  <div class="container d-flex justify-content-center">
-                    <div class="appbackground">
-                    </div>
-                    <div class="zoom">
-                      <div class="display"></div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your_select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-                      <div class="row-chair left-way right-way">
-                        <ng-container
-                          *ngFor="let item of seats; let i = index"
-                        >
-                          <button
-                            [class.seat]="item.type=='normal'"
-                            [class.vip-seat]="item.type=='vip'"
-                            [class.sweet-seat]="item.type=='sweet'"
-                            [class.available]="item.status=='AVAILABLE'"
-                            [class.solded]="item.status=='SOLDED'"
-                            [class.your-select]="item.status=='YOUR_SELECT'"
-                            [class.holded]="item.status=='HOLDED'"
-                            (click)="change(item)"
-                          >A1</button>
-                        </ng-container>
-                      </div>
-
-                      <!-- <div class="btn-room">
-                        <button nz-button nzType="primary">Primary Button</button>
-                        <button class="btn-detail" nz-button nzType="primary">Huỷ</button>
-                          <button class="btn-detail">Mua vé</button>
-                      </div> -->
-                    </div>
-                  </div>
-                  
-                </nz-tab>
-            
                 <nz-tab [nzTitle]="'buy drink'" >
                     <ng-template #titleTemplate>
                       <span nz-icon [nzType]="'apple'">
@@ -285,7 +20,7 @@
                                   <div class="title">
                                       OL Couble Compo 220z - 108.000đ
                                   </div>
-                                 
+
                                   <div class="des mt-2">
                                       01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
                                   </div>
@@ -295,7 +30,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                           </div>
                         </div>
                         <div class="row mt-2 mb-2">
@@ -309,7 +44,7 @@
                                   <div class="title">
                                       OL Couble Compo 220z - 108.000đ
                                   </div>
-                                 
+
                                   <div class="des mt-2">
                                       01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
                                   </div>
@@ -319,7 +54,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                           </div>
                         </div>
                         <div class="row mt-2 mb-2">
@@ -333,7 +68,7 @@
                                   <div class="title">
                                       OL Couble Compo 220z - 108.000đ
                                   </div>
-                                 
+
                                   <div class="des mt-2">
                                       01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
                                   </div>
@@ -343,7 +78,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                           </div>
                         </div>
                         <div class="row mt-2 mb-2">
@@ -357,7 +92,7 @@
                                   <div class="title">
                                       OL Couble Compo 220z - 108.000đ
                                   </div>
-                                 
+
                                   <div class="des mt-2">
                                       01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
                                   </div>
@@ -367,7 +102,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                           </div>
                         </div>
                         <div class="row mt-2 mb-2">
@@ -381,7 +116,7 @@
                                   <div class="title">
                                       OL Couble Compo 220z - 108.000đ
                                   </div>
-                                 
+
                                   <div class="des mt-2">
                                       01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
                                   </div>
@@ -391,7 +126,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                           </div>
                         </div>
                         <div class="row mt-2 mb-2">
@@ -405,7 +140,7 @@
                                   <div class="title">
                                       OL Couble Compo 220z - 108.000đ
                                   </div>
-                                 
+
                                   <div class="des mt-2">
                                       01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
                                   </div>
@@ -415,7 +150,7 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                           </div>
                         </div>
                         <div class="row mt-2 mb-2">
@@ -429,7 +164,7 @@
                                   <div class="title">
                                       OL Couble Compo 220z - 108.000đ
                                   </div>
-                                 
+
                                   <div class="des mt-2">
                                       01 bắp lớn vị ngọt + 02 nuốc vừa. Nhận trong ngày xem phim
                                   </div>
@@ -439,10 +174,10 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>                            
+                            </div>
                           </div>
                         </div>
-                        
+
                       </div>
                   </nz-tab>
                   <nz-tab [nzTitle]="'Thanh toán'" >
@@ -571,4 +306,3 @@
         </div>
     </div>
 </div>
- 

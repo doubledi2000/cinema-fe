@@ -10,6 +10,7 @@ export interface IShowtime{
   roomId?: string;
   filmId?: string;
   status?: string;
+  locationId?: string;
   autoGenerateTicket?: boolean;
   film?: IFilm;
   room?: IRoom;
@@ -29,6 +30,7 @@ export class Showtime implements IShowtime{
     public autoGenerateTicket?: boolean,
     public film?: IFilm,
     public room?: IRoom,
+    public locationId?: string,
     public location?: ILocation,
     public rows?: IRowShowtime[]
   ){}
