@@ -30,7 +30,6 @@ import { PaginationComponent } from './component/pagination/pagination.component
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { TableTitleComponent } from './component/table-title/table-title.component';
 import { UploadImageComponent } from './component/upload-image/upload-image.component';
-import { UploadComponent } from './component/upload/upload.component';
 import { LimitWordPipe } from './pipe/limit-word.pipe';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -38,6 +37,8 @@ import { RouterModule } from '@angular/router';
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.component';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { DashboardModule } from '../business/dashboard/dashboard.module';
+import { UploadComponent } from './component/upload/upload.component';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
@@ -81,7 +82,7 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
     NzMenuModule,
     NzLayoutModule,
     RouterModule,
-    NzCheckboxModule
+    NzCheckboxModule,
     ],
   exports: [
     CommonModule,

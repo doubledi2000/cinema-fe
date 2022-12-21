@@ -15,8 +15,20 @@ export const SidebarConstant: IMenu[] = [
     path: ROUTER_UTILS.showtime.root,
     title: 'Đặt phim',
     icon: 'appstore',
-    root: true,
-    authorities: []
+    root: false,
+    authorities: [],
+    submenu: [
+      {
+        path: ROUTER_UTILS.showtime.root,
+        title: 'Dat phim',
+        authorities: []
+      },
+      {
+        path: ROUTER_UTILS.showtime.config,
+        title: 'Lich chieu phim',
+        authorities: []
+      }
+    ]
   },
   {
     path: `${ROUTER_UTILS.film.root}`,

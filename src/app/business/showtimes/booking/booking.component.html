@@ -1,43 +1,175 @@
 <div class="content">
   <div class="title-page" *nzModalTitle="">
-      <span>
-         Đặt vé
-      </span>
+    <span> Đặt vé </span>
   </div>
 </div>
 <div class="container">
+  <ng-container *ngIf="buyTicket">
     <div class="zoom">
       <!-- <div class="display">
         <button  class="seat AVAILABLE"></button>
       </div> -->
       <ng-container *ngFor="let row of detail.rows">
         <div class="d-flex justify-content-center">
-          <ng-container
-          *ngFor="let item of row.tickets; let i = index"
-        >
-          <button
-            [class.seat]="item.type=='NORMAL'"
-            [class.vip-seat]="item.type=='VIP'"
-            [class.sweet-seat]="item.type=='SWEET'"
-            [class.available]="item.status=='AVAILABLE'"
-            [class.solded]="item.status=='SOLDED'"
-            [class.your-select]="item.status=='SELECTED'"
-            [class.holded]="item.status=='HOLDED'"
-            (click)="_send(item)"
-          >A1</button>
-        </ng-container>
+          <ng-container *ngFor="let item of row.tickets; let i = index">
+            <button
+              [class.seat]="item.type == 'NORMAL'"
+              [class.vip-seat]="item.type == 'VIP'"
+              [class.sweet-seat]="item.type == 'SWEET'"
+              [class.available]="item.status == 'AVAILABLE'"
+              [class.sold]="item.status == 'SOLD'"
+              [class.your-select]="item.status == 'SELECTED'"
+              [class.holded]="item.status == 'HOLDED'"
+              (click)="_send(item)"
+            >
+              {{item.name}}
+            </button>
+          </ng-container>
         </div>
       </ng-container>
-
     </div>
-    <div class="row">
-      <div class="col-12 text-center" *nzModalFooter>
-              <button nz-button nzType="default">
-                  Hủy
-              </button>
-              <button nz-button nzType="primary" class="mr-2">
-                  Đặt vé
-              </button>
+  </ng-container>
+
+  <ng-container *ngIf="buyDrink">
+    <div class="container" style="overflow-y: auto; max-height: 700px">
+      <ng-container *ngFor="let item of drinks; index as i">
+        <div class="row mt-2 mb-2">
+          <div class="col-10 offset-2">
+            <div class="row">
+              <div class="drink d-flex">
+                <div class="col-3">
+                  <img src="../../../../assets/combo1.png" alt="" />
+                </div>
+                <div class="col-9 mt-5">
+                  <div class="title">
+                    {{ item.name }}
+                  </div>
+
+                  <div class="des mt-2">
+                    {{ item.description }}
+                  </div>
+                  <div class="number">
+                    <span>Số lượng: </span>
+                    <nz-input-number
+                      [(ngModel)]="itemValue[i]"
+                      style="width: 60px; margin: 0 5px; border-radius: 5px"
+                      [nzMin]="0"
+                      (ngModelChange)="handleItem(item.id, $event)"
+                    ></nz-input-number>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="payment">
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-5 offset-3"
+          style="border: 1px solid pink; border-radius: 3px"
+        >
+          <div class="row" style="border-bottom: 1px #3f3f3f; margin-top: 10px">
+            <div class="col-3">
+              <div class="category">Rạp</div>
+            </div>
+            <div class="col-9">
+              <div class="info text-end">{{location.name}}</div>
+            </div>
+          </div>
+
+          <div class="row" style="border-bottom: 1px #3f3f3f; margin-top: 10px">
+            <div class="col-3">
+              <div class="category">Phim</div>
+            </div>
+            <div class="col-9">
+              <div class="info text-end">{{this.detail.film.name}}</div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+            <div class="col-3">
+              <div class="category">Suất chiếu</div>
+            </div>
+            <div class="col-9">
+              <div class="info text-end">11:00 - Thứ 5, 13/10/2022</div>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+            <div class="col-3">
+              <div class="category">Phòng chiếu</div>
+            </div>
+            <div class="col-9">
+              <div class="info text-end">{{this.detail.room.name}}</div>
+            </div>
+          </div>
+          <ng-container *ngIf="this.haveTicket">
+          <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+            <div class="col-3">
+              <div class="category">Ghế</div>
+            </div>
+            <div class="col-9">
+              <div class="info text-end">{{this.seatNames}}</div>
+            </div>
+          </div>
+            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+              <div class="col-3">
+                <div class="category">Giá vé</div>
+              </div>
+              <div class="col-9">
+                <div class="info text-end">{{tickePrice | number:'1.0-1'}}đ</div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="this.drinkPicked.length > 0">
+            <ng-container *ngFor="let d of drinkPicked">
+              <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+                <div class="col-3">
+                  <div class="category">{{d.quantity}}x {{d.name | limitWord:30}}</div>
+                </div>
+                <div class="col-9">
+                  <div class="info text-end">{{d.price | number:'1.0-1'}}đ</div>
+                </div>
+              </div>
+            </ng-container>
+
+          </ng-container>
+
+          <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+            <div class="col-3">
+              <div class="category">Khách hàng</div>
+            </div>
+            <div class="col-9">
+              <div class="info text-end">Đoàn Mạnh Đông</div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+            <div class="col-3">
+              <div class="category">Tạm tính</div>
+            </div>
+            <div class="col-9">
+              <div class="info text-end">{{this.totalPayment | number:'1.0-1'}}đ</div>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
+  </ng-container>
+  <div class="row">
+    <div class="col-12 text-center" *nzModalFooter>
+      <button nz-button nzType="default">Hủy</button>
+      <ng-container *ngIf="this.buyDrink">
+        <button nz-button nzType="default" (click)="switchToBooking()">Đặt vé</button>
+      </ng-container>
+      <ng-container *ngIf="!this.buyDrink">
+      <button nz-button nzType="default" (click)="switchToBuyDrink()">Mua đồ uống</button>
+      </ng-container>
+      <button nz-button nzType="primary" class="mr-2" (click)="handlerPayment()">Thanh toán</button>
+    </div>
   </div>
-  </div>
+</div>

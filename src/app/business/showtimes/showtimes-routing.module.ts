@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BookingComponent } from './booking/booking.component';
 import { ShowtimeListComponent } from './showtime-list/showtime-list.component';
 import { ShowtimeCreateComponent } from './showtime-create/showtime-create.component';
+import { ShowtimeConfigComponent } from './showtime-config/showtime-config.component';
 
 const routes: Routes = [
   {
@@ -15,7 +16,11 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: ShowtimeCreateComponent
+    component: ShowtimeCreateComponent,
+  },
+  {
+    path: 'config',
+    component: ShowtimeConfigComponent
   }
 ];
 

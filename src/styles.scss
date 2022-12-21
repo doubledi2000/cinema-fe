@@ -143,10 +143,13 @@ nz-button-group {
   padding: 32px 16px;
   border: none;
   border-radius: 0 0 10px 10px;
+
 }
 
 .ant-modal-content {
   border-radius: 10px;
+  max-height: 650px;
+  overflow-y: auto;
 }
 
 .ant-modal-title {

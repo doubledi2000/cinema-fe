@@ -1,6 +1,7 @@
 import { IFilm } from './film.model';
 import { IRoom } from './room.model';
 import { IRowShowtime } from './response/row-showtime.model';
+import { ILocation } from './location.model';
 export interface IShowtime{
   id?: string;
   premiereDate?: Date;
@@ -9,9 +10,11 @@ export interface IShowtime{
   roomId?: string;
   filmId?: string;
   status?: string;
+  locationId?: string;
   autoGenerateTicket?: boolean;
   film?: IFilm;
   room?: IRoom;
+  location?: ILocation;
   rows?: IRowShowtime[];
 }
 
@@ -27,6 +30,8 @@ export class Showtime implements IShowtime{
     public autoGenerateTicket?: boolean,
     public film?: IFilm,
     public room?: IRoom,
+    public locationId?: string,
+    public location?: ILocation,
     public rows?: IRowShowtime[]
   ){}
 }

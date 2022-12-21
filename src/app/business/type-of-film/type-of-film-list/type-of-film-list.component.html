@@ -21,8 +21,8 @@
       </div>
     </div>
     <div class="row mt-3">
-      <div class="col-12">
-        <nz-table #table [nzData]="typeOfFilmList" [nzTableLayout]="'auto'">
+      <div class="col-12" >
+        <nz-table #table [nzData]="typeOfFilmList" [nzTableLayout]="'auto'" >
           <thead>
             <tr>
               <th nzAlign="center" nzWidth="80px">STT</th>
@@ -36,7 +36,7 @@
             </tr>
           </thead>
 
-          <tbody>
+          <tbody >
             <ng-container *ngFor="let item of typeOfFilmList; index as i">
               <tr>
                 <td class="thead-border-top-left" nzAlign="center">
