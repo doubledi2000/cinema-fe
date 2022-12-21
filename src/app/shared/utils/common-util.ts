@@ -46,10 +46,7 @@ export default class CommonUtil{
         nzComponentParams: {
           ...params,
         },
-        nzBodyStyle: {
-          'max-height': '800px',
-
-        }
+        
       };
     }
 

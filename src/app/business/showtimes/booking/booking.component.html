@@ -17,12 +17,12 @@
               [class.vip-seat]="item.type == 'VIP'"
               [class.sweet-seat]="item.type == 'SWEET'"
               [class.available]="item.status == 'AVAILABLE'"
-              [class.solded]="item.status == 'SOLDED'"
+              [class.sold]="item.status == 'SOLD'"
               [class.your-select]="item.status == 'SELECTED'"
               [class.holded]="item.status == 'HOLDED'"
               (click)="_send(item)"
             >
-              A1
+              {{item.name}}
             </button>
           </ng-container>
         </div>
@@ -32,7 +32,7 @@
 
   <ng-container *ngIf="buyDrink">
     <div class="container" style="overflow-y: auto; max-height: 700px">
-      <ng-container *ngFor="let item of drinks">
+      <ng-container *ngFor="let item of drinks; index as i">
         <div class="row mt-2 mb-2">
           <div class="col-10 offset-2">
             <div class="row">
@@ -51,9 +51,10 @@
                   <div class="number">
                     <span>Số lượng: </span>
                     <nz-input-number
-                      ngModel="0"
+                      [(ngModel)]="itemValue[i]"
                       style="width: 60px; margin: 0 5px; border-radius: 5px"
                       [nzMin]="0"
+                      (ngModelChange)="handleItem(item.id, $event)"
                     ></nz-input-number>
                   </div>
                 </div>
@@ -77,7 +78,7 @@
               <div class="category">Rạp</div>
             </div>
             <div class="col-9">
-              <div class="info text-end">BHD Star Phạm Ngọc Thạch</div>
+              <div class="info text-end">{{location.name}}</div>
             </div>
           </div>
 
@@ -86,7 +87,7 @@
               <div class="category">Phim</div>
             </div>
             <div class="col-9">
-              <div class="info text-end">Avatar</div>
+              <div class="info text-end">{{this.detail.film.name}}</div>
             </div>
           </div>
 
@@ -95,7 +96,7 @@
               <div class="category">Suất chiếu</div>
             </div>
             <div class="col-9">
-              <div class="info text-end">11L:00 - Thứ 5, 13/10/2022</div>
+              <div class="info text-end">11:00 - Thứ 5, 13/10/2022</div>
             </div>
           </div>
           <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
@@ -103,33 +104,41 @@
               <div class="category">Phòng chiếu</div>
             </div>
             <div class="col-9">
-              <div class="info text-end">7</div>
+              <div class="info text-end">{{this.detail.room.name}}</div>
             </div>
           </div>
+          <ng-container *ngIf="this.haveTicket">
           <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
             <div class="col-3">
               <div class="category">Ghế</div>
             </div>
             <div class="col-9">
-              <div class="info text-end">E01, E02</div>
+              <div class="info text-end">{{this.seatNames}}</div>
             </div>
           </div>
-          <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
-            <div class="col-3">
-              <div class="category">Giá vé</div>
+            <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+              <div class="col-3">
+                <div class="category">Giá vé</div>
+              </div>
+              <div class="col-9">
+                <div class="info text-end">{{tickePrice | number:'1.0-1'}}đ</div>
+              </div>
             </div>
-            <div class="col-9">
-              <div class="info text-end">150.000đ</div>
-            </div>
-          </div>
-          <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
-            <div class="col-3">
-              <div class="category">1x OL Combo1</div>
-            </div>
-            <div class="col-9">
-              <div class="info text-end">120.000đ</div>
-            </div>
-          </div>
+          </ng-container>
+          <ng-container *ngIf="this.drinkPicked.length > 0">
+            <ng-container *ngFor="let d of drinkPicked">
+              <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
+                <div class="col-3">
+                  <div class="category">{{d.quantity}}x {{d.name | limitWord:30}}</div>
+                </div>
+                <div class="col-9">
+                  <div class="info text-end">{{d.price | number:'1.0-1'}}đ</div>
+                </div>
+              </div>
+            </ng-container>
+
+          </ng-container>
+
           <div class="row" style="margin-top: 10px; padding: 2px; border: 1px">
             <div class="col-3">
               <div class="category">Khách hàng</div>
@@ -144,7 +153,7 @@
               <div class="category">Tạm tính</div>
             </div>
             <div class="col-9">
-              <div class="info text-end">250.000đ</div>
+              <div class="info text-end">{{this.totalPayment | number:'1.0-1'}}đ</div>
             </div>
           </div>
         </div>

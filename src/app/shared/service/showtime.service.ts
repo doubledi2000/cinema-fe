@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { IBaseResponse } from '../model/base.model';
 import { Showtime, IShowtime } from '../model/showtime.model';
 import { IShowtimeByFilm } from '../model/response/IShowtimeByFilm.model';
+import { Invoice, IInvoice } from '../model/invoice.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,9 @@ export class ShowtimeService {
   searchConfig(data?: any): Observable<IBaseResponse<IShowtime[]>> {
     const params = new HttpParams({fromObject: data});
     return this.http.get<IBaseResponse<IShowtime[]>>(`${RESOURCE.URL}/showtimes/config`, {params});
+  }
+
+  booking(data?: any): Observable<IBaseResponse<IInvoice>> {
+    return this.http.post<IBaseResponse<IInvoice>>(`${RESOURCE.URL}/bookings`, data);
   }
 }
