@@ -37,4 +37,16 @@ export class ShowtimeService {
   booking(data?: any): Observable<IBaseResponse<IInvoice>> {
     return this.http.post<IBaseResponse<IInvoice>>(`${RESOURCE.URL}/bookings`, data);
   }
+
+  cancel(id?: string):Observable<IBaseResponse<boolean>> {
+    return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/bookings/${id}/cancel`,{});
+  }
+
+  generateTicket(id?: string): Observable<IBaseResponse<boolean>> {
+    return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/showtimes/${id}/generate-tickets`, {});
+  }
+
+  cancelShowtime(id?: string): Observable<IBaseResponse<boolean>> {
+    return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/showtimes/${id}/cancel`, {});
+  }
 }

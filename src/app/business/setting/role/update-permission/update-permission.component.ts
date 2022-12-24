@@ -2,8 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import * as _ from 'lodash'
 import { PermissionService } from '../../../../shared/service/permission.service';
 import { IRolePermission } from '../../../../shared/model/role-permission.model';
-import { Role } from '../../../../shared/model/role.model';
-import { IPermission } from '../../../../shared/model/permission.model';
+import { Role, IRole } from '../../../../shared/model/role.model';
+import { IPermission, Permission } from '../../../../shared/model/permission.model';
+import { RoleService } from '../../../../shared/service/role.service';
+import { ToastrService } from 'ngx-toastr';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'app-update-permission',
   templateUrl: './update-permission.component.html',
@@ -16,7 +19,10 @@ export class UpdatePermissionComponent implements OnInit {
   rolePermissionRequest: IRolePermission[] = [];
 
   constructor(
-    private permissionService: PermissionService
+    private permissionService: PermissionService,
+    private roleService: RoleService,
+    private toastrService: ToastrService,
+    private nzModalRef: NzModalRef
   ) { }
 
   ngOnInit(): void {
@@ -25,10 +31,19 @@ export class UpdatePermissionComponent implements OnInit {
 
   getListPermission(){
     this.permissionService.findAll().subscribe(response =>{
-      const results = _(response.data).groupBy((x)=> x.resourceCode).map((value, key) => ({resourceCode: key, per: value})).value();
-
+      let resultsBefore = response.data;
+      this.roleService.getById(this.role.id).subscribe(res => {
+        if(res && res.success) {
+          const role = res.data as IRole;
+          resultsBefore.forEach(e => {
+            const check = role.permissionIds.some((ele) => ele == e.id);
+            e.checked = check;
+          })
+        }
+      })
+      let results = _(resultsBefore).groupBy((x)=> x.resourceCode).map((value, key) => ({resourceCode: key, per: value})).value();
       this.rolePermissions = results;
-      console.log(results)
+      console.log(this.rolePermissions);
     })
   }
 
@@ -37,6 +52,7 @@ export class UpdatePermissionComponent implements OnInit {
   }
 
   updatePermission(){
+    this.rolePermissionRequest = [];
     for(let rolePermission of this.rolePermissions) {
       const i = this.rolePermissionRequest.length;
       this.rolePermissionRequest.push({
@@ -52,7 +68,19 @@ export class UpdatePermissionComponent implements OnInit {
     }
     const role = this.role;
     role.permissions = this.rolePermissionRequest;
-    console.log(this.rolePermissionRequest)
+    const body = {
+      permissions: this.rolePermissionRequest
+    };
+    this.roleService.permission(this.role.id, body).subscribe(res => {
+      if(res && res.success) {
+        this.toastrService.success('Phân quyền thành công');
+        this.nzModalRef.close(
+          {
+            success: true
+          }
+        );
+      }
+    })
   }
 
     // change checked

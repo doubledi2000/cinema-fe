@@ -90,9 +90,29 @@ export class RoleComponent implements OnInit {
       '50%'
     )
     const modal = this.modalService.create(base);
+    modal.afterClose.subscribe(res => {
+      if(res && res.success) {
+        this.search();
+      }
+    })
   }
 
   update(item: any){
+    const base = CommonUtil.modalBase(
+      UpdateRoleComponent,
+      {
+        role: item,
+        isUpdate: true
+      },
+      '50%'
+    )
+    const modal = this.modalService.create(base);
+
+    modal.afterClose.subscribe(res => {
+      if(res && res.success) {
+        this.search();
+      }
+    })
 
   }
 

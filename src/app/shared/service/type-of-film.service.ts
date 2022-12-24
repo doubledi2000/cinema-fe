@@ -1,3 +1,4 @@
+import { RESOURCE } from './../constant/resource.constant';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -32,5 +33,13 @@ export class TypeOfFilmService {
   autoComplete(data: any): Observable<IBaseResponse<ITypeOfFilm[]>>{
     const params = new HttpParams({fromObject: data});
     return this.httpClient.get<IBaseResponse<ITypeOfFilm[]>>(`${this.url}/type-of-films/auto-complete`, {params})
+  }
+
+  active(id?: string): Observable<IBaseResponse<boolean>> {
+    return this.httpClient.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/type-of-films/${id}/active`, {});
+  }
+
+  inactive(id?: string): Observable<IBaseResponse<boolean>> {
+    return this.httpClient.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/type-of-films/${id}/inactive`, {});
   }
 }

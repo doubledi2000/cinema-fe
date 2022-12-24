@@ -14,11 +14,10 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
 })
 export class UpdateRoleComponent implements OnInit {
   isDetail: boolean;
-  isUpdate: boolean;
   isCreate: boolean;
   form: FormGroup = new FormGroup({});
   @Input() role?: IRole = new Role();
-
+  @Input() isUpdate?: boolean
   constructor(
     private fb: FormBuilder,
     private roleService: RoleService,
@@ -50,14 +49,16 @@ export class UpdateRoleComponent implements OnInit {
         [Validators.required]
       ],
       isRoot: [
-        false
+        this.role.isRoot || false
       ]
     })
   }
 
 
   onCancel(){
-
+    this.modalRef.close({
+      success: false
+    })
   }
 
   nextToUpdate(){
@@ -67,6 +68,8 @@ export class UpdateRoleComponent implements OnInit {
   onSubmit(){
     if(this.isCreate) {
       this.create();
+    } else if (this.isUpdate) {
+      this.update();
     }
   }
 
@@ -92,7 +95,7 @@ export class UpdateRoleComponent implements OnInit {
     )
     this.roleService.update(this.role.id, body).subscribe(resposne => {
       if(resposne && resposne.code == STATUS.SUCCESS_200) {
-        this.toast.success('');
+        this.toast.success('Cập nhật thành công');
         this.modalRef.close({
           success: true,
           value: resposne?.data as IRole

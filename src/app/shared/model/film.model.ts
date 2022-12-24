@@ -18,7 +18,9 @@ export interface IFilm{
     typeOfFilms?: ITypeOfFilm;
     filmTypeIds?: string[];
     filmProducers?: IFilmProducer[],
-    filmTypes?: IFilmType[]
+    filmTypes?: IFilmType[],
+    fileId?: string,
+    filePath?: string,
 }
 
 export class Film implements IFilm{
@@ -38,7 +40,9 @@ export class Film implements IFilm{
         public actors?: string,
         public directors?: string,
         public filmProducers?: IFilmProducer[],
-        public filmTypes?: IFilmType[]
+        public filmTypes?: IFilmType[],
+        public fileId?: string,
+        public filePath?: string
     ){
     }
 }

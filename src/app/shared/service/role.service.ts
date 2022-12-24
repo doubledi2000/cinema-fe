@@ -32,4 +32,8 @@ export class RoleService {
     const params = new HttpParams({fromObject: data});
     return this.http.get<IBaseResponse<IRole[]>>(`${RESOURCE.URL}/roles/auto-complete`, {params});
   }
+
+  permission(id?: string, data?: any): Observable<IBaseResponse<boolean>> {
+    return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/roles/${id}/permit`, data);
+  }
 }

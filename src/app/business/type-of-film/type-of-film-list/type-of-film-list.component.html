@@ -45,7 +45,7 @@
                 <td nzAlign="center">{{ item.code }}</td>
                 <td nzAlign="center">{{ item.name }}</td>
                 <td nzAlign="center">{{ item.description }}</td>
-                <td nzAlign="center">{{ item.status }}</td>
+                <td nzAlign="center"><nz-switch [ngModel]="item.status == 'ACTIVE'" (click)="toggleActive(item)"></nz-switch></td>
                 <td nzAlign="center">
                   <app-button-action
                     [action]="'view'"
