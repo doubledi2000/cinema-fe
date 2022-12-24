@@ -26,7 +26,7 @@ export class FilmService {
     return this.http.get<IBaseResponse<IFilm[]>>(`${this.url}/films`, {params});
   }
 
-  create(data: any): Observable<IBaseResponse<IFilm>> {
+    create(data: any): Observable<IBaseResponse<IFilm>> {
     return this.http.post<IBaseResponse<IFilm>>(`${RESOURCE.URL}/films`, data);
   }
 

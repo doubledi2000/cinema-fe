@@ -120,6 +120,8 @@ _disconnect() {
   if (this.stompClient !== null) {
       this.stompClient.disconnect();
   }
+  this.showtimeService.cancel(this.detail.id).subscribe(res => {
+  });
   console.log("Disconnected");
 }
 
@@ -223,6 +225,8 @@ changeStatus(ticketId?: string, status?: string){
         }
       })
     }else{
+      this.drinkPicked = [];
+      this.totalPayment = 0;
       this.bookingRequest.items.forEach(element => {
         let drink = this.drinks.find(e => e.id == element.itemId);
         this.drinkPicked.push({name:drink.name, quantity: element.quantity, price: drink.price * element.quantity});

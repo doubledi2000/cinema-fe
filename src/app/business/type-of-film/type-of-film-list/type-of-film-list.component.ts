@@ -79,6 +79,22 @@ export class TypeOfFilmListComponent implements OnInit {
     })
   }
 
+  toggleActive(item: any){
+    if(item.status == 'ACTIVE') {
+      this.typeOfFilmService.inactive(item.id).subscribe(res =>{
+        if(res && res.success) {
+          item.status = 'INACTIVE';
+        }
+      })
+    } else {
+      this.typeOfFilmService.active(item.id).subscribe(res =>{
+        if(res && res.success) {
+          item.status = 'ACTIVE';
+        }
+      })
+    }
+  }
+
   view(typeOfFilm: ITypeOfFilm){
     const base = CommonUtil.modalBase(
       TypeOfFilmDetailComponent,

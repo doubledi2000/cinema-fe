@@ -9,6 +9,7 @@ import { IRoom } from '../../../shared/model/room.model';
 import { IBaseRequestModel } from '../../../shared/model/request/base-request.model';
 import { PAGINATION } from '../../../shared/constant/pagination.constant';
 import CommonUtil from '../../../shared/utils/common-util';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-showtime-config',
@@ -33,6 +34,7 @@ export class ShowtimeConfigComponent implements OnInit {
     private showtimeService: ShowtimeService,
     private locationService: LocationService,
     private roomService: RoomService,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -74,11 +76,28 @@ export class ShowtimeConfigComponent implements OnInit {
       ...this.searchForm.value,
       ...this.searchRequest
     }
-    debugger
     this.showtimeService.searchConfig(searchRequest).subscribe(res => {
       if(res && res.success) {
         this.showtimeList = res.data as IShowtime[];
         this.total = res.page.total;
+      }
+    })
+  }
+
+  generateTicket(id?: string) {
+    this.showtimeService.generateTicket(id).subscribe(res => {
+      if(res && res.success) {
+        this.toastrService.success('Tạo vé thành công');
+        this.search();
+      }
+    })
+  }
+
+  cancel(id?: string) {
+    this.showtimeService.cancelShowtime(id).subscribe(res => {
+      if(res && res.success) {
+        this.toastrService.success("Hủy tạo vé thành công")
+        this.search();
       }
     })
   }

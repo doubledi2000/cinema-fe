@@ -11,6 +11,8 @@ import { FilmService } from '../../../shared/service/film.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import CommonUtil from '../../../shared/utils/common-util';
 import { ToastrService } from 'ngx-toastr';
+import { FileService } from '../../../shared/service/file.service';
+import { StorageService } from '../../../shared/service/storage.service';
 
 @Component({
   selector: 'app-film-detail',
@@ -31,6 +33,7 @@ export class FilmDetailComponent implements OnInit {
   film: IFilm = new Film();
   typeOfFilmList: ITypeOfFilm[] = [];
   producerList: IProducer[] = [];
+  fileId?: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -39,7 +42,8 @@ export class FilmDetailComponent implements OnInit {
     private filmService: FilmService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private storageService: StorageService
   ) {
     this.activatedRoute.paramMap.subscribe( params => {
       this.filmId = params.get('id');
@@ -146,15 +150,24 @@ export class FilmDetailComponent implements OnInit {
 
   async getFiles(files: any): Promise<void> {
     if (files) {
+      debugger;
+      let formData: FormData = new FormData();
+      formData.append('file', files[0]);
       this.files = files[0];
       getBase64(files[0]).then((data) => {
         this.imageUrl = data;
+        this.storageService.upload(formData).subscribe(res => {
+          if(res && res.success) {
+            console.log(res.data);
+            this.fileId = res.data.id;
+          }
+        })
       });
+
     }
   }
   onCancel(){
     this.router.navigateByUrl(`/film`);
-
   }
 
   nextToUpdate(){
@@ -179,6 +192,7 @@ export class FilmDetailComponent implements OnInit {
       this.filmService.getById(this.filmId || '').subscribe(response=>{
         if(response.success) {
           this.film = response.data as IFilm;
+          this.imageUrl = this.film.filePath;
         }
        this.initForm();
       })
@@ -187,7 +201,9 @@ export class FilmDetailComponent implements OnInit {
 
   create(){
     const body = CommonUtil.trim({
-      ...this.form.value
+      ...this.form.value,
+      fileId: this.fileId
+
     });
     this.filmService.create(body).subscribe(response =>{
       if(response.success) {
@@ -200,7 +216,8 @@ export class FilmDetailComponent implements OnInit {
 
   update(){
     const body = CommonUtil.trim({
-      ...this.form.value
+      ...this.form.value,
+      fileId: this.fileId
     });
     this.filmService.update(this.film.id, body).subscribe(response =>{
       if(response.success) {

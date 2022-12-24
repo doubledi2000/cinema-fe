@@ -52,34 +52,26 @@
                   <td nzAlign="center">{{item.status}}</td>
                   <td nzAlign="center">
                     <app-button-action
-                      [action]="'view'"
+                      [action]="'send'"
                       className="first"
-                      nzTooltipTitle="Chi tiết"
+                      nzTooltipTitle="Tạo vé"
                       nzTooltipPlacement="top"
                       nz-tooltip
+                      (click)="generateTicket(item.id)"
+                      [disable]="item.status != 'WAIT_GEN_TICKET'"
                     >
-                      ></app-button-action
-                    >
+                    </app-button-action>
 
                     <app-button-action
-                      [action]="'edit'"
-                      className="first"
-                      nzTooltipTitle="Cập nhật"
-                      nzTooltipPlacement="top"
-                      nz-tooltip
-                    >
-                      ></app-button-action
-                    >
-
-                    <app-button-action
-                      [action]="'delete'"
+                      [action]="'cancel'"
                       className="last"
-                      nzTooltipTitle="Xóa"
+                      nzTooltipTitle="Hủy"
                       nzTooltipPlacement="top"
                       nz-tooltip
+                      (click)="cancel(item.id)"
+                      [disable]="item.status != 'WAIT_GEN_TICKET'"
                     >
-                      ></app-button-action
-                    >
+                    </app-button-action>
                   </td>
                 </tr>
               </ng-container>

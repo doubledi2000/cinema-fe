@@ -8,6 +8,7 @@ export interface IRole{
   roleStatus?: string;
   deleted?: boolean;
   permissions?: IRolePermission[];
+  permissionIds?: string[];
 }
 
 export class Role implements IRole{
@@ -19,7 +20,8 @@ export class Role implements IRole{
     public isRoot?: boolean,
     public roleStatus?: string,
     public deleted?: boolean,
-    public permissions?: IRolePermission[]
+    public permissions?: IRolePermission[],
+    public permissionIds?: string[]
   ){
 
   }
