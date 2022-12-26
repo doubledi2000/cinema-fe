@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../shared/service/user.service';
-import { IUser } from '../../../shared/model/user.model';
-import { PAGINATION } from '../../../shared/constant/pagination.constant';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { PAGINATION } from '../../../shared/constant/pagination.constant';
+import { ILocation } from '../../../shared/model/location.model';
+import { IRole } from '../../../shared/model/role.model';
+import { IUser } from '../../../shared/model/user.model';
+import { LocationService } from '../../../shared/service/location.service';
+import { RoleService } from '../../../shared/service/role.service';
+import { UserService } from '../../../shared/service/user.service';
 
 @Component({
   selector: 'app-user',
@@ -14,6 +19,8 @@ export class UserComponent implements OnInit {
 
   userList: IUser[] = [];
   total = 0;
+  locationList: ILocation[] = [];
+  roleList: IRole[] = [];
 
   searchForm: FormGroup = new FormGroup({});
 
@@ -26,7 +33,9 @@ export class UserComponent implements OnInit {
 
   constructor(private userService: UserService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private roleService: RoleService,
+    private locationService: LocationService
     ) { }
 
   ngOnInit(): void {
@@ -38,6 +47,10 @@ export class UserComponent implements OnInit {
       keyword: '',
       locationIds: []
     })
+  }
+
+  create(){
+    this.router.navigateByUrl(`setting/user/create`)
   }
 
   view(id?: string) {
@@ -52,6 +65,14 @@ export class UserComponent implements OnInit {
     this.userService.search(searchRequest).subscribe(response=>{
       this.userList = response?.data as IUser[];
       this.total = response?.page.total || 0
+    })
+  }
+
+  loadLocation(){
+    this.locationService.autoComplete({}).subscribe(res=> {
+      if(res && res.success) {
+        this.locationList = res.data as ILocation[];
+      }
     })
   }
 

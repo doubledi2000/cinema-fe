@@ -20,6 +20,10 @@ const routes: Routes = [
     component: UpdateUserComponent
   },
   {
+    path: 'user/create',
+    component: UpdateUserComponent
+  },
+  {
     path: 'role',
     component: RoleComponent
   },

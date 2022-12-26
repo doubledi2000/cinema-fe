@@ -1,7 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { FileService } from '../../../../shared/service/file.service';
+
 import { IDrink } from '../../../../shared/model/drinks.model';
+import { FileService } from '../../../../shared/service/file.service';
+import { StorageService } from '../../../../shared/service/storage.service';
 
 @Component({
   selector: 'app-drink-detail',
@@ -13,51 +15,53 @@ export class DrinkDetailComponent implements OnInit {
   @Input() isUpdate;
   @Input() isCreate;
   @Input() drink: IDrink;
-  imageUrl;
+  imageUrl?: any = null;
   files: [] | any;
+  fileId?: string = '';
 
   form: FormGroup = new FormGroup({});
   constructor(
     private fb: FormBuilder,
-    private fileService: FileService
+    private fileService: FileService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit(): void {
     this.initForm();
-    this.imageUrl = this.drink.imagePath;
+    if(!this.isCreate) {
+      debugger;
+      this.imageUrl = this.drink.filePath;
+    }
   }
 
   initForm(){
     this.form = this.fb.group({
       code: [
         {
-          value: this.drink.code,
+          value: !this.isCreate ? this.drink.code : '',
           disabled: true
         }
       ],
       name: [
         {
-          value: this.drink.name,
+          value: !this.isCreate ? this.drink.name : '',
           disabled: this.isDetail
         },
         [Validators.required]
       ],
       price: [
         {
-          value: this.drink.price,
+          value: !this.isCreate ? this.drink.price  : 0,
           disabled: this.isDetail
         },
         [Validators.required]
       ],
       description: [
         {
-          value: this.drink.description,
+          value: !this.isCreate ? this.drink.description : '',
           disabled: this.isDetail
         }
-      ],
-       status: [
-        this.drink.status
-       ]
+      ]
     })
   }
 
@@ -68,9 +72,10 @@ export class DrinkDetailComponent implements OnInit {
       getBase64(files[0]).then((data) => {
         this.imageUrl = data;
       });
-      this.fileService.upload(files[0]).subscribe(res=>{
+      this.storageService.upload(files[0]).subscribe(res=>{
         if(res && res.success) {
           this.imageUrl = res.data.path;
+          this.fileId = res.data.id;
         }
       })
     }

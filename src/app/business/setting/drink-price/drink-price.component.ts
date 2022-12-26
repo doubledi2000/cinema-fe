@@ -10,7 +10,7 @@ import { LocationService } from '../../../shared/service/location.service';
 import CommonUtil from '../../../shared/utils/common-util';
 import { Router } from '@angular/router';
 import { DrinkDetailComponent } from './drink-detail/drink-detail.component';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalService, NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-drink-price',
@@ -43,8 +43,8 @@ export class DrinkPriceComponent implements OnInit {
     this.search();
   }
 
-  loadLocation(){
-    this.locationService.autoComplete({}).subscribe(res =>{
+  loadLocation(keyword: string){
+    this.locationService.autoComplete({keyword: keyword.trim()}).subscribe(res =>{
       if(res && res.success) {
         this.locationList = res.data as ILocation[];
       }
@@ -71,7 +71,8 @@ export class DrinkPriceComponent implements OnInit {
 
   initSearchForm() {
     this.searchForm = this.fb.group({
-      keyword: ''
+      keyword: '',
+      locationIds: [[]]
     })
   }
 
@@ -83,6 +84,23 @@ export class DrinkPriceComponent implements OnInit {
     this.drinkService.search(searchRequest).subscribe(response=>{
       this.dinkList = response?.data as IDrink[];
       this.total = response?.page.total || 0
+    })
+  }
+
+  create(){
+    const base = CommonUtil.modalBase(
+      DrinkDetailComponent,
+      {
+        isCreate: true
+      },
+      '80%'
+    );
+    const modal:NzModalRef = this.modalService.create(base);
+
+    modal.afterClose.subscribe(res => {
+      if(res && res.success) {
+        this.search();
+      }
     })
   }
 
@@ -120,5 +138,4 @@ export class DrinkPriceComponent implements OnInit {
       })
     }
   }
-
 }

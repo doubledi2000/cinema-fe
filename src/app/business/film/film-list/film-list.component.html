@@ -1,135 +1,164 @@
 <div class="content">
-    <ng-container>
-        <div class="row mt-3">
-            <div class="col-9">
-                <div class="row" [formGroup]="searchForm">
-                    <div class="col-3">
-                        <nz-input-group [nzSuffix]="suffixIconSearch">
-                            <input type="text" nz-input placeholder="input search text" [nzSize]="'small'"/>
-                          </nz-input-group>
-                          <ng-template #suffixIconSearch>
-                            <span nz-icon nzType="search"></span>
-                          </ng-template>
-                    </div>
-                    <div class="col-9">
-                        <div class="row d-flex">
-                            <div class="col-4">
-                                <nz-select
-                                [nzMaxTagCount]="1"
-                                [nzMaxTagPlaceholder]="tagPlaceHolder"
-                                nzMode="multiple"
-                                nzPlaceHolder="Thể loại"
-                                style="width: 100%; "
-                                [nzShowArrow]="true"
-                              >
-                                <nz-option *ngFor="let item of typeOfFilmList"  nzLabel="{{item.name | limitWord: 10}}" [nzValue]="item.id" nz-tooltip nzTooltipTitle="{{item.name | limitWord:30}}"></nz-option>
-                              </nz-select>
-                              <ng-template #tagPlaceHolder let-selectedList>+...</ng-template>
-                            </div>
-                            <div class="col-3">
-                                <nz-select
-                                [nzMaxTagCount]="1"
-                                [nzMaxTagPlaceholder]="tagPlaceHolder"
-                                nzMode="multiple"
-                                nzPlaceHolder="Nhà sản xuất"
-                                style="width: 100%; "
-                                (nzOnSearch)="loadTypeOfFilm()"
-                              >
-                                <nz-option *ngFor="let item of typeOfFilmList" [nzLabel]="item.name" [nzValue]="item.id"></nz-option>
-                              </nz-select>
-                              <ng-template #tagPlaceHolder let-selectedList>+...</ng-template>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-3 d-flex justify-content-end">
-                <div class="clearfix">
-                    <nz-upload
-                      nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                      nzListType="picture"
-                    >
-                      <button nz-button>
-                        <span nz-icon nzType="upload"></span>
-                        Upload
-                      </button>
-                    </nz-upload>
-                  </div>
-                <button nz-button nzType="primary" (click)="create()">Add</button>
-            </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-12">
-                <nz-table
-                #table
-                [nzData]="filmList"
-                [nzTableLayout]="'fixed'"
+  <ng-container>
+    <div class="row mt-3">
+      <div class="col-9">
+        <div class="row" [formGroup]="searchForm">
+          <div class="col-3">
+            <nz-input-group [nzSuffix]="suffixIconSearch">
+              <input
+                type="text"
+                nz-input
+                placeholder="input search text"
+                [nzSize]="'small'"
+              />
+            </nz-input-group>
+            <ng-template #suffixIconSearch>
+              <span nz-icon nzType="search"></span>
+            </ng-template>
+          </div>
+          <div class="col-9">
+            <div class="row d-flex">
+              <div class="col-4">
+                <nz-select
+                  [nzMaxTagCount]="1"
+                  [nzMaxTagPlaceholder]="tagPlaceHolder"
+                  nzMode="multiple"
+                  nzPlaceHolder="Thể loại"
+                  style="width: 100%"
+                  [nzShowArrow]="true"
                 >
-                <thead>
-                    <tr>
-                        <th nzAlign="center" nzWidth="80px">STT</th>
-                        <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">Mã phim</th>
-                        <th nzAlign="center" [nzSortFn]="true">Tên phim</th>
-                        <th nzAlign="center">Nhà sản xuất</th>
-                        <th nzAlign="center">Ngày công chiếu</th>
-                        <th nzAlign="center">Thời lượng</th>
-                        <th nzAlign="center">Thể loại phim</th>
-                        <th nzAlign="center">Đạo diễn</th>
-                        <th nzAlign="center">Diễn viên</th>
-                        <th nzAlign="center">Trạng thái</th>
-                        <th nzAlign="center">Hành động</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <ng-container  *ngFor="let item of filmList;index as i">
-                        <tr>
-                            <td class="thead-border-top-left" nzAlign="center">
-                                {{getIndex(i)}}
-                            </td>
-                            <td nzAlign="center" nz-tooltip="{{item.code}}">{{item.code}}</td>
-                            <td nzAlign="left" nz-tooltip="{{item.name}}">{{item.name}}</td>
-                            <td nzAlign="left" nz-tooltip="{{getProducer(item)}}">{{getProducer(item) | limitWord: 30}}</td>
-                            <td nzAlign="center" nz-tooltip="{{item.releaseDate}}">{{item.releaseDate}}</td>
-                            <td nzAlign="center" nz-tooltip="{{item.duration}}">{{item.duration}} phút</td>
-                            <td nzAlign="center" nz-tooltip="{{getType(item)}}">{{getType(item) | limitWord: 30}}</td>
-                            <td nzAlign="center" nz-tooltip="{{item.directors}}">{{item.directors | limitWord:15}}</td>
-                            <td nzAlign="center" nz-tooltip="{{item.actors}}">{{item.actors | limitWord: 30}}</td>
-                            <td nzAlign="center" nz-tooltip="{{item.status}}">{{item.status}}</td>
-                            <td nzAlign="center">
-                              <app-button-action
-                              [action]="'view'"
-                              className="first"
-                              nzTooltipTitle="Chi tiết"
-                              nzTooltipPlacement="top"
-                              (click)="view(item)"
-                              nz-tooltip
-                              >
-                              </app-button-action>
-
-                              <app-button-action
-                              [action]="'edit'"
-                              className="last"
-                              nzTooltipTitle="Cập nhật"
-                              nzTooltipPlacement="top"
-                              (click)="update(item)"
-                              nz-tooltip
-                              >
-                              </app-button-action>
-                            </td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-            </nz-table>
-            <app-pagination
-            [pageIndex]="searchRequest.pageIndex"
-            [pageSize]="searchRequest.pageSize"
-            [total]="total"
-            (onChange)="onQuerySearch($event)"
-          ></app-pagination>
+                  <nz-option
+                    *ngFor="let item of typeOfFilmList"
+                    nzLabel="{{ item.name | limitWord : 10 }}"
+                    [nzValue]="item.id"
+                    nz-tooltip
+                    nzTooltipTitle="{{ item.name | limitWord : 30 }}"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #tagPlaceHolder let-selectedList>+...</ng-template>
+              </div>
+              <div class="col-3">
+                <nz-select
+                  [nzMaxTagCount]="1"
+                  [nzMaxTagPlaceholder]="tagPlaceHolder"
+                  nzMode="multiple"
+                  nzPlaceHolder="Nhà sản xuất"
+                  style="width: 100%"
+                  (nzOnSearch)="loadTypeOfFilm()"
+                >
+                  <nz-option
+                    *ngFor="let item of typeOfFilmList"
+                    [nzLabel]="item.name"
+                    [nzValue]="item.id"
+                  ></nz-option>
+                </nz-select>
+                <ng-template #tagPlaceHolder let-selectedList>+...</ng-template>
+              </div>
             </div>
+          </div>
         </div>
-    </ng-container>
+      </div>
+      <div class="col-3 d-flex justify-content-end">
+        <div class="clearfix">
+          <nz-upload
+            nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            nzListType="picture"
+          >
+            <button nz-button>
+              <span nz-icon nzType="upload"></span>
+              Upload
+            </button>
+          </nz-upload>
+        </div>
+        <button nz-button nzType="primary" (click)="create()">Add</button>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12">
+        <nz-table #table [nzData]="filmList" [nzTableLayout]="'fixed'">
+          <thead>
+            <tr>
+              <th nzAlign="center" nzWidth="80px">STT</th>
+              <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
+                Mã phim
+              </th>
+              <th nzAlign="center" [nzSortFn]="true">Tên phim</th>
+              <th nzAlign="center">Nhà sản xuất</th>
+              <th nzAlign="center">Ngày công chiếu</th>
+              <th nzAlign="center">Thời lượng</th>
+              <th nzAlign="center">Thể loại phim</th>
+              <th nzAlign="center">Đạo diễn</th>
+              <th nzAlign="center">Diễn viên</th>
+              <th nzAlign="center">Trạng thái</th>
+              <th nzAlign="center">Hành động</th>
+            </tr>
+          </thead>
 
+          <tbody>
+            <ng-container *ngFor="let item of filmList; index as i">
+              <tr>
+                <td class="thead-border-top-left" nzAlign="center">
+                  {{ getIndex(i) }}
+                </td>
+                <td nzAlign="center" nz-tooltip="{{ item.code }}">
+                  {{ item.code }}
+                </td>
+                <td nzAlign="left" nz-tooltip="{{ item.name }}">
+                  {{ item.name }}
+                </td>
+                <td nzAlign="left" nz-tooltip="{{ getProducer(item) }}">
+                  {{ getProducer(item) | limitWord : 30 }}
+                </td>
+                <td nzAlign="center" nz-tooltip="{{ item.releaseDate }}">
+                  {{ item.releaseDate }}
+                </td>
+                <td nzAlign="center" nz-tooltip="{{ item.duration }}">
+                  {{ item.duration }} phút
+                </td>
+                <td nzAlign="center" nz-tooltip="{{ getType(item) }}">
+                  {{ getType(item) | limitWord : 30 }}
+                </td>
+                <td nzAlign="center" nz-tooltip="{{ item.directors }}">
+                  {{ item.directors | limitWord : 15 }}
+                </td>
+                <td nzAlign="center" nz-tooltip="{{ item.actors }}">
+                  {{ item.actors | limitWord : 30 }}
+                </td>
+                <td nzAlign="center" nz-tooltip="{{ item.status }}">
+                  {{ item.status }}
+                </td>
+                <td nzAlign="center">
+                  <app-button-action
+                    [action]="'view'"
+                    className="first"
+                    nzTooltipTitle="Chi tiết"
+                    nzTooltipPlacement="top"
+                    (click)="view(item)"
+                    nz-tooltip
+                  >
+                  </app-button-action>
+
+                  <app-button-action
+                    [action]="'edit'"
+                    className="last"
+                    nzTooltipTitle="Cập nhật"
+                    nzTooltipPlacement="top"
+                    (click)="update(item)"
+                    nz-tooltip
+                  >
+                  </app-button-action>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+        <app-pagination
+          [pageIndex]="searchRequest.pageIndex"
+          [pageSize]="searchRequest.pageSize"
+          [total]="total"
+          (onChange)="onQuerySearch($event)"
+        ></app-pagination>
+      </div>
+    </div>
+  </ng-container>
 </div>

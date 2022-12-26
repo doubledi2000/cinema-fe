@@ -1,18 +1,55 @@
 <div class="content">
     <ng-container>
-        <div class="row mt-3">
+      <div class="row mt-3">
+        <div class="col-9">
+          <div class="row" [formGroup]="searchForm">
             <div class="col-3">
-                <nz-input-group [nzSuffix]="suffixIconSearch">
-                    <input type="text" nz-input placeholder="input search text" />
-                  </nz-input-group>
-                  <ng-template #suffixIconSearch>
-                    <span nz-icon nzType="search"></span>
-                  </ng-template>
+              <nz-input-group [nzSuffix]="suffixIconSearch">
+                <input
+                  type="text"
+                  nz-input
+                  placeholder="input search text"
+                  [nzSize]="'small'"
+                  formControlName="keyword"
+                  (keyup.enter)="search()"
+                />
+              </nz-input-group>
+              <ng-template #suffixIconSearch>
+                <span nz-icon nzType="search"></span>
+              </ng-template>
             </div>
-            <div class="col-9 d-flex justify-content-end">
-                <button nz-button nzType="primary">Add</button>
+            <div class="col-9">
+              <div class="row d-flex">
+                <div class="col-4">
+                  <nz-select
+                    [nzMaxTagCount]="1"
+                    [nzMaxTagPlaceholder]="tagPlaceHolder"
+                    nzMode="multiple"
+                    nzPlaceHolder="Chi nhánh"
+                    style="width: 200%"
+                    [nzShowArrow]="true"
+                    [nzSize]="'large'"
+                    (nzOnSearch)="loadLocation($event)"
+                    formControlName="locationIds"
+                    (ngModelChange)="search()"
+                  >
+                    <nz-option
+                      *ngFor="let item of locationList"
+                      [nz-tooltip]="item.name"
+                      [nzLabel]="item.name | limitWord:40"
+                      [nzValue]="item.id"
+                    ></nz-option>
+                  </nz-select>
+                  <ng-template #tagPlaceHolder let-selectedList>+1</ng-template>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
+        <div class="col-3 d-flex justify-content-end">
+          <button nz-button nzType="primary" (click)="create()" >Add</button>
+        </div>
+      </div>
         <div class="row mt-3">
             <div class="col-12">
                 <nz-table
@@ -25,6 +62,7 @@
                         <th nzAlign="center" nzWidth="80px">STT</th>
                         <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">Mã sản phẩm</th>
                         <th nzAlign="center" [nzSortFn]="true">Tên sản phẩm</th>
+                        <th nzAlign="center">Chi nhánh</th>
                         <th nzAlign="center">Đơn giá</th>
                         <th nzAlign="center">Status</th>
                         <th nzAlign="center">Thao tác</th>
@@ -39,6 +77,7 @@
                       </td>
                       <td nzAlign="center">{{ item.code }}</td>
                       <td nzAlign="center">{{ item.name }}</td>
+                      <td nzAlign="center">{{ item.locationName }}</td>
                       <td nzAlign="center">{{ item.price | number:'1.0-1'}} VNĐ</td>
                       <td nzAlign="center"><nz-switch [ngModel]="item.status == 'ACTIVE'" (click)="toggleActive(item)"></nz-switch></td>
                       <td nzAlign="center">
