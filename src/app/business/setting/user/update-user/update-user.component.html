@@ -34,6 +34,12 @@
         nzSize="large"
         style="width: 80%"
       >
+      <ng-container *ngFor="let item of roles">
+        <nz-option
+        nzValue="{{ item.id }}"
+        nzLabel="{{ item.name | limitWord:30 }}"
+      ></nz-option>
+      </ng-container>
       </nz-select>
         </div>
         <div class="col-12 mt-2">
@@ -49,6 +55,12 @@
         nzSize="large"
         style="width: 80%"
       >
+      <ng-container *ngFor="let item of locationList">
+        <nz-option
+        nzValue="{{ item.id }}"
+        nzLabel="{{ item.name | limitWord:30 }}"
+      ></nz-option>
+      </ng-container>
       </nz-select>
         </div>
         <div class="col-12 mt-2">
@@ -89,6 +101,11 @@
         nzPlaceHolder="Giới tính"
         formControlName="gender"
       >
+      <nz-option
+      *ngFor="let item of genders"
+      [nzLabel]="item.label"
+      [nzValue]="item.value"
+    ></nz-option>
       </nz-select>
       </div>
       <div class="col-12 mt-2">
@@ -97,11 +114,15 @@
       </div>
       <div class="col-12 mt-2">
         <label>Tài khoản <span class="text-danger">*</span></label>
-        <input nz-input placeholder="'Nhập mã thể loại'" formControlName="username" />
+        <input nz-input placeholder="Tài khoản" formControlName="username" />
+      </div>
+      <div class="col-12 mt-2">
+        <label>Mật khẩu <span class="text-danger">*</span></label>
+        <input type="password" nz-input placeholder="Mật khẩu" formControlName="password" />
       </div>
       <div class="col-12 mt-2">
         <label>Chức vụ <span class="text-danger">*</span></label>
-      <input nz-input placeholder="'Nhập mã thể loại'" formControlName="title" />
+      <input nz-input placeholder="Chức vụ" formControlName="title" />
       </div>
     </div>
 
@@ -121,7 +142,7 @@
         <button nz-button nzType="default"  style="margin-right: 10px;" >
           Hủy
       </button>
-      <button nz-button nzType="primary" >
+      <button nz-button nzType="primary" (click)="submit()">
           Lưu
       </button>
       </div>

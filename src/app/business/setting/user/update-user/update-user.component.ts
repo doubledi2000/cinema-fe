@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { ILocation } from '../../../../shared/model/location.model';
-import { IUser, User } from '../../../../shared/model/user.model';
-import { LocationService } from '../../../../shared/service/location.service';
-import { UserService } from '../../../../shared/service/user.service';
-import { FileService } from '../../../../shared/service/file.service';
 import { IRole } from '../../../../shared/model/role.model';
+import { IUser, User } from '../../../../shared/model/user.model';
+import { FileService } from '../../../../shared/service/file.service';
+import { LocationService } from '../../../../shared/service/location.service';
+import { RoleService } from '../../../../shared/service/role.service';
+import { UserService } from '../../../../shared/service/user.service';
+import CommonUtil from '../../../../shared/utils/common-util';
+import { GENDER } from '../../../../shared/constant/common.constant';
+import { StorageService } from '../../../../shared/service/storage.service';
 
 @Component({
   selector: 'app-update-user',
@@ -27,6 +31,8 @@ export class UpdateUserComponent implements OnInit {
   userId: string = '';
   roles: IRole[] = [];
   locations: ILocation[] = [];
+  genders = GENDER;
+  fileId?: string = '';
 
 
   constructor(
@@ -35,7 +41,10 @@ export class UpdateUserComponent implements OnInit {
     private locationService: LocationService,
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private fileService: FileService
+    private fileService: FileService,
+    private roleService: RoleService,
+    private storageService: StorageService,
+    private router: Router
   ) {
     this.activatedRoute.paramMap.subscribe( params => {
       this.userId = params.get('id');
@@ -45,7 +54,10 @@ export class UpdateUserComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.loadLocation();
-    this.loadUser();
+    this.loadRole();
+    if(!this.isCreate) {
+      this.loadUser();
+    }
   }
 
   loadUser(){
@@ -56,53 +68,61 @@ export class UpdateUserComponent implements OnInit {
     })
   }
 
+  loadRole(){
+    this.roleService.search({}).subscribe(res => {
+      debugger;
+      if(res && res.success) {
+        this.roles = res.data as IRole[];
+      }
+    })
+  }
+
   initForm(){
     this.form = this.fb.group({
       id: [
-        this.user.id || ''
+        !this.isCreate ? this.user.id : ''
       ],
       username: [
-        this.user.username || ''
+        !this.isCreate ? this.user.username : ''
       ],
       password: [
-        this.user.password || ''
-
+        !this.isCreate ? this.user.password : ''
       ],
       fullName: [
-        this.user.fullName || ''
+        !this.isCreate ? this.user.fullName : ''
       ],
       email: [
-        this.user.email || ''
+        !this.isCreate ? this.user.fullName : ''
       ],
       phoneNumber: [
-        this.user.phoneNumber || ''
+        !this.isCreate ? this.user.phoneNumber : ''
       ],
       dayOfBirth: [
-        this.user.dayOfBirth || new Date()
+        !this.isCreate ? this.user.dayOfBirth : new Date()
       ],
       gender: [
-        this.user.gender || ''
+        !this.isCreate ? this.user.gender : ''
       ],
       employeeCode: [
-        this.user.employeeCode ||''
+        !this.isCreate ? this.user.employeeCode : ''
       ],
       title: [
-        this.user.title ||''
+        !this.isCreate ? this.user.title : ''
       ],
       departmentName: [
-        this.user.departmentName || ''
+        !this.isCreate ? this.user.departmentName : ''
       ],
       description: [
-        this.user.description || ''
+        !this.isCreate ? this.user.description : ''
       ],
       status: [
-        this.user.status || ''
+        !this.isCreate ? this.user.status : ''
       ],
       locationIds: [
-        []
+        !this.isCreate ? this.user.locationIds : []
       ],
       roleIds:[
-        this.user.roleIds || []
+        !this.isCreate ? this.user.roleIds : []
       ]
     })
   }
@@ -113,9 +133,12 @@ export class UpdateUserComponent implements OnInit {
       getBase64(files[0]).then((data) => {
         this.imageUrl = data;
       });
-      this.fileService.upload(files[0]).subscribe(res=>{
+      let formData: FormData = new FormData();
+      formData.append('file', files[0]);
+      this.storageService.upload(formData).subscribe(res=>{
         if(res && res.success) {
           this.imageUrl = res.data.path;
+          this.fileId = res.data.id;
         }
       })
     }
@@ -124,6 +147,26 @@ export class UpdateUserComponent implements OnInit {
   loadLocation(){
     this.locationService.autoComplete({}).subscribe(resposne => {
       this.locationList = resposne.data as ILocation[];
+    })
+  }
+
+  submit(){
+    if(this.isCreate) {
+      this.create();
+    }
+  }
+
+  create(){
+    const body = CommonUtil.trim({
+      ...this.form.value,
+      fileId: this.fileId
+    })
+
+    this.userService.create(body).subscribe(res => {
+      if(res && res.success) {
+        this.toastrSerice.success('Tạo mới thành công');
+        this.router.navigateByUrl(`/user/${res.data.id}/update`)
+      }
     })
   }
 

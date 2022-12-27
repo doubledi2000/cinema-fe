@@ -7,7 +7,8 @@ export interface IDrink{
   status?: string;
   description?: string;
   fileId?: string;
-  imagePath?: string;
+  filePath?: string;
+  locationName?: string;
 }
 
 export class Drink implements IDrink{
@@ -20,7 +21,8 @@ export class Drink implements IDrink{
     public status?: string,
     public description?: string,
     public fileId?: string,
-    public imagePath?: string
+    public filePath?: string,
+    public locationName?: string
   ){
 
   }

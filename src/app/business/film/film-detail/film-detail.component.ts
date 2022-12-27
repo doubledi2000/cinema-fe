@@ -150,7 +150,6 @@ export class FilmDetailComponent implements OnInit {
 
   async getFiles(files: any): Promise<void> {
     if (files) {
-      debugger;
       let formData: FormData = new FormData();
       formData.append('file', files[0]);
       this.files = files[0];
