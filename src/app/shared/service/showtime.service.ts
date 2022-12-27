@@ -49,4 +49,8 @@ export class ShowtimeService {
   cancelShowtime(id?: string): Observable<IBaseResponse<boolean>> {
     return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/showtimes/${id}/cancel`, {});
   }
+
+  upload(data: any): Observable<IBaseResponse<boolean>> {
+    return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/showtimes/upload-showtimes`, data);
+  }
 }

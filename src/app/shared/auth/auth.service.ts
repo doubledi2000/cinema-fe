@@ -58,6 +58,8 @@ export class AuthService {
 
   hasAnyAuthority(authorities: string | string[]) {
     this.currentUser = this.getCurrentUser();
+    debugger;
+    console.log()
     if(!this.currentUser) {
       return false;
     }
@@ -91,11 +93,13 @@ export class AuthService {
     if(!!this.currentUser) {
       return this.currentUser as UserPrimary;
     }
+    debugger;
 
     const userLocal = this.localStorage.retrieve(LOCAL_STORAGE.PROFILE);
-    if(!userLocal) {
-      return userLocal;
+    if(userLocal) {
+      return JSON.parse(userLocal) as UserPrimary;
     }
+    return null;
   }
 
   authenticateSuccess(rememberMe: boolean, response: any){

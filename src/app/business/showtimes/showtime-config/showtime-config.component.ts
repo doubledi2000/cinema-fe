@@ -23,6 +23,7 @@ export class ShowtimeConfigComponent implements OnInit {
   roomList: IRoom[] = [];
   searchForm: FormGroup = new FormGroup({});
   total = 0;
+  files: [] | any;
   searchRequest: IBaseRequestModel = {
     keyword: '',
     pageIndex: PAGINATION.PAGE_DEFAULT,
@@ -93,6 +94,25 @@ export class ShowtimeConfigComponent implements OnInit {
     })
   }
 
+  async getFiles(files: any): Promise<void> {
+    if (files) {
+      let formData: FormData = new FormData();
+      formData.append('file', files[0]);
+      this.files = files[0];
+      console.log(this.files)
+      getBase64(files[0])
+      .then((data) => {
+        this.showtimeService.upload(formData).subscribe(res => {
+          if(res && res?.success) {
+            this.toastrService.success('Tải lên danh sách lịch công chiếu thành công');
+            this.search();
+          }
+            this.toastrService.error('Tải lên danh sách lịch công chiếu thành công');
+        })
+      })
+    }
+  }
+
   cancel(id?: string) {
     this.showtimeService.cancelShowtime(id).subscribe(res => {
       if(res && res.success) {
@@ -117,3 +137,11 @@ export class ShowtimeConfigComponent implements OnInit {
     this.search();
   }
 }
+
+const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });

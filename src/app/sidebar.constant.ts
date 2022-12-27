@@ -8,7 +8,7 @@ export const SidebarConstant: IMenu[] = [
     title: 'Dashboard',
     icon: 'appstore',
     root: true,
-    authorities: []
+    authorities: [RULE.REPORT_VIEW]
   },
   {
     path: ROUTER_UTILS.showtime.root,
@@ -47,7 +47,7 @@ export const SidebarConstant: IMenu[] = [
     path: ROUTER_UTILS.setting.root,
     title: 'Cài đặt',
     icon: 'setting',
-    authorities: [],
+    authorities: [RULE.USER_VIEW, RULE.ROLE_VIEW, RULE.PRICE_VIEW, RULE.ZOOM_VIEW, RULE.DRINK_VIEW],
     submenu: [
       {
         path:  ROUTER_UTILS.setting.user.root,
@@ -80,7 +80,7 @@ export const SidebarConstant: IMenu[] = [
     title: 'Quản lý danh mục',
     icon: 'appstore',
     root: false,
-    authorities: [],
+    authorities: [RULE.FILM_TYPE_VIEW, RULE.LOCATION_VIEW, RULE.PRODUCER_VIEW],
     submenu: [
       {
         path: ROUTER_UTILS.typeOfFilm.root,
