@@ -1,8 +1,7 @@
-import { ROUTER_UTILS } from './shared/utils/router.utils';
+import { RULE } from './shared/constant/authority.constant';
 import { IMenu } from './shared/types/sidebar.type';
-import { TypeOfFilm } from './shared/model/type-of-film.model';
-import { Room } from './shared/model/room.model';
-import { Router, RouterOutlet } from '@angular/router';
+import { ROUTER_UTILS } from './shared/utils/router.utils';
+
 export const SidebarConstant: IMenu[] = [
   {
     path: `${ROUTER_UTILS.base.dashboard}`,
@@ -16,17 +15,17 @@ export const SidebarConstant: IMenu[] = [
     title: 'Đặt phim',
     icon: 'appstore',
     root: false,
-    authorities: [],
+    authorities: [RULE.BOOKING_VIEW],
     submenu: [
       {
         path: ROUTER_UTILS.showtime.root,
         title: 'Dat phim',
-        authorities: []
+        authorities: [RULE.BOOKING_VIEW]
       },
       {
         path: ROUTER_UTILS.showtime.config,
         title: 'Lich chieu phim',
-        authorities: []
+        authorities: [RULE.BOOKING_VIEW]
       }
     ]
   },
@@ -35,12 +34,12 @@ export const SidebarConstant: IMenu[] = [
     title: 'Quản lý phim',
     icon: 'appstore',
     root: true,
-    authorities: [],
+    authorities: [RULE.FILM_VIEW],
     submenu: [
       {
         path: ROUTER_UTILS.film.root,
         title: 'Quản lý phim',
-        authorities: []
+        authorities: [RULE.FILM_VIEW]
       },
     ]
   },
@@ -53,27 +52,27 @@ export const SidebarConstant: IMenu[] = [
       {
         path:  ROUTER_UTILS.setting.user.root,
         title: 'Quản lý nhân viên',
-        authorities: []
+        authorities: [RULE.USER_VIEW]
       },
       {
         path: ROUTER_UTILS.setting.role.root,
         title: 'Quản lý vai trò',
-        authorities: []
+        authorities: [RULE.ROLE_VIEW]
       },
       {
         path: ROUTER_UTILS.setting.ticketPrice.root,
         title: 'Quản lý giá vé',
-        authorities: []
+        authorities: [RULE.PRICE_VIEW]
       },
       {
         path: ROUTER_UTILS.room.root,
         title: 'Quản lý phòng',
-        authorities: []
+        authorities: [RULE.ZOOM_VIEW]
       },
       {
         path: ROUTER_UTILS.setting.drink.root,
         title: 'Quản lý đồ uống',
-        authorities: []
+        authorities: [RULE.DRINK_VIEW]
       }
     ]
   },
@@ -86,17 +85,17 @@ export const SidebarConstant: IMenu[] = [
       {
         path: ROUTER_UTILS.typeOfFilm.root,
         title: 'Quản lý thể loại phim',
-        authorities: []
+        authorities: [RULE.FILM_TYPE_VIEW]
       },
       {
         path: ROUTER_UTILS.location.root,
         title: 'Quản lý chi nhánh',
-        authorities: []
+        authorities: [RULE.LOCATION_VIEW]
       },
       {
         path: ROUTER_UTILS.producer.root,
         title: 'Quản lý nhà sản xuất',
-        authorities: []
+        authorities: [RULE.PRODUCER_VIEW]
       },
 
     ]

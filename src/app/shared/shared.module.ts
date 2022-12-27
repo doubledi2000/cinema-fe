@@ -39,6 +39,7 @@ import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.compo
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { DashboardModule } from '../business/dashboard/dashboard.module';
 import { UploadComponent } from './component/upload/upload.component';
+import { HasRolesDirective } from './directive/has-roles.directive';
 @NgModule({
   declarations: [
     ChairDirectiveDirective,
@@ -50,7 +51,8 @@ import { UploadComponent } from './component/upload/upload.component';
     UploadComponent,
     LimitWordPipe,
     MainLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+    HasRolesDirective
   ],
   imports: [
     CommonModule,
@@ -118,7 +120,8 @@ import { UploadComponent } from './component/upload/upload.component';
     LimitWordPipe,
     MainLayoutComponent,
     AuthLayoutComponent,
-    NzCheckboxModule
+    NzCheckboxModule,
+    HasRolesDirective
   ],
   providers: [DatePipe]
 })
