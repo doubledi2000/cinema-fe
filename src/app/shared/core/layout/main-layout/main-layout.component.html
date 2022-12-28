@@ -1,21 +1,37 @@
-<nz-layout style="min-height: 100%;">
+<nz-layout style="min-height: 100%">
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="logo">
-      <img src="assets/images/origin-logo.png" alt="">
+      <img src="assets/images/origin-logo.png" alt="" />
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <ng-container *ngFor="let menu of sidebar">
         <ng-container *ngIf="!menu.root">
-          <li nz-submenu [nzTitle]="menu.title" [nzIcon]="menu.icon" nz-tooltip [nzTooltipTitle]="menu.title" nzTooltipPlacement="left">
+          <li
+            nz-submenu
+            [nzTitle]="menu.title"
+            [nzIcon]="menu.icon"
+            nz-tooltip
+            [nzTooltipTitle]="menu.title"
+            nzTooltipPlacement="left"
+            *hasRoles="menu.authorities"
+          >
             <ul>
               <ng-container *ngFor="let item of menu.submenu">
-                <li nz-menu-item [routerLink]="item.path">{{ item.title }}</li>
+                <li nz-menu-item [routerLink]="item.path" *hasRoles="item.authorities">{{ item.title }} </li>
               </ng-container>
             </ul>
           </li>
         </ng-container>
         <ng-container *ngIf="menu.root">
-          <li nz-submenu [nzTitle]="menu.title" [nzIcon]="menu.icon" [routerLink]="menu.path"  nz-tooltip [nzTooltipTitle]="menu.title"></li>
+          <li
+            nz-submenu
+            [nzTitle]="menu.title"
+            [nzIcon]="menu.icon"
+            [routerLink]="menu.path"
+            nz-tooltip
+            [nzTooltipTitle]="menu.title"
+            *hasRoles="menu.authorities"
+          ></li>
         </ng-container>
       </ng-container>
     </ul>

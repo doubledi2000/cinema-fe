@@ -9,6 +9,7 @@ export enum DATE_CONSTANT {
     DDMMYYYY_SLASH_SMALL = 'dd/MM/yyyy',
     DDMMYYYY_SLASH_BIG = 'DD/MM/YYYY',
     DDMMYYYY = 'DDMMYYYY',
+    FULL = 'YYYYMMddHHmmss'
   }
   export enum TIME_CONSTANT {
     HH_mm = 'HH:mm',

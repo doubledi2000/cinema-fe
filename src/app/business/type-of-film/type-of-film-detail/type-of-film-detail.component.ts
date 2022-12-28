@@ -9,6 +9,7 @@ import { LENGTH_VALIDATOR, VALIDATORS } from 'src/app/shared/constant/validators
 import { ITypeOfFilm, TypeOfFilm } from 'src/app/shared/model/type-of-film.model';
 import { TypeOfFilmService } from 'src/app/shared/service/type-of-film.service';
 import CommonUtil from 'src/app/shared/utils/common-util';
+import { RULE } from '../../../shared/constant/authority.constant';
 
 @Component({
   selector: 'app-type-of-film-detail',
@@ -18,7 +19,7 @@ import CommonUtil from 'src/app/shared/utils/common-util';
 export class TypeOfFilmDetailComponent implements OnInit {
 
   @Input() typeOfFilm: TypeOfFilm = new TypeOfFilm();
-
+  RULE = RULE;
   isDetail = window.location.href.includes('detail');
   isUpdate = window.location.href.includes('update');
   isCreate = window.location.href.includes('create');

@@ -10,6 +10,9 @@ import { IBaseRequestModel } from '../../../shared/model/request/base-request.mo
 import { PAGINATION } from '../../../shared/constant/pagination.constant';
 import CommonUtil from '../../../shared/utils/common-util';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
+import { DATE_CONSTANT } from 'src/app/shared/constant/date.constant';
+import * as fileSaver from 'file-saver';
 
 @Component({
   selector: 'app-showtime-config',
@@ -23,6 +26,7 @@ export class ShowtimeConfigComponent implements OnInit {
   roomList: IRoom[] = [];
   searchForm: FormGroup = new FormGroup({});
   total = 0;
+  files: [] | any;
   searchRequest: IBaseRequestModel = {
     keyword: '',
     pageIndex: PAGINATION.PAGE_DEFAULT,
@@ -84,6 +88,19 @@ export class ShowtimeConfigComponent implements OnInit {
     })
   }
 
+  downloadTemplate(){
+    const filnName = 'template' + moment().format(DATE_CONSTANT.FULL)
+    this.showtimeService.downloadTemplate().subscribe(res => {
+      this.saveFile(res.body, `${filnName}.xlsx`)
+    })
+  }
+
+  saveFile(data: any, fileName: string){
+    const file = new Blob([data],{ type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' } );
+    const uri = window.URL.createObjectURL(file);
+    fileSaver.saveAs(uri, fileName);
+  }
+
   generateTicket(id?: string) {
     this.showtimeService.generateTicket(id).subscribe(res => {
       if(res && res.success) {
@@ -91,6 +108,24 @@ export class ShowtimeConfigComponent implements OnInit {
         this.search();
       }
     })
+  }
+
+  async getFiles(files: any): Promise<void> {
+    if (files) {
+      let formData: FormData = new FormData();
+      formData.append('file', files[0]);
+      this.files = files[0];
+      console.log(this.files)
+      getBase64(files[0])
+      .then((data) => {
+        this.showtimeService.upload(formData).subscribe(res => {
+          if(res && res?.success) {
+            this.toastrService.success('Tải lên danh sách lịch công chiếu thành công');
+            this.search();
+          }
+        })
+      })
+    }
   }
 
   cancel(id?: string) {
@@ -117,3 +152,11 @@ export class ShowtimeConfigComponent implements OnInit {
     this.search();
   }
 }
+
+const getBase64 = (file: File): Promise<string | ArrayBuffer | null> =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });

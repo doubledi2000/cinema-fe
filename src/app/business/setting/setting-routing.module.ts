@@ -1,10 +1,12 @@
-import { componentFactoryName } from '@angular/compiler';
+import { AUTO_STYLE } from '@angular/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/shared/auth/auth.guard';
+import { RULE } from 'src/app/shared/constant/authority.constant';
+
 import { DrinkDetailComponent } from './drink-price/drink-detail/drink-detail.component';
 import { DrinkPriceComponent } from './drink-price/drink-price.component';
 import { RoleComponent } from './role/role.component';
-import { UpdatePermissionComponent } from './role/update-permission/update-permission.component';
 import { UpdateRoleComponent } from './role/update-role/update-role.component';
 import { TicketPriceComponent } from './ticket-price/ticket-price.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
@@ -13,39 +15,75 @@ import { UserComponent } from './user/user.component';
 const routes: Routes = [
   {
     path: 'user',
-    component: UserComponent
+    component: UserComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.USER_VIEW]
+    }
   },
   {
     path: 'user/:id/detail',
-    component: UpdateUserComponent
+    component: UpdateUserComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.USER_VIEW]
+    }
   },
   {
     path: 'user/create',
-    component: UpdateUserComponent
+    component: UpdateUserComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.USER_CREATE]
+    }
   },
   {
     path: 'role',
-    component: RoleComponent
+    component: RoleComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.ROLE_VIEW]
+    }
   },
   {
     path: ':/id/update',
-    component: UpdateRoleComponent
+    component: UpdateRoleComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.ROLE_UPDATE]
+    }
   },
   {
     path: 'permission-update',
-    component: UpdateRoleComponent
+    component: UpdateRoleComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.ROLE_UPDATE]
+    }
   },
   {
     path: 'ticket-price',
-    component: TicketPriceComponent
+    component: TicketPriceComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.PRICE_VIEW]
+    }
   },
   {
     path: 'drink-detail',
-    component: DrinkDetailComponent
+    component: DrinkDetailComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.DRINK_VIEW]
+    }
   },
   {
     path: 'drink',
-    component: DrinkPriceComponent
+    component: DrinkPriceComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: [RULE.DRINK_UPDATE]
+    }
   }
 
 ];

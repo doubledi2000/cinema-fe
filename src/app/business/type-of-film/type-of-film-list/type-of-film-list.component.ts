@@ -7,6 +7,7 @@ import { ITypeOfFilm } from 'src/app/shared/model/type-of-film.model';
 import { TypeOfFilmService } from 'src/app/shared/service/type-of-film.service';
 import CommonUtil from 'src/app/shared/utils/common-util';
 import { TypeOfFilmDetailComponent } from '../type-of-film-detail/type-of-film-detail.component';
+import { RULE } from '../../../shared/constant/authority.constant';
 @Component({
   selector: 'app-type-of-film-list',
   templateUrl: './type-of-film-list.component.html',
@@ -22,6 +23,7 @@ export class TypeOfFilmListComponent implements OnInit {
     pageSize: PAGINATION.SIZE_DEFAULT,
     sortBy: '',
   }
+  RULE = RULE;
 
   searchForm: FormGroup = new FormGroup({});
 

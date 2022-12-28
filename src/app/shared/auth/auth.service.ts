@@ -21,7 +21,7 @@ type EntityResponseType = HttpResponse<any>;
 })
 export class AuthService {
 
-  public currentUser: any;
+  public currentUser: UserPrimary;
   private tokenPrivateKey?: string;
 
   constructor(
@@ -49,13 +49,57 @@ export class AuthService {
     debugger;
     this.myAuthorities().subscribe(response => {
       const authorities = response?.data as UserPrimary;
-      console.log(response);
-      console.log(authorities)
       this.localStorage.store(LOCAL_STORAGE.PROFILE, JSON.stringify(authorities));
       if (redirectUrl) {
         this.router.navigate([`${redirectUrl}`]);
       }
     })
+  }
+
+  hasAnyAuthority(authorities: string | string[]) {
+    this.currentUser = this.getCurrentUser();
+    debugger;
+    console.log()
+    if(!this.currentUser) {
+      return false;
+    }
+
+    if(this.currentUser?.isRoot) {
+      return true;
+    }
+
+    if(!authorities || authorities?.length == 0) {
+      return true;
+    }
+    let grantedPermissions = [];
+    if(this.currentUser) {
+      grantedPermissions = this.currentUser.grantedPermissions;
+      if(grantedPermissions) {
+        if(!Array.isArray(authorities)) {
+          return grantedPermissions.includes(authorities);
+        } else {
+          for(const authority of authorities) {
+            if(grantedPermissions.includes(authority)) {
+              return true;
+            }
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  getCurrentUser(){
+    if(!!this.currentUser) {
+      return this.currentUser as UserPrimary;
+    }
+    debugger;
+
+    const userLocal = this.localStorage.retrieve(LOCAL_STORAGE.PROFILE);
+    if(userLocal) {
+      return JSON.parse(userLocal) as UserPrimary;
+    }
+    return null;
   }
 
   authenticateSuccess(rememberMe: boolean, response: any){
