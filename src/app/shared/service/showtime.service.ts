@@ -1,6 +1,6 @@
 import { RESOURCE } from './../constant/resource.constant';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBaseResponse } from '../model/base.model';
 import { Showtime, IShowtime } from '../model/showtime.model';
@@ -52,5 +52,11 @@ export class ShowtimeService {
 
   upload(data: any): Observable<IBaseResponse<boolean>> {
     return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/showtimes/upload-showtimes`, data);
+  }
+
+  downloadTemplate(): Observable<Blob | any>{
+    const params = new HttpParams();
+    // application/octet-stream
+    return this.http.get<Blob | any>(`${RESOURCE.URL}/showtimes/download-template`, { responseType: 'blob' as 'json', observe: 'response' });
   }
 }

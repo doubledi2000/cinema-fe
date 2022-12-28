@@ -10,6 +10,9 @@ import { IBaseRequestModel } from '../../../shared/model/request/base-request.mo
 import { PAGINATION } from '../../../shared/constant/pagination.constant';
 import CommonUtil from '../../../shared/utils/common-util';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
+import { DATE_CONSTANT } from 'src/app/shared/constant/date.constant';
+import * as fileSaver from 'file-saver';
 
 @Component({
   selector: 'app-showtime-config',
@@ -83,6 +86,19 @@ export class ShowtimeConfigComponent implements OnInit {
         this.total = res.page.total;
       }
     })
+  }
+
+  downloadTemplate(){
+    const filnName = 'template' + moment().format(DATE_CONSTANT.FULL)
+    this.showtimeService.downloadTemplate().subscribe(res => {
+      this.saveFile(res.body, `${filnName}.xlsx`)
+    })
+  }
+
+  saveFile(data: any, fileName: string){
+    const file = new Blob([data],{ type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' } );
+    const uri = window.URL.createObjectURL(file);
+    fileSaver.saveAs(uri, fileName);
   }
 
   generateTicket(id?: string) {
