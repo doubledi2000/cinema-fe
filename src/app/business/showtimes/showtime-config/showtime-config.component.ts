@@ -123,7 +123,6 @@ export class ShowtimeConfigComponent implements OnInit {
             this.toastrService.success('Tải lên danh sách lịch công chiếu thành công');
             this.search();
           }
-            this.toastrService.error('Tải lên danh sách lịch công chiếu thành công');
         })
       })
     }

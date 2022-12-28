@@ -20,6 +20,7 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { JwtInterceptor } from './shared/auth/interceptor/jwt.interceptor';
+import { ErrorHandlerInterceptor } from './shared/auth/interceptor/error-handler.interceptor';
 
 registerLocaleData(en);
 
@@ -52,7 +53,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesi
   providers: [
     { provide: NZ_I18N, useValue: en_US },
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
