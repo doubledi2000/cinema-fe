@@ -40,6 +40,10 @@ export class LocationService {
   }
 
   updateNormalTicketPrice(body: any): Observable<IBaseResponse<boolean>> {
-    return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/locations//update/ticket-price-normal`, body);
+    return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/locations/update/ticket-price-normal`, body);
+  }
+
+  findByIds(data?: any): Observable<IBaseResponse<ILocation[]>> {
+    return this.http.post<IBaseResponse<ILocation[]>>(`${RESOURCE.URL}/locations/find-by-ids`, data);
   }
 }

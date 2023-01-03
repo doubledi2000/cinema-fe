@@ -86,7 +86,7 @@ export class UploadImageComponent implements OnInit {
     if (this.action && this.action !== undefined && this.action !== null) {
       return this.action;
     }
-    return `assets/images/icon/avatar.png`;
+    return `assets/images/icon/film.jpeg`;
   }
 
   getSourceAvatar(): string {

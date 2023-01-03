@@ -17,4 +17,19 @@ export const GENDER = [
     'value':'OTHER',
     'label':'Khác'
   }
+];
+
+export const TICKET = [
+  {
+    value: 'normal',
+    label: 'Vé thường'
+  },
+  {
+    value: 'vip',
+    label: 'Vé VIP'
+  },
+  {
+    value: 'sweet',
+    label: 'Vé sweet'
+  }
 ]

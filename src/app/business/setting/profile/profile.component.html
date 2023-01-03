@@ -1,0 +1,145 @@
+<div class="title mb-3">
+  <app-table-title
+    [showBack]="true"
+    [title]="'Cập nhật'"
+    [secondTitle]="{ title: 'Cập nhật', url: '' }"
+  ></app-table-title>
+</div>
+<section class="content" [formGroup]="form">
+  <div class="row">
+    <div class="col-7">
+      <div class="row">
+        <div class="col-12">
+          <app-upload-avatar
+            [action]="imageUrl ? imageUrl : null"
+            [acceptTypeFiles]="['image']"
+            className="image"
+            nzTooltipPlacement="top"
+            (emitter)="getFiles($event)"
+            nz-tooltip
+          >
+          </app-upload-avatar>
+        </div>
+        <div class="col-12 mt-5">
+          <label>Vai trò</label>
+      <br>
+      <nz-select
+        nzMode="multiple"
+        nzShowSearch
+        [nzShowArrow]="true"
+        nzAllowClear
+        nzPlaceHolder="Vai trò"
+        formControlName="roleIds"
+        nzSize="large"
+        style="width: 80%"
+      >
+      <ng-container *ngFor="let item of roles">
+        <nz-option
+        nzValue="{{ item.id }}"
+        nzLabel="{{ item.name | limitWord:30 }}"
+      ></nz-option>
+      </ng-container>
+      </nz-select>
+        </div>
+        <div class="col-12 mt-2">
+          <label>Chi nhánh</label>
+      <br>
+      <nz-select
+        nzMode="multiple"
+        nzShowSearch
+        [nzShowArrow]="true"
+        nzAllowClear
+        nzPlaceHolder="Chi nhánh"
+        formControlName="locationIds"
+        nzSize="large"
+        style="width: 80%"
+      >
+      <ng-container *ngFor="let item of locationList">
+        <nz-option
+        nzValue="{{ item.id }}"
+        nzLabel="{{ item.name | limitWord:30 }}"
+      ></nz-option>
+      </ng-container>
+      </nz-select>
+        </div>
+        <div class="col-12 mt-2">
+          <label>Bộ phận <span class="text-danger">*</span></label>
+        <input nz-input placeholder="Bộ phận" formControlName="departmentName" />
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="col-12 mt-2">
+        <label>Mã nhân viên <span class="text-danger">*</span></label>
+        <input nz-input placeholder="Mã nhân viên" formControlName="employeeCode" />
+      </div>
+      <div class="col-12 mt-2">
+        <label>Họ và tên <span class="text-danger">*</span></label>
+        <input nz-input placeholder="Họ và tên" formControlName="fullName" />
+      </div>
+      <div class="col-12 mt-2">
+        <label>Số điện thoại <span class="text-danger">*</span></label>
+        <input nz-input placeholder="Nhập số điện thoại" formControlName="phoneNumber" />
+      </div>
+
+      <div class="col-12 mt-2">
+        <label>Ngày sinh<span class="text-danger">*</span></label>
+        <br>
+        <nz-date-picker
+        [nzFormat]="'dd-MM-YYYY'"
+        formControlName="dayOfBirth"
+      ></nz-date-picker>
+      </div>
+      <div class="col-12 mt-2">
+        <label>Giới tính<span class="text-danger">*</span></label>
+        <br>
+        <nz-select
+        nzShowSearch
+        [nzShowArrow]="true"
+        nzAllowClear
+        nzPlaceHolder="Giới tính"
+        formControlName="gender"
+      >
+      <nz-option
+      *ngFor="let item of genders"
+      [nzLabel]="item.label"
+      [nzValue]="item.value"
+    ></nz-option>
+      </nz-select>
+      </div>
+      <div class="col-12 mt-2">
+        <label>Địa chỉ <span class="text-danger">*</span></label>
+        <input nz-input placeholder="'Nhập mã thể loại'" />
+      </div>
+      <div class="col-12 mt-2">
+        <label>Tài khoản <span class="text-danger">*</span></label>
+        <input nz-input placeholder="Tài khoản" formControlName="username" />
+      </div>
+      <div class="col-12 mt-2">
+        <label>Chức vụ <span class="text-danger">*</span></label>
+      <input nz-input placeholder="Chức vụ" formControlName="title" />
+      </div>
+    </div>
+
+  </div>
+  <div class="row mt-2">
+    <label>Giới thiệu bản thân<span class="text-danger">*</span></label>
+    <nz-textarea-count [nzMaxCharacterCount]="1000">
+      <textarea
+        rows="3"
+        nz-input
+        formControlName="description"
+      ></textarea>
+    </nz-textarea-count>
+  </div>
+  <div class="row mt-3">
+      <div class="col-12 d-flex justify-content-center">
+        <button nz-button nzType="default"  style="margin-right: 10px;" >
+          Hủy
+      </button>
+      <button nz-button nzType="primary" (click)="submit()">
+          Lưu
+      </button>
+      </div>
+  </div>
+</section>

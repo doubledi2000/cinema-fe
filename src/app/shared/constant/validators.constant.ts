@@ -1,7 +1,7 @@
 export const VALIDATORS = {
     USERNAME: '^[A-Za-z][A-Za-z0-9_@.]{1,50}$',
     PASSWORD:
-      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\\^$*.\\[\\]{}\\(\\)?\\-“!@#%&/,><\\’:;|_~`])\\S{8,99}$',
+      '\\S{6,99}',
     BLANK: '(\\s){0,}\\S+.*(\\s){0,}',
     EMAIL:
       '^(\\s){0,}[a-zA-Z][a-zA-Z0-9_\\.-]{1,50}@[a-zA-Z0-9-_]{2,}(\\.[a-zA-Z0-9]{2,4}){1,2}(\\s){0,}$',
@@ -19,7 +19,7 @@ export const VALIDATORS = {
       /(https?:\/\/)?(www.)?[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/,
     // should not converted to string, otherwise will cause error
   };
-  
+
   export const LENGTH_VALIDATOR = {
     USERNAME_MAX_LENGTH: {
       MAX: 50,

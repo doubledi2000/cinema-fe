@@ -1,6 +1,6 @@
-<div class="content" [formGroup]="searchForm">
+<div class="content">
     <ng-container>
-        <div class="row mt-3">
+        <div class="row mt-3"  [formGroup]="searchForm">
             <div class="col-3">
               <nz-input-group [nzSuffix]="suffixIconSearch">
                 <input
@@ -30,9 +30,9 @@
                     <tr>
                         <th nzAlign="center" nzWidth="80px">STT</th>
                         <th nzAlign="center" nzWidth="150px" [nzSortFn]="true"> Mã nhân viên </th>
-                        <th nzAlign="center" [nzSortFn]="true">Ho ten</th>
-                        <th nzAlign="center">Chuc vu</th>
-                        <th nzAlign="center"> Toa nha</th>
+                        <th nzAlign="center" [nzSortFn]="true">Họ tên</th>
+                        <th nzAlign="center">Chức vụ</th>
+                        <th nzAlign="center">Giới tính</th>
                         <th nzAlign="center">Trạng thái</th>
                         <th nzAlign="center">Hành động</th>
                     </tr>
@@ -48,7 +48,7 @@
                             <td nzAlign="left">{{item.fullName}}</td>
                             <td nzAlign="left">{{item.title}}</td>
                             <td nzAlign="center">{{item.gender}}</td>
-                            <td nzAlign="center">{{item.status}}</td>
+                            <td nzAlign="center"><nz-switch [ngModel]="item?.status == 'ACTIVE'" (click)="toggleActive(item)"></nz-switch></td>
                             <td nzAlign="center">
                               <app-button-action
                                 [action]="'view'"

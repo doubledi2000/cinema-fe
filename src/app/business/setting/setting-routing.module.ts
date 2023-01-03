@@ -11,6 +11,7 @@ import { UpdateRoleComponent } from './role/update-role/update-role.component';
 import { TicketPriceComponent } from './ticket-price/ticket-price.component';
 import { UpdateUserComponent } from './user/update-user/update-user.component';
 import { UserComponent } from './user/user.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -83,6 +84,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       authorities: [RULE.DRINK_UPDATE]
+    }
+  },
+  {
+    path: 'my-profile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+    data: {
+      authorities: []
     }
   }
 

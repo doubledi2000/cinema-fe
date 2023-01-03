@@ -98,16 +98,7 @@
                           nzTooltipTitle="Cập nhật"
                           nzTooltipPlacement="top"
                           nz-tooltip
-                        >
-                          ></app-button-action
-                        >
-
-                        <app-button-action
-                          [action]="'delete'"
-                          className="last"
-                          nzTooltipTitle="Xóa"
-                          nzTooltipPlacement="top"
-                          nz-tooltip
+                          (click)="update(item)"
                         >
                           ></app-button-action
                         >

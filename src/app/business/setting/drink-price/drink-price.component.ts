@@ -123,6 +123,18 @@ export class DrinkPriceComponent implements OnInit {
     this.modalService.create(base);
   }
 
+  update(drink: IDrink) {
+    const base = CommonUtil.modalBase(
+      DrinkDetailComponent,
+      {
+        isUpdate: true,
+        drink
+      },
+      '70%'
+    );
+    this.modalService.create(base);
+  }
+
   toggleActive(item: any){
     if(item.status == 'ACTIVE') {
       this.drinkService.inactive(item.id).subscribe(res =>{

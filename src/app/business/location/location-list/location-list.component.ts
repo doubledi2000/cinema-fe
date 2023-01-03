@@ -82,7 +82,7 @@ export class LocationListComponent implements OnInit {
     const base = CommonUtil.modalBase(
       LocationDetailComponent,
       {
-        isCreate: true,
+        isUpdate: true,
         location
       },
       '40%'

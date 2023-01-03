@@ -42,7 +42,7 @@
                   <ng-container *ngFor="let item of configPrice.get('prices')['controls']; index as priceIndex">
                     <div class="row mb-2" [formGroupName]="priceIndex">
                       <div class="col-3">
-                        <span>Vé Thường</span>
+                        <span>{{ticketLabel[priceIndex].label}}</span>
                       </div>
                       <div class="col-9">
                         <nz-input-number [nzMin]="1000" [nzMax]="10000000" [nzStep]="1000" formControlName="price">

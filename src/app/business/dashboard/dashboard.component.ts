@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../../shared/service/report.service';
+import { IOccupancyReportResponse } from '../../shared/model/response/occupancy-report.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,6 +15,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadRevenueReport();
+    this.loadOccupancyReporot();
   }
 
   loadRevenueReport(){
@@ -26,7 +28,8 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  revenueOption: any = {}
+  revenueOption: any = {};
+  occupancyOption: any = {};
 
   initRevenueReport(legends?: string[], series?: number[]) {
     this.revenueOption = {
@@ -85,66 +88,62 @@ export class DashboardComponent implements OnInit {
     };
   }
 
-  occupancyOption: any = {
-    title: {
-      text: 'TỈ lệ mua vé'
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-        type: 'shadow'
+
+  loadOccupancyReporot(){
+    this.reportService.occupancyReport({}).subscribe(res => {
+      if(res && res.success) {
+        const data = res?.data as IOccupancyReportResponse[];
+        const legends = data.map(e => e.filmName);
+        const ticketWasSold = data.map(e => e.totalTicketWasSold);
+        const ticketWasUnsold = data.map(e => e.totalTicket - e.totalTicketWasSold);
+        this.initOccupancyReport(legends, ticketWasSold, ticketWasUnsold);
       }
-    },
-    grid: {
-      left: '3%',
-      right: '4%',
-      bottom: '3%',
-      containLabel: true
-    },
-    toolbox: {
-      feature: {
-        magicType: {
-          show: true,
-          type: ['line', 'bar'],
-          title: {
-            line: 'Biểu đồ đường',
-            bar: 'Biểu đồ cột'
-          }
+    })
+  }
+
+  initOccupancyReport(legends?: string[], ticketWasSold?: number[], ticketWasUnsold?: number[]){
+    this.occupancyOption =  {
+      title: {
+        text: 'Tỉ lệ mua vé theo phim'
+      },
+      legend: {
+        data: ['bar'],
+        left: '10%'
+      },
+      brush: {
+        xAxisIndex: 0
+      },
+
+      tooltip: {},
+      xAxis: {
+        data: legends,
+        name: 'Phim',
+        axisLabel: { rotate: -40 },
+        axisLine: { onZero: true },
+        splitLine: { show: false },
+        splitArea: { show: false }
+      },
+      yAxis: {
+        name: 'Số lượng vé',
+      },
+      grid: {
+        bottom: 100
+      },
+      series: [
+        {
+          name: 'Vé đá bán',
+          type: 'bar',
+          stack: 'one',
+          data: ticketWasSold
         },
-        saveAsImage: {}
-      }
-    },
-    xAxis: [
-      {
-        type: 'category',
-        data: [
-          'CGV HUCE',
-          'CGV Cầu Giấy',
-          'CGV Thái Nguyên',
-          'CGV Trần Duy Hưng',
-          'CGV Xuân thuỷ',
-          'CGV Thái NGuyênnnnnnnnnnnnnnnnnnn',
-          'CGV Thái Hà'
-        ],
-        axisLabel: { rotate: -40 }
-      }
-    ],
-    dataZoom: {
-      start: 0,
-      type: 'inside'
-    },
-    yAxis: [
-      {
-        type: 'value'
-      }
-    ],
-    series: [
-      {
-        name: 'Direct',
-        type: 'bar',
-        barWidth: '60%',
-        data: [10, 52, 80, 70, 76, 60, 90]
-      }
-    ]
-  };
+        {
+          name: 'Vé chưa bán',
+          type: 'bar',
+          stack: 'one',
+          data: ticketWasUnsold
+        }
+      ]
+    };
+  }
+
 }

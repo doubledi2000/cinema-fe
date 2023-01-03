@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import CommonUtil from '../../../../shared/utils/common-util';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+import { TICKET } from '../../../../shared/constant/common.constant';
 
 @Component({
   selector: 'app-add-price-modal',
@@ -11,7 +12,7 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
 export class AddPriceModalComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
-
+  ticketLabel = TICKET;
   constructor(private fb: FormBuilder,
     private modalRef: NzModalRef
     ) { }

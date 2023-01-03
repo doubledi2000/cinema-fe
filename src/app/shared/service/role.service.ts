@@ -1,9 +1,10 @@
-import { RESOURCE } from './../constant/resource.constant';
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { IBaseResponse } from '../model/base.model';
 import { IRole } from '../model/role.model';
+import { RESOURCE } from './../constant/resource.constant';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +36,9 @@ export class RoleService {
 
   permission(id?: string, data?: any): Observable<IBaseResponse<boolean>> {
     return this.http.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/roles/${id}/permit`, data);
+  }
+
+  findByIds(data?: any): Observable<IBaseResponse<IRole[]>>{
+    return this.http.post<IBaseResponse<IRole[]>>(`${RESOURCE.URL}/roles/find-by-ids`, data);
   }
 }

@@ -12,6 +12,8 @@ import { TicketPriceComponent } from './ticket-price/ticket-price.component';
 import { DrinkPriceComponent } from './drink-price/drink-price.component';
 import { DrinkDetailComponent } from './drink-price/drink-detail/drink-detail.component';
 import { AddPriceModalComponent } from './ticket-price/add-price-modal/add-price-modal.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 
 @NgModule({
@@ -25,11 +27,17 @@ import { AddPriceModalComponent } from './ticket-price/add-price-modal/add-price
     DrinkPriceComponent,
     DrinkDetailComponent,
     AddPriceModalComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,
     SettingRoutingModule,
     SharedModule
+  ],
+  exports: [
+    ChangePasswordComponent,
+    ProfileComponent
   ]
 })
 export class SettingModule { }
