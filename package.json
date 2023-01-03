@@ -21,6 +21,8 @@
         "@fullcalendar/angular": "^5.11.2",
         "@fullcalendar/daygrid": "^5.11.3",
         "@fullcalendar/interaction": "^5.11.3",
+        "@ngx-translate/core": "^13.0.0",
+        "@ngx-translate/http-loader": "^6.0.0",
         "bootstrap": "^5.2.2",
         "echarts": "^5.3.3",
         "file-saver": "^2.0.5",

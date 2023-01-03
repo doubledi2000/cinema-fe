@@ -60,8 +60,6 @@ export class ChangePasswordComponent implements OnInit {
           success: true
         })
         this.toastrService.success('Đổi mật khẩu thành công');
-      } else {
-        this.toastrService.error(res.message);
       }
     })
   }

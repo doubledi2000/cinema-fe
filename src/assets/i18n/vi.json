@@ -1,0 +1,31 @@
+{
+  "model": {
+    "dashboard": {
+      "myInfo": "Thông tin cá nhân",
+      "changePassword": "Đổi mật khẩu",
+      "logout": "Đăng xuất"
+    },
+    "typeOfFilm": {
+      "code": "Mã thể loại",
+      "name": "Tên thể loại"
+    }
+  },
+  "common": {
+    "button": {
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "switchToUpdate": "Chỉnh sửa",
+      "active": "Kích hoạt",
+      "create": "Thêm mới",
+      "view": "Xem",
+      "update": "Cập nhật"
+    },
+    "index": "STT",
+    "description": "Mô tả",
+    "status": "Trạng thái",
+    "action": "Hành đồng",
+    "vi": "Tiếng Việt",
+    "en": "Tiếng Anh"
+  }
+
+}

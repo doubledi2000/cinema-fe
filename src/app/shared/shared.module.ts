@@ -39,6 +39,7 @@ import { AuthLayoutComponent } from './core/layout/auth-layout/auth-layout.compo
 import { MainLayoutComponent } from './core/layout/main-layout/main-layout.component';
 import { HasRolesDirective } from './directive/has-roles.directive';
 import { LimitWordPipe } from './pipe/limit-word.pipe';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { LimitWordPipe } from './pipe/limit-word.pipe';
     NzLayoutModule,
     RouterModule,
     NzCheckboxModule,
+    TranslateModule
     ],
   exports: [
     CommonModule,
@@ -123,7 +125,8 @@ import { LimitWordPipe } from './pipe/limit-word.pipe';
     AuthLayoutComponent,
     NzCheckboxModule,
     HasRolesDirective,
-    UploadSimpleComponent
+    UploadSimpleComponent,
+    TranslateModule
   ],
   providers: [DatePipe]
 })
