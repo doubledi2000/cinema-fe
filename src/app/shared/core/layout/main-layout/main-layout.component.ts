@@ -1,11 +1,16 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { lang } from 'moment';
-import { IUser } from '../../../model/user.model';
-import { LANGUAGE_VI, LANGUAGE_EN } from '../../../constant/base.constant';
-import { SidebarConstant } from '../../../../sidebar.constant';
-import CommonUtil from '../../../utils/common-util';
+import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
+
 import { ChangePasswordComponent } from '../../../../business/setting/change-password/change-password.component';
-import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { SidebarConstant } from '../../../../sidebar.constant';
+import { AuthService } from '../../../auth/auth.service';
+import { LANGUAGE_EN, LANGUAGE_VI } from '../../../constant/base.constant';
+import { LOCAL_STORAGE } from '../../../constant/local.constant';
+import { IUser } from '../../../model/user.model';
+import { UserService } from '../../../service/user.service';
+import CommonUtil from '../../../utils/common-util';
+import { LocalStorageService } from 'ngx-webstorage';
 
 @Component({
   selector: 'app-main-layout',
@@ -24,7 +29,11 @@ export class MainLayoutComponent implements OnInit {
   isDashboard = false;
   sidebar = SidebarConstant;
   constructor(
-    private modalRef: NzModalService
+    private modalRef: NzModalService,
+    private userService: UserService,
+    private authService: AuthService,
+    private router: Router,
+    private localStorage: LocalStorageService
   ) {
   }
 
@@ -35,39 +44,27 @@ export class MainLayoutComponent implements OnInit {
     }
   }
 
+  myProfile() {
+    this.userService.myProfile().subscribe( res => {
+      if(res && res.success) {
+        this.currentUser = res.data as IUser
+    }})
+  }
+
   ngOnInit(): void {
-  //   const profile = this.authService.getCurrentUser();
-  //   const token = this.authService.getToken();
-  //   if (!profile) {
-  //     if (token) {
-  //       this.authService.myProfile().subscribe(response => {
-  //         this.currentUser = response?.body?.data as IUser;
-  //         this.localStorage.store(LOCAL_STORAGE.PROFILE, this.currentUser);
-  //         this.authService.myAuthorities(this.currentUser?.id).subscribe(res => {
-  //           if (this.currentUser) {
-  //             this.currentUser.userPrimary = res.body?.data as UserPrimary;
-  //           }
-  //           this.localStorage.store(LOCAL_STORAGE.PROFILE, this.currentUser);
-  //         });
-  //       });
-  //     } else {
-  //       this.router.navigate([`home`]);
-  //     }
-  //   } else {
-  //     this.currentUser = profile;
-  //   }
+    this.myProfile();
   }
 
   getShortName(fullName?: string) {
-    // if (!fullName) {
-    //   return 'User Name';
-    // }
-    // const list = fullName.split(' ');
-    // if (list.length > 5) {
-    //   return list[0] + ' ' + list[list.length - 1];
-    // } else {
-    //   return fullName;
-    // }
+    if (!fullName) {
+      return 'User Name';
+    }
+    const list = fullName.split(' ');
+    if (list.length > 5) {
+      return list[0] + ' ' + list[list.length - 1];
+    } else {
+      return fullName;
+    }
   }
 
   logout(): void {
@@ -80,9 +77,9 @@ export class MainLayoutComponent implements OnInit {
 
   onChangeLanguage(language: string): void {
     if (this.currentLanguage !== language) {
-      // this.localStorage.store(LOCAL_STORAGE.LANGUAGE, language);
+      this.localStorage.store(LOCAL_STORAGE.LANGUAGE, language);
       this.currentLanguage = language;
-      // location.reload();
+      location.reload();
     } else {
       this.visible = false;
     }

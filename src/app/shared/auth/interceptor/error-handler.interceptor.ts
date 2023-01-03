@@ -18,11 +18,11 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
   ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    debugger;
     return next.handle(request).pipe(
       catchError((err) => {
-        if(err.status == HttpStatusCode.BadRequest) {
+        if(err.status != HttpStatusCode.Ok) {
             this.toastrService.error(err.error.message);
+            debugger;
         }
         throw new Error(err)
       })

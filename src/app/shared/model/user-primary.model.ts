@@ -5,5 +5,6 @@ export class UserPrimary{
     public isRoot?: boolean,
     public locationIds?: string[],
     public userLevel?: string,
+    public fullName?: string,
   ){}
 }

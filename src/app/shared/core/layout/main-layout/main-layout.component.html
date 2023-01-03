@@ -70,11 +70,11 @@
             <div class="language-form">
               <p (click)="onChangeLanguage(VI)">
                 <img src="assets/images/icon/vietnam.png" alt="vi" />
-                <span class="ml-2">{{ "common.vi" }}</span>
+                <span class="ml-2">{{ "common.vi" | translate}}</span>
               </p>
               <p (click)="onChangeLanguage(EN)">
                 <img src="assets/images/icon/english.png" alt="en" />
-                <span class="ml-2">{{ "common.en" }}</span>
+                <span class="ml-2">{{ "common.en" | translate}}</span>
               </p>
             </div>
           </ng-template>
@@ -86,21 +86,21 @@
             [nzOverlayClassName]="'user-dropdown-menu'"
             nzPlacement="bottomRight"
           >
-            <span class="me-1">ADMIN</span>
+            <span class="me-1"></span>
             <span class="font-weight-bold">
-              {{ getShortName(currentUser?.fullName) }}
+              {{ getShortName(currentUser?.fullName)}}
             </span>
           </button>
           <nz-dropdown-menu #menu1="nzDropdownMenu">
             <ul nz-menu>
               <li nz-menu-item class="card-item" (click)="toChangeProfile()">
-                {{ "model.dashboard.myInfo" }}
+                {{ "model.dashboard.myInfo" | translate }}
               </li>
               <li nz-menu-item class="card-item" (click)="changePassword()">
-                Đổi mật khẩu
+                {{ "model.dashboard.changePassword" | translate }}
               </li>
               <li nz-menu-item class="card-item-logout" (click)="logout()">
-                {{ "model.logout.title" }}
+                {{ "model.dashboard.logout" | translate }}
                 <em
                   class="logout-icon ml-2"
                   nz-icon

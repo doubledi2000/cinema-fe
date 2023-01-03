@@ -1,7 +1,7 @@
 import { RESOURCE } from './../constant/resource.constant';
 import { Injectable, Pipe } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
+import { LocalStorageService, SESSION_STORAGE, SessionStorageService } from 'ngx-webstorage';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserPrimary } from '../model/user-primary.model';
@@ -56,6 +56,14 @@ export class AuthService {
     })
   }
 
+  getToken(){
+    const accessToken = this.localStorage.retrieve(LOCAL_STORAGE.JWT_TOKEN) || this.sessionStorage.retrieve(LOCAL_STORAGE.JWT_TOKEN);
+    if(accessToken){
+      return accessToken
+    }
+    return '';
+  }
+
   hasAnyAuthority(authorities: string | string[]) {
     this.currentUser = this.getCurrentUser();
     if(!this.currentUser) {
@@ -91,8 +99,6 @@ export class AuthService {
     if(!!this.currentUser) {
       return this.currentUser as UserPrimary;
     }
-    debugger;
-
     const userLocal = this.localStorage.retrieve(LOCAL_STORAGE.PROFILE);
     if(userLocal) {
       return JSON.parse(userLocal) as UserPrimary;

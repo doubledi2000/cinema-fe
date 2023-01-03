@@ -8,7 +8,7 @@ import { en_US } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IconsProviderModule } from './icons-provider.module';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -21,7 +21,8 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { JwtInterceptor } from './shared/auth/interceptor/jwt.interceptor';
 import { ErrorHandlerInterceptor } from './shared/auth/interceptor/error-handler.interceptor';
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 registerLocaleData(en);
 
 const antDesignIcons = AllIcons as {
@@ -47,8 +48,15 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesi
     ToastrModule.forRoot({
       timeOut: 2000
     }),
-    NgxWebstorageModule.forRoot({prefix: '', separator: ''}),
-
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient],
+      },
+      useDefaultLang: true,
+  }),
+    NgxWebstorageModule.forRoot({prefix: '', separator: ''})
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
@@ -59,3 +67,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesi
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function HttpLoaderFactory(http: HttpClient): any {
+  return new TranslateHttpLoader(http, `./assets/i18n/`, '.json');
+}
