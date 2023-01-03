@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ILocation } from '../../../shared/model/location.model';
 import { LocationService } from '../../../shared/service/location.service';
 import { ILocationPriceConfig, LocationPriceConfig } from '../../../shared/model/response/location-price-config.model';
+import { TICKET } from '../../../shared/constant/common.constant';
 
 @Component({
   selector: 'app-ticket-price',
@@ -24,7 +25,7 @@ export class TicketPriceComponent implements OnInit {
   locationId: string = '';
   priceByTime: PriceByTime[] = [];
   locationPriceConfig: ILocationPriceConfig = new LocationPriceConfig();
-
+  ticketLabel = TICKET;
   form: FormGroup = new FormGroup({});
 
   constructor(

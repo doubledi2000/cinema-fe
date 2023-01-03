@@ -76,6 +76,22 @@ export class UserComponent implements OnInit {
     })
   }
 
+  toggleActive(item: any){
+    // if(item.status == 'ACTIVE') {
+    //   this.userService.inactive(item.id).subscribe(res =>{
+    //     if(res && res.success) {
+    //       item.status = 'INACTIVE';
+    //     }
+    //   })
+    // } else {
+    //   this.typeOfFilmService.active(item.id).subscribe(res =>{
+    //     if(res && res.success) {
+    //       item.status = 'ACTIVE';
+    //     }
+    //   })
+    // }
+  }
+
   onQuerySearch(params: { pageIndex: number; pageSize: number }): void {
     const { pageIndex, pageSize } = params;
     this.searchRequest.pageIndex = pageIndex;

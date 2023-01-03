@@ -33,4 +33,16 @@ export class UserService {
     const params = new HttpParams({fromObject: data});
     return this.httpClient.get<IBaseResponse<IUser[]>>(`${RESOURCE.URL}/users/auto-complete`, {params})
   }
+
+  myProfile(): Observable<IBaseResponse<IUser>> {
+    return this.httpClient.get<IBaseResponse<IUser>>(`${RESOURCE.URL}/me/my-profile`)
+  }
+
+  updateProfile(data?: any): Observable<IBaseResponse<boolean>> {
+    return this.httpClient.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/me/update`, data);
+  }
+
+  changePassword(data?: any): Observable<IBaseResponse<boolean>> {
+    return this.httpClient.post<IBaseResponse<boolean>>(`${RESOURCE.URL}/me/change-password`, data);
+  }
 }

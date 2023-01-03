@@ -58,8 +58,6 @@ export class AuthService {
 
   hasAnyAuthority(authorities: string | string[]) {
     this.currentUser = this.getCurrentUser();
-    debugger;
-    console.log()
     if(!this.currentUser) {
       return false;
     }

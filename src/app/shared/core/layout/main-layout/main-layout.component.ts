@@ -3,6 +3,9 @@ import { lang } from 'moment';
 import { IUser } from '../../../model/user.model';
 import { LANGUAGE_VI, LANGUAGE_EN } from '../../../constant/base.constant';
 import { SidebarConstant } from '../../../../sidebar.constant';
+import CommonUtil from '../../../utils/common-util';
+import { ChangePasswordComponent } from '../../../../business/setting/change-password/change-password.component';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-main-layout',
@@ -21,6 +24,7 @@ export class MainLayoutComponent implements OnInit {
   isDashboard = false;
   sidebar = SidebarConstant;
   constructor(
+    private modalRef: NzModalService
   ) {
   }
 
@@ -84,6 +88,14 @@ export class MainLayoutComponent implements OnInit {
     }
   }
 
+  changePassword(){
+    const base = CommonUtil.modalBase(
+      ChangePasswordComponent,
+      '30%'
+    )
+    this.modalRef.create(base);
+  }
+
   navigateDashboard(): void {
     // this.router.navigate(['/dashboard']);
   }
@@ -96,17 +108,6 @@ export class MainLayoutComponent implements OnInit {
     // this.router.navigate([
     //   // ROUTER_UTILS.setting.root, ROUTER_UTILS.setting.myProfile
     // ]);
-  }
-
-  openChangePasswordModal() {
-    // if (this.authService.getTokenPrivateKey()) {
-    //   const base = CommonUtil.modalBase(
-    //     ChangePasswordComponent,
-    //     { user: { id: this.authService.getTokenPrivateKey() } },
-    //     '30%'
-    //   );
-    //   this.modalService.create(base);
-    // }
   }
 
 }
