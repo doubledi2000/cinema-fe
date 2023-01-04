@@ -15,6 +15,31 @@
       "drinkRevenue": "Doanh thu đồ uống",
       "ticketRevenue": "Doanh thu vé",
       "totalRevenue": "Tổng doanh thu",
+    },
+    "film": {
+      "code": "Mã phim",
+      "name": "Tên phim",
+      "allowedAgeFrom": "Giới hạn độ tuổi từ",
+      "releaseDate": "Ngày công chiếu",
+      "duration": "Thời lượng",
+      "actors": "Diễn viên",
+      "directors": "Đạo diễn",
+    },
+    "drink": {
+      "code": "Mã đồ uống",
+      "name": "Tên đồ uống",
+      "price": "Giá"
+    },
+    "location": {
+      "code": "Mã chi nhánh",
+      "name": "Tên chi nhánh",
+      "address": "Địa chỉ"
+    },
+    "producer": {
+      "code": "Mã nhà sản xuất",
+      "name": "Tên nhà sản xuất",
+      "representative": "Người đại diện",
+      "nationally": "Quốc gia"
     }
   },
   "common": {
@@ -32,7 +57,8 @@
     "status": "Trạng thái",
     "action": "Hành đồng",
     "vi": "Tiếng Việt",
-    "en": "Tiếng Anh"
+    "en": "Tiếng Anh",
+    "search": "Tìm kiếm"
   }
 
 }

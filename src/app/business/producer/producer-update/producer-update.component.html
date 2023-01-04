@@ -10,41 +10,41 @@
       <form [formGroup]="form">
           <div class="row">
               <div class="col-6 mb-2">
-                  <label>Mã nhà sản xuất <span class="text-danger">*</span></label>
+                  <label>{{'common.producer.code' | translate}} <span class="text-danger">*</span></label>
                   <input
                       formControlName="code"
                       nz-input
                       [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
-                      placeholder="'Nhập mã nhà sản xuất'"
+                      placeholder="{{'common.producer.code' | translate}}"
                   >
               </div>
               <div class="col-6 mb-2">
-                  <label>Tên nhà sản xuất <span class="text-danger">*</span></label>
+                  <label>T{{'common.producer.name' | translate}} <span class="text-danger">*</span></label>
                   <input
                       formControlName="name"
                       nz-input
                       [maxLength]="LENGTH_VALIDATOR.NAME_MAX_LENGTH.MAX"
-                      placeholder="'Nhập tên nhà sản xuất'"
+                      placeholder="{{'common.producer.name' | translate}}"
                   >
               </div>
           </div>
           <div class="row">
             <div class="col-6 mb-2">
-                <label>Người đại diện</label>
+                <label>{{'common.producer.representative' | translate}}</label>
                 <input
                     formControlName="representative"
                     nz-input
                     [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
-                    placeholder="'Người đại diện'"
+                    placeholder="{{'common.producer.representative' | translate}}"
                 >
             </div>
             <div class="col-6 mb-2">
-                <label>Quốc gia</label>
+                <label>{{'common.producer.nationally' | translate}}</label>
                 <input
                     formControlName="nationally"
                     nz-input
                     [maxLength]="LENGTH_VALIDATOR.NAME_MAX_LENGTH.MAX"
-                    placeholder="'Quốc tịch'"
+                    placeholder="{{'common.producer.nationally' | translate}}"
                 >
             </div>
         </div>
@@ -59,18 +59,18 @@
       <div class="col-12 text-center" *nzModalFooter>
           <ng-container *ngIf="isDetail">
               <button nz-button nzType="default" (click)="onCancel()">
-                  Hủy
+                {{'common.button.cancel' | translate}}
               </button>
               <button nz-button nzType="primary" class="mr-2" (click)="nextToUpdate()">
-                  Chỉnh sửa
+                {{'common.button.edit' | translate}}
               </button>
           </ng-container>
           <ng-container *ngIf="!isDetail">
               <button nz-button nzType="default" class="mr-2" (click)="onCancel()">
-                  Hủy
+                {{'common.button.cancel' | translate}}
               </button>
               <button nz-button nzType="primary" class="mr-2" (click)="onSubmit()" [disabled]="form.invalid">
-                  Lưu
+                {{'common.button.saves' | translate}}
               </button>
           </ng-container>
       </div>
