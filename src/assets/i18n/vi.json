@@ -8,6 +8,13 @@
     "typeOfFilm": {
       "code": "Mã thể loại",
       "name": "Tên thể loại"
+    },
+    "revenueReport": {
+      "locationCode": "Mã chi nhánh",
+      "locationName": "Tên chi nhánh",
+      "drinkRevenue": "Doanh thu đồ uống",
+      "ticketRevenue": "Doanh thu vé",
+      "totalRevenue": "Tổng doanh thu",
     }
   },
   "common": {

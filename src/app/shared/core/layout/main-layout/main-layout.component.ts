@@ -31,8 +31,6 @@ export class MainLayoutComponent implements OnInit {
   constructor(
     private modalRef: NzModalService,
     private userService: UserService,
-    private authService: AuthService,
-    private router: Router,
     private localStorage: LocalStorageService
   ) {
   }

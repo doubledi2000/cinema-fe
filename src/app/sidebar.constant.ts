@@ -44,6 +44,24 @@ export const SidebarConstant: IMenu[] = [
     ]
   },
   {
+    path: ROUTER_UTILS.report.root,
+    title: 'Báo cáo',
+    icon: 'setting',
+    authorities: [RULE.REPORT_VIEW],
+    submenu: [
+      {
+        path:ROUTER_UTILS.report.revenue,
+        title: 'Báo cáo doanh thu',
+        authorities: [RULE.REPORT_VIEW]
+      },
+      {
+        path: ROUTER_UTILS.report.occupancy,
+        title: 'Báo cao tỷ lệ bán vé',
+        authorities: [RULE.REPORT_VIEW]
+      }
+    ]
+  },
+  {
     path: ROUTER_UTILS.setting.root,
     title: 'Cài đặt',
     icon: 'setting',

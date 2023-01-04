@@ -1,0 +1,54 @@
+<div class="content">
+  <app-table-title [title]="'Quản lý thể loại phim'"></app-table-title>
+  <ng-container>
+    <div class="row mt-3" [formGroup]="searchForm">
+      <div class="col-3">
+        <nz-input-group [nzSuffix]="suffixIconSearch">
+          <input
+            type="text"
+            nz-input
+            placeholder="input search text"
+            (keyup.enter)="search()"
+          />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <span nz-icon nzType="search"></span>
+        </ng-template>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12" >
+        <nz-table #table [nzData]="[]" [nzTableLayout]="'auto'" >
+          <thead>
+            <tr>
+              <th nzAlign="center" nzWidth="80px">{{'common.index' | translate}}</th>
+              <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
+                {{'model.typeOfFilm.code' | translate}}
+              </th>
+              <th nzAlign="center" [nzSortFn]="true">{{'model.typeOfFilm.name' | translate}}</th>
+              <th nzAlign="center" [nzSortFn]="true">{{'common.description' | translate}}</th>
+              <th nzAlign="center">{{'common.status' | translate}}</th>
+              <th nzAlign="center">{{'common.action' | translate}}</th>
+            </tr>
+          </thead>
+
+          <tbody >
+            <ng-container *ngFor="let item of []; index as i">
+              <tr>
+                <td class="thead-border-top-left" nzAlign="center">
+                  {{ getIndex(i) }}
+                </td>
+                <td nzAlign="center">{{ item.code }}</td>
+                <td nzAlign="center">{{ item.name }}</td>
+                <td nzAlign="center">{{ item.description }}</td>
+                <td nzAlign="center"><nz-switch [ngModel]="item.status == 'ACTIVE'" ></nz-switch></td>
+                <td nzAlign="center">
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </ng-container>
+</div>
