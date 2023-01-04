@@ -52,6 +52,11 @@ export const ROUTER_UTILS = {
     },
     booking: {
       root: 'booking'
+    },
+    report: {
+      root: 'report',
+      revenue: 'report/revenue',
+      occupancy: 'report/occupancy'
     }
 }
 
