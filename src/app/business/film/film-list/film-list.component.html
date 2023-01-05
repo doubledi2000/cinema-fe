@@ -8,7 +8,7 @@
               <input
                 type="text"
                 nz-input
-                placeholder="input search text"
+                placeholder="{{'common.search' | translate}}"
                 [nzSize]="'small'"
               />
             </nz-input-group>
@@ -23,7 +23,7 @@
                   [nzMaxTagCount]="1"
                   [nzMaxTagPlaceholder]="tagPlaceHolder"
                   nzMode="multiple"
-                  nzPlaceHolder="Thể loại"
+                  nzPlaceHolder="{{'model.film.typeOfFilm' | translate}}"
                   style="width: 100%"
                   [nzShowArrow]="true"
                 >
@@ -59,7 +59,9 @@
         </div>
       </div>
       <div class="col-3 d-flex justify-content-end">
-        <button nz-button nzType="primary" (click)="create()">Thêm mới</button>
+        <button nz-button nzType="primary" (click)="create()">
+          {{ "common.button.create" | translate }}
+        </button>
       </div>
     </div>
     <div class="row mt-3">
@@ -67,19 +69,25 @@
         <nz-table #table [nzData]="filmList" [nzTableLayout]="'fixed'">
           <thead>
             <tr>
-              <th nzAlign="center" nzWidth="80px">STT</th>
+              <th nzAlign="center" nzWidth="80px">{{ "common.index" }}</th>
               <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
-                Mã phim
+                {{ "model.film.code" }}
               </th>
-              <th nzAlign="center" [nzSortFn]="true">Tên phim</th>
-              <th nzAlign="center">Nhà sản xuất</th>
-              <th nzAlign="center">Ngày công chiếu</th>
-              <th nzAlign="center">Thời lượng</th>
-              <th nzAlign="center">Thể loại phim</th>
-              <th nzAlign="center">Đạo diễn</th>
-              <th nzAlign="center">Diễn viên</th>
-              <th nzAlign="center">Trạng thái</th>
-              <th nzAlign="center">Hành động</th>
+              <th nzAlign="center" [nzSortFn]="true">
+                {{ "model.film.name" | translate }}
+              </th>
+              <th nzAlign="center">{{ "model.film.producer" }}</th>
+              <th nzAlign="center">
+                {{ "model.film.releaseDate" | translate }}
+              </th>
+              <th nzAlign="center">{{ "model.film.duration" }}</th>
+              <th nzAlign="center">
+                {{ "model.film.typeOfFilm" | translate }}
+              </th>
+              <th nzAlign="center">{{ "model.film.director" | translate }}</th>
+              <th nzAlign="center">{{ "model.film.actor" | translate }}</th>
+              <th nzAlign="center">{{ "common.status" | translate }}</th>
+              <th nzAlign="center">{{ "common.action" | translate }}</th>
             </tr>
           </thead>
 
@@ -120,7 +128,7 @@
                   <app-button-action
                     [action]="'view'"
                     className="first"
-                    nzTooltipTitle="Chi tiết"
+                    nzTooltipTitle="{{'common.button.view' | translate}}"
                     nzTooltipPlacement="top"
                     (click)="view(item)"
                     nz-tooltip
@@ -130,7 +138,7 @@
                   <app-button-action
                     [action]="'edit'"
                     className="last"
-                    nzTooltipTitle="Cập nhật"
+                    nzTooltipTitle="{{'common.button.update' | translate}}"
                     nzTooltipPlacement="top"
                     (click)="update(item)"
                     nz-tooltip

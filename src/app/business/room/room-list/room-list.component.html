@@ -8,7 +8,7 @@
               <input
                 type="text"
                 nz-input
-                placeholder="input search text"
+                placeholder="{{'common.search' | translate}}"
                 [nzSize]="'small'"
                 formControlName="keyword"
                 (keyup.enter)="search()"
@@ -25,7 +25,7 @@
                   [nzMaxTagCount]="2"
                   [nzMaxTagPlaceholder]="tagPlaceHolder"
                   nzMode="multiple"
-                  nzPlaceHolder="Chi nhánh"
+                  nzPlaceHolder="{{'model.room.location' | translate}}"
                   style="width: 100%"
                   [nzShowArrow]="true"
                   [nzSize]="'large'"
@@ -46,7 +46,7 @@
         </div>
       </div>
       <div class="col-3 d-flex justify-content-end">
-        <button nz-button nzType="primary" (click)="create()" >Add</button>
+        <button nz-button nzType="primary" (click)="create()" >{{'common.button.create' | translate}}</button>
       </div>
     </div>
     <div class="row mt-3">
@@ -54,15 +54,15 @@
         <nz-table #table [nzData]="roomList" [nzTableLayout]="'fixed'">
           <thead>
             <tr>
-              <th nzAlign="center" nzWidth="80px">STT</th>
+              <th nzAlign="center" nzWidth="80px">{{'common.index' | translate}}</th>
               <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
-                Chi nhánh
+                {{'model.room.location' | translate}}
               </th>
-              <th nzAlign="center" [nzSortFn]="true">Mã phòng</th>
-              <th nzAlign="center" [nzSortFn]="true">Tên phòng</th>
-              <th nzAlign="center">Số ghế</th>
-              <th nzAlign="center">Trạng thái</th>
-              <th nzAlign="center">Hành động</th>
+              <th nzAlign="center" [nzSortFn]="true">{{'model.room.code' | translate}}</th>
+              <th nzAlign="center" [nzSortFn]="true">{{'model.room.name' | translate}}</th>
+              <th nzAlign="center">{{'model.room.seatNumber' | translate}}</th>
+              <th nzAlign="center">{{'common.status'}}</th>
+              <th nzAlign="center">{{'common.action'}}</th>
             </tr>
           </thead>
 
@@ -79,7 +79,7 @@
                   <app-button-action
                     [action]="'view'"
                     className="first"
-                    nzTooltipTitle="Chi tiết"
+                    nzTooltipTitle="{{'common.button.view' | translate}}"
                     nzTooltipPlacement="top"
                     nz-tooltip
                     (click)="view(item)"
@@ -90,24 +90,14 @@
                   <app-button-action
                     [action]="'edit'"
                     className="first"
-                    nzTooltipTitle="Cập nhật"
+                    nzTooltipTitle="{{'common.button.update' | translate}}"
                     nzTooltipPlacement="top"
                     nz-tooltip
                     (click)="update(item)"
                   >
-                    ></app-button-action
+                    </app-button-action
                   >
 
-                  <app-button-action
-                    [action]="'delete'"
-                    className="last"
-                    nzTooltipTitle="Xóa"
-                    nzTooltipPlacement="top"
-                    nz-tooltip
-                    (click)="delete(item)"
-                  >
-                    ></app-button-action
-                  >
                 </td>
               </tr>
             </ng-container>

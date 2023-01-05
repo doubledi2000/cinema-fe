@@ -22,14 +22,14 @@
           </app-upload-avatar>
         </div>
         <div class="col-12 mt-5">
-          <label>Vai trò</label>
+          <label>{{'model.user.role' | translate}}</label>
       <br>
       <nz-select
         nzMode="multiple"
         nzShowSearch
         [nzShowArrow]="true"
         nzAllowClear
-        nzPlaceHolder="Vai trò"
+        nzPlaceHolder="{{'model.user.role' | translate}}"
         formControlName="roleIds"
         nzSize="large"
         style="width: 80%"
@@ -43,14 +43,14 @@
       </nz-select>
         </div>
         <div class="col-12 mt-2">
-          <label>Chi nhánh</label>
+          <label>{{'model.user.location' | translate}}</label>
       <br>
       <nz-select
         nzMode="multiple"
         nzShowSearch
         [nzShowArrow]="true"
         nzAllowClear
-        nzPlaceHolder="Chi nhánh"
+        nzPlaceHolder="{{'model.user.location' | translate}}"
         formControlName="locationIds"
         nzSize="large"
         style="width: 80%"
@@ -64,27 +64,27 @@
       </nz-select>
         </div>
         <div class="col-12 mt-2">
-          <label>Bộ phận <span class="text-danger">*</span></label>
-        <input nz-input placeholder="Bộ phận" formControlName="departmentName" />
+          <label>{{'model.user.department' | translate}} <span class="text-danger">*</span></label>
+        <input nz-input placeholder="{{'model.user.department' | translate}}" formControlName="departmentName" />
         </div>
       </div>
     </div>
     <div class="col-5">
       <div class="col-12 mt-2">
-        <label>Mã nhân viên <span class="text-danger">*</span></label>
-        <input nz-input placeholder="Mã nhân viên" formControlName="employeeCode" />
+        <label>{{'model.user.employeeCode' | translate}} <span class="text-danger">*</span></label>
+        <input nz-input placeholder="{{'model.user.employeeCode' | translate}}" formControlName="employeeCode" />
       </div>
       <div class="col-12 mt-2">
-        <label>Họ và tên <span class="text-danger">*</span></label>
-        <input nz-input placeholder="Họ và tên" formControlName="fullName" />
+        <label>{{'model.user.fullName' | translate}} <span class="text-danger">*</span></label>
+        <input nz-input placeholder="{{'model.user.fullName' | translate}}" formControlName="fullName" />
       </div>
       <div class="col-12 mt-2">
-        <label>Số điện thoại <span class="text-danger">*</span></label>
-        <input nz-input placeholder="Nhập số điện thoại" formControlName="phoneNumber" />
+        <label>{{'model.user.phoneNumber' | translate}} <span class="text-danger">*</span></label>
+        <input nz-input placeholder="{{'model.user.phoneNumber' | translate}}" formControlName="phoneNumber" />
       </div>
 
       <div class="col-12 mt-2">
-        <label>Ngày sinh<span class="text-danger">*</span></label>
+        <label>{{'model.user.dayOfBirth' | translate}}<span class="text-danger">*</span></label>
         <br>
         <nz-date-picker
         [nzFormat]="'dd-MM-YYYY'"
@@ -92,13 +92,13 @@
       ></nz-date-picker>
       </div>
       <div class="col-12 mt-2">
-        <label>Giới tính<span class="text-danger">*</span></label>
+        <label>{{'model.user.gender' | translate}}<span class="text-danger">*</span></label>
         <br>
         <nz-select
         nzShowSearch
         [nzShowArrow]="true"
         nzAllowClear
-        nzPlaceHolder="Giới tính"
+        nzPlaceHolder="{{'model.user.gender' | translate}}"
         formControlName="gender"
       >
       <nz-option
@@ -109,26 +109,26 @@
       </nz-select>
       </div>
       <div class="col-12 mt-2">
-        <label>Địa chỉ <span class="text-danger">*</span></label>
-        <input nz-input placeholder="'Nhập mã thể loại'" />
+        <label>{{'model.user.address' | translate}} <span class="text-danger">*</span></label>
+        <input nz-input placeholder="{{'model.user.address' | translate}}" />
       </div>
       <div class="col-12 mt-2">
-        <label>Tài khoản <span class="text-danger">*</span></label>
-        <input nz-input placeholder="Tài khoản" formControlName="username" />
+        <label>{{'model.user.username' | translate}} <span class="text-danger">*</span></label>
+        <input nz-input placeholder="{{'model.user.username' | translate}}" formControlName="username" />
       </div>
       <div class="col-12 mt-2">
-        <label>Mật khẩu <span class="text-danger">*</span></label>
-        <input type="password" nz-input placeholder="Mật khẩu" formControlName="password" />
+        <label>{{'model.user.password' | translate}} <span class="text-danger">*</span></label>
+        <input type="password" nz-input placeholder="{{'model.user.password' | translate}}" formControlName="password" />
       </div>
       <div class="col-12 mt-2">
-        <label>Chức vụ <span class="text-danger">*</span></label>
-      <input nz-input placeholder="Chức vụ" formControlName="title" />
+        <label>{{'model.user.titile' | translate}} <span class="text-danger">*</span></label>
+      <input nz-input placeholder="{{'model.user.title' | translate}}" formControlName="title" />
       </div>
     </div>
 
   </div>
   <div class="row mt-2">
-    <label>Giới thiệu bản thân<span class="text-danger">*</span></label>
+    <label>{{'model.user.description' | translate}}<span class="text-danger">*</span></label>
     <nz-textarea-count [nzMaxCharacterCount]="1000">
       <textarea
         rows="3"
@@ -140,10 +140,10 @@
   <div class="row mt-3">
       <div class="col-12 d-flex justify-content-center">
         <button nz-button nzType="default"  style="margin-right: 10px;" >
-          Hủy
+          {{'common.button.cancel' | translate}}
       </button>
       <button nz-button nzType="primary" (click)="submit()">
-          Lưu
+        {{'common.button.save' | translate}}
       </button>
       </div>
   </div>

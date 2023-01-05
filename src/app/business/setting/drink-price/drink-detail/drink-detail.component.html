@@ -18,52 +18,50 @@
                 <div class="d-flex flex-wrap">
                   <div class="col-12 mt-3">
                     <label
-                      >Mã sản phẩm
+                      >{{'model.drink.code' | translate}}
                       <span class="text-danger">*</span></label
                     >
                     <input
                       nz-input
                       [maxLength]="100"
-                      placeholder="'Mã sản phẩm'"
+                      placeholder="{{'model.drink.code' | translate}}"
                       formControlName="code"
                     />
 
                   </div>
                   <div class="col-12 mt-3">
                     <label
-                      >Tên sản phẩm
+                      >{{'model.drink.name' | translate}}
                       <span class="text-danger">*</span></label
                     >
                     <input
                       nz-input
                       [maxLength]="100"
-                      placeholder="'Tên sản phẩm'"
+                      placeholder="{{'model.drink.name' | translate}}"
                       formControlName="name"
                     />
 
                   </div>
                   <div class="col-12 mt-3">
                     <label
-                      >Giá
+                      >{{'model.drink.price' | translate}}
                       <span class="text-danger">*</span></label
                     >
                     <input
                       nz-input
                       [maxLength]="100"
-                      placeholder="'Giá'"
+                      placeholder="{{'model.drink.price' | translate}}"
                       formControlName="price"
                     />
 
                   </div>
                   <div class="col-12 mt-3">
-                    <label for="">Mô tả</label>
+                    <label for="">{{'common.description' | translate}}</label>
                     <textarea rows="4" nz-input formControlName="description"></textarea>
                   </div>
-
                 </div>
               </div>
         </div>
     </div>
-
   </div>
 </div>

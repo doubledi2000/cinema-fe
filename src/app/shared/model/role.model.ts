@@ -5,7 +5,7 @@ export interface IRole{
   name?: string;
   description?: string;
   isRoot?: boolean;
-  roleStatus?: string;
+  status?: string;
   deleted?: boolean;
   permissions?: IRolePermission[];
   permissionIds?: string[];
@@ -18,7 +18,7 @@ export class Role implements IRole{
     public name?: string,
     public description?: string,
     public isRoot?: boolean,
-    public roleStatus?: string,
+    public status?: string,
     public deleted?: boolean,
     public permissions?: IRolePermission[],
     public permissionIds?: string[]

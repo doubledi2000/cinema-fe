@@ -35,14 +35,14 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Mã phim <span class="text-danger">*</span></label
+                          >{{'model.film.code' | translate}} <span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
                         <input
                           nz-input
                           [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
-                          placeholder="'Nhập mã phim'"
+                          placeholder="{{'model.film.code' | translate}}"
                           formControlName="code"
                         />
                       </div>
@@ -52,14 +52,14 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Tên bộ phim <span class="text-danger">*</span></label
+                          >{{'model.film.name' | translate}} <span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
                         <input
                           nz-input
                           [maxLength]="LENGTH_VALIDATOR.NAME_MAX_LENGTH.MAX"
-                          placeholder="'Nhập tên bộ phim'"
+                          placeholder="{{'model.film.name'}}"
                           formControlName="name"
                         />
                       </div>
@@ -73,14 +73,14 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Đạo diễn<span class="text-danger">*</span></label
+                          > {{'model.film.director' | translate}}<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
                         <input
                           nz-input
                           [maxLength]="LENGTH_VALIDATOR.CODE_MAX_LENGTH.MAX"
-                          placeholder="'đạo diễn'"
+                          placeholder="{{'model.film.director' | translate}}"
                           formControlName="directors"
                         />
                       </div>
@@ -90,13 +90,13 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Diễn viên<span class="text-danger">*</span></label
+                          >{{'model.film.actor' | translate}}<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
                         <input
                           nz-input
-                          placeholder="'Nhập tên diễn viên'"
+                          placeholder="{{'model.film.actor' | translate}}"
                           formControlName="actors"
                         />
                       </div>
@@ -110,7 +110,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Nhà sản xuất<span class="text-danger">*</span></label
+                          >{{'model.film.producer' | translate}}<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -118,7 +118,7 @@
                           nzMode="multiple"
                           nzShowSearch
                           nzAllowClear
-                          nzPlaceHolder="Nhà sản xuất"
+                          nzPlaceHolder="{{'model.film.producer' | translate}}"
                           formControlName="producerIds"
                           nzSize="large"
                           style="width: 80%"
@@ -137,14 +137,14 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Trạng thái phim<span class="text-danger">*</span></label
+                          >{{'common.status' | translate}}<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
                         <nz-select
                           nzShowSearch
                           nzAllowClear
-                          nzPlaceHolder="Trạng thái"
+                          nzPlaceHolder="{{'common.status' | translate}}"
                           formControlName="status"
                           style="width: 80%"
                           [nzSize]="'large'"
@@ -167,7 +167,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Ngày sở hữu<span class="text-danger">*</span></label
+                          >{{'model.film.ownershipDate' | translate}}<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -183,7 +183,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Ngày công chiếu<span class="text-danger">*</span></label
+                          >{{'model.film.releaseDate' | translate}}<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -203,7 +203,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label style="margin-right: 20px"
-                          >Thời lượng phim<span class="text-danger">*</span></label
+                          >{{'model.film.duration' | translate}}<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -220,7 +220,7 @@
                     <div class="row">
                       <div class="col-3">
                         <label
-                          >Giới hạn tuổi(từ)<span class="text-danger">*</span></label
+                          >{{'model.film.allowedAgeFrom' | translate}}<span class="text-danger">*</span></label
                         >
                       </div>
                       <div class="col-9">
@@ -229,6 +229,7 @@
                           [nzMax]="100"
                           [nzStep]="1"
                           formControlName="allowedAgeFrom"
+                          nzPlaceHolder="{{'model.film.allowedAgeFrom' | translate}}"
                         >
                         </nz-input-number>
                       </div>
@@ -237,13 +238,13 @@
                 </div>
               </div>
               <div class="col-12 mb-3">
-                <label>Thể loại phim<span class="text-danger">*</span></label>
+                <label>{{'model.film.typeOfFilm' | translate}}<span class="text-danger">*</span></label>
                 <div>
                   <nz-select
                     nzMode="multiple"
                     nzShowSearch
                     nzAllowClear
-                    nzPlaceHolder="Thể loại phim"
+                    nzPlaceHolder="{{'model.film.typeOfFilm' | translate}}"
                     style="width: 100%"
                     formControlName="filmTypeIds"
                     [nzMaxTagCount]="3"
@@ -259,7 +260,7 @@
                 </div>
               </div>
               <div class="col-12 mb-3">
-                <label>Tóm tắt<span class="text-danger">*</span></label>
+                <label>{{'common.description' | translate}}<span class="text-danger">*</span></label>
                 <nz-textarea-count [nzMaxCharacterCount]="1000">
                   <textarea
                     rows="10"
@@ -274,7 +275,7 @@
             <div class="col-12 text-center">
               <ng-container *ngIf="isDetail">
                 <button nz-button nzType="default" (click)="onCancel()">
-                  Hủy
+                  {{'common.button.cancel' | translate}}
                 </button>
                 <button
                   nz-button
@@ -282,7 +283,7 @@
                   class="mr-2"
                   (click)="nextToUpdate()"
                 >
-                  Chỉnh sửa
+                {{'common.button.edit' | translate}}
                 </button>
               </ng-container>
               <ng-container *ngIf="!isDetail">
@@ -292,7 +293,7 @@
                   class="mr-2"
                   (click)="onCancel()"
                 >
-                  Hủy
+                {{'common.button.cancel' | translate}}
                 </button>
                 <button
                   nz-button
@@ -300,7 +301,7 @@
                   class="mr-2"
                   (click)="onSubmit()"
                 >
-                  Lưu
+                {{'common.button.save' | translate}}
                 </button>
               </ng-container>
             </div>

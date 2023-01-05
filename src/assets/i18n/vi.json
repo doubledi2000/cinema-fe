@@ -21,14 +21,18 @@
       "name": "Tên phim",
       "allowedAgeFrom": "Giới hạn độ tuổi từ",
       "releaseDate": "Ngày công chiếu",
+      "ownershipDate": "Ngày sở hữu",
       "duration": "Thời lượng",
-      "actors": "Diễn viên",
-      "directors": "Đạo diễn",
+      "actor": "Diễn viên",
+      "director": "Đạo diễn",
+      "typeOfFilm": "Thể loại phim",
+      "producer": "Nhà sản xuất"
     },
     "drink": {
       "code": "Mã đồ uống",
       "name": "Tên đồ uống",
-      "price": "Giá"
+      "price": "Đơn giá",
+      "location": "Chi nhánh"
     },
     "location": {
       "code": "Mã chi nhánh",
@@ -40,6 +44,38 @@
       "name": "Tên nhà sản xuất",
       "representative": "Người đại diện",
       "nationally": "Quốc gia"
+    },
+    "room": {
+      "monitor": "Màn hình",
+      "code": "Mã phòng",
+      "name": "Tên phòng",
+      "seatNumber": "Số ghế",
+      "location": "Chi nhánh"
+    },
+    "user": {
+      "role": "Vai trò",
+      "location": "Chi nhánh",
+      "department": "Bộ phận",
+      "employeeCode": "Mã nhân viên",
+      "fullName": "Họ tên",
+      "phoneNumber": "Số điện thoại",
+      "dayOfBirth": "Ngày sinh",
+      "gender": "Giới tính",
+      "address": "Địa chỉ",
+      "username": "Tài khoản",
+      "password": "Mật khẩu",
+      "repeatPassword": "Nhập lại mật khẩu",
+      "title": "Chức vụ",
+      "description": "Giới thiệu bản thân",
+      "changePassword": "Đổi mật khẩu",
+    },
+    "role": {
+      "code": "Mã vai trò",
+      "name": "Tên vai trò"
+    },
+    "ticketPrice": {
+      "location": "Chi nhánh",
+      "title": "Quản lý giá xem phim",
     }
   },
   "common": {
@@ -47,10 +83,13 @@
       "cancel": "Hủy",
       "save": "Lưu",
       "switchToUpdate": "Chỉnh sửa",
+      "edit": "Chỉnh sửa",
       "active": "Kích hoạt",
       "create": "Thêm mới",
       "view": "Xem",
-      "update": "Cập nhật"
+      "update": "Cập nhật",
+      "permit": "Phân quyền",
+      "delete": "Xoá"
     },
     "index": "STT",
     "description": "Mô tả",
