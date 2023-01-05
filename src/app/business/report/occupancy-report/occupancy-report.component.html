@@ -1,1 +1,32 @@
-<p>occupancy-report works!</p>
+<div class="content">
+  <app-table-title title="{{'model.report.occupancy.title' | translate}}"></app-table-title>
+  <ng-container>
+    <div class="row mt-3">
+      <div class="col-12" >
+        <nz-table #table [nzData]="[]" [nzTableLayout]="'auto'" >
+          <thead>
+            <tr>
+              <th nzAlign="center" nzWidth="80px">{{'common.index' | translate}}</th>
+              <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
+                {{'model.report.occupancy.locationCode' | translate}}
+              </th>
+              <th nzAlign="center" [nzSortFn]="true">{{'model.report.occupancy.locationName' | translate}}</th>
+              <th nzAlign="center" [nzSortFn]="true">{{'model.report.occupancy.filmCode' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.filmName' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalNormalTicket' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalNormalTicketWasSold' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalVIPTicket' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalVIPTicketWasSold' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalSweetTicket' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalSweetTicketWasSold' | translate}}</th>
+
+            </tr>
+          </thead>
+
+          <tbody >
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </ng-container>
+</div>

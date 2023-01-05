@@ -53,8 +53,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesi
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,
           deps: [HttpClient],
-      },
-      useDefaultLang: true,
+      }
   }),
     NgxWebstorageModule.forRoot({prefix: '', separator: ''})
   ],

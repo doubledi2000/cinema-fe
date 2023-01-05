@@ -9,12 +9,28 @@
       "code": "Mã thể loại",
       "name": "Tên thể loại"
     },
-    "revenueReport": {
-      "locationCode": "Mã chi nhánh",
-      "locationName": "Tên chi nhánh",
-      "drinkRevenue": "Doanh thu đồ uống",
-      "ticketRevenue": "Doanh thu vé",
-      "totalRevenue": "Tổng doanh thu",
+    "report" : {
+      "revenue": {
+        "title": "Báo cáo doanh thu",
+        "locationCode": "Mã chi nhánh",
+        "locationName": "Tên chi nhánh",
+        "drinkRevenue": "Doanh thu đồ uống",
+        "ticketRevenue": "Doanh thu vé",
+        "totalRevenue": "Tổng doanh thu"
+      },
+      "occupancy": {
+        "title": "Báo cáo tỷ lệ đặt vé",
+        "locationCode": "Mã chi nhánh",
+        "locationName": "Tên chi nhánh",
+        "filmCode": "Mã bộ phim",
+        "filmName": "Tên bộ phim",
+        "totalNormalTicket": "Tổng vé thường",
+        "totalNormalTicketWasSold": "Số vé thường đã bán",
+        "totalVIPTicket": "Tổng vé VIP",
+        "totalVIPTicketWasSold": "Tổng vé VIP đã bán",
+        "totalSweetTicket": "Tổng vé Sweet",
+        "totalSweetTicketWasSold": "Tổng vé Sweet đã bán"
+      }
     },
     "film": {
       "code": "Mã phim",
@@ -67,7 +83,7 @@
       "repeatPassword": "Nhập lại mật khẩu",
       "title": "Chức vụ",
       "description": "Giới thiệu bản thân",
-      "changePassword": "Đổi mật khẩu",
+      "changePassword": "Đổi mật khẩu"
     },
     "role": {
       "code": "Mã vai trò",
@@ -75,7 +91,7 @@
     },
     "ticketPrice": {
       "location": "Chi nhánh",
-      "title": "Quản lý giá xem phim",
+      "title": "Quản lý giá xem phim"
     }
   },
   "common": {
