@@ -1,19 +1,19 @@
 <div class="content">
     <div class="title-page" *nzModalTitle>
-      <span>Cập nhật phân quyền</span>
+      <span>{{'model.role.permissionUpdate' | translate}} {{role.name}}</span>
     </div>
     <div class="row">
         <nz-collapse [nzExpandIconPosition]='"right"'  [nzBordered]="false">
           <nz-collapse-panel
             *ngFor="let item of rolePermissions; let isFirst = first"
             [nzActive]="false"
-            [nzHeader]="item.resourceCode"
+            nzHeader="{{'roles.' + item.resourceCode | translate}}"
             class="customStyle"
           >
             <div *ngFor="let per of item.per">
               <div class="row subLabel">
                 <div class="col-11">
-                  <span class="text-span">{{per.scope}}</span>
+                  <span class="text-span">{{'permissions.' + per.scope | translate}}</span>
                 </div>
                 <div class="col-1">
                     <nz-switch nzSize="small"
@@ -34,11 +34,11 @@
     </div>
     <div class="row">
       <div class="col-12 mb-3 text-center" *nzModalFooter>
-        <button class="mr-2" nz-button nzType="default">
-          Hủy
+        <button class="mr-2" nz-button nzType="default" (click)="onCancel()">
+          {{'common.button.cancel' | translate}}
         </button>
         <button nz-button nzType="primary" (click)="updatePermission()">
-          Lưu
+          {{'common.button.save' | translate}}
         </button>
       </div>
     </div>

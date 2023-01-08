@@ -1,14 +1,21 @@
+<div class="title mb-3">
+  <app-table-title
+    [showBack]="true"
+    [title]="isUpdate ? 'model.room.update' : isCreate ? 'model.room.create' : 'model.room.view'"
+    [secondTitle]="{ title: 'model.room.list', url: '' }"
+  ></app-table-title>
+</div>
 <div class="content d-flex flex-wrap" [formGroup]="form">
   <div class="col-6 mt-2 mb-2">
     <label
-      >Mã phòng
+      >{{'model.room.code' | translate}}
       <span class="text-danger">*</span>
     </label>
     <br />
     <input
       nz-input="nz-input"
       [maxLength]="100"
-      placeholder="'Mã phòng'"
+      placeholder="{{'model.room.code' | translate}}"
       style="width: 60%"
       formControlName="code"
     />
@@ -16,14 +23,14 @@
 
   <div class="col-6 mt-2 mb-2">
     <label
-      >Tên phòng
+      >{{'model.room.name' | translate}}
       <span class="text-danger">*</span>
     </label>
     <br />
     <input
       nz-input="nz-input"
       [maxLength]="100"
-      placeholder="'Tên phòng'"
+      placeholder="{{'model.room.code' | translate}}"
       style="width: 60%"
       formControlName="name"
     />
@@ -31,7 +38,7 @@
 
   <div class="col-6 mt-2 mb-2">
     <label
-      >Số hàng ghế tối đa
+      >{{'model.room.maxRow' | translate}}
       <span class="text-danger">*</span>
     </label>
     <br />
@@ -40,13 +47,12 @@
       [nzMin]="1"
       [nzMax]="10"
       [nzStep]="1"
-      placeholder="Số hàng ghế tối đa"
       style="width: 60%"
     ></nz-input-number>
   </div>
   <div class="col-6 mt-2 mb-2">
     <label
-      >Số ghế tối đa mỗi hàng
+      >{{'model.room.seatNumber' | translate}}
       <span class="text-danger">*</span>
     </label>
     <br />
@@ -56,7 +62,6 @@
       [nzMin]="1"
       [nzMax]="10"
       [nzStep]="1"
-      placeholder="Số ghế tối đa mỗi hàng"
       style="width: 60%"
     ></nz-input-number>
     <!-- <div class="col-6 mt-2 mb-2">
@@ -75,12 +80,12 @@
   </div>
   <div class="col-6 mt-2 mb-2 d-flex">
     <label
-      >Chi nhánh
+      >{{'model.room.location' | translate}}
       <span class="text-danger">*</span>
     </label>
     <nz-select
       [nzMaxTagCount]="2"
-      nzPlaceHolder="Chi nhánh"
+      nzPlaceHolder="{{'model.room.location' | translate}}"
       style="width: 20%; margin-left: 10px"
       [nzShowArrow]="true"
       (nzOnSearch)="loadLocation($event)"
@@ -94,7 +99,7 @@
     </nz-select>
   </div>
   <div class="col-12 mt-2 mb-2">
-    <label>Mô tả </label>
+    <label>{{'common.description' | translate}}</label>
     <br />
     <nz-textarea-count [nzMaxCharacterCount]="100">
       <textarea rows="4" formControlName="description" nz-input></textarea>
@@ -102,7 +107,7 @@
   </div>
   <div class="row">
     <div class="col-12 text-center">
-      <button nz-button nzType="default">Hủy</button>
+      <button nz-button nzType="default">{{'common.button.cancel' | translate}}</button>
       <ng-container *ngIf="isUpdate">
         <button
         nz-button
@@ -110,10 +115,10 @@
         class="mr-2"
         (click)="openRoomSetting()"
       >
-        Thiết lập ghế ngồi
+      {{'common.button.seatSetting' | translate}}
       </button>
       </ng-container>
-      <button nz-button nzType="primary" class="mr-2" (click)="submit()">Lưu</button>
+      <button nz-button nzType="primary" class="mr-2" (click)="submit()">{{'common.button.save' | translate}}</button>
     </div>
   </div>
 </div>

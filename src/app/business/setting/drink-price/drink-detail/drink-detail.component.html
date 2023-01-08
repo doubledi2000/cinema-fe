@@ -1,4 +1,15 @@
 <div class="content" [formGroup]="form">
+  <div class="title-page" *nzModalTitle="">
+    <span>
+      {{
+        (isCreate
+          ? "model.drink.create"
+          : isUpdate
+          ? "model.drink.update"
+          : "model.drink.view") | translate
+      }}
+    </span>
+  </div>
   <div class="row">
     <div class="col-4" style="margin-top:40px ;">
         <app-upload-avatar
@@ -18,52 +29,83 @@
                 <div class="d-flex flex-wrap">
                   <div class="col-12 mt-3">
                     <label
-                      >Mã sản phẩm
+                      >{{'model.drink.code' | translate}}
                       <span class="text-danger">*</span></label
                     >
                     <input
                       nz-input
                       [maxLength]="100"
-                      placeholder="'Mã sản phẩm'"
+                      placeholder="{{'model.drink.code' | translate}}"
                       formControlName="code"
                     />
 
                   </div>
                   <div class="col-12 mt-3">
                     <label
-                      >Tên sản phẩm
+                      >{{'model.drink.name' | translate}}
                       <span class="text-danger">*</span></label
                     >
                     <input
                       nz-input
                       [maxLength]="100"
-                      placeholder="'Tên sản phẩm'"
+                      placeholder="{{'model.drink.name' | translate}}"
                       formControlName="name"
                     />
 
                   </div>
                   <div class="col-12 mt-3">
                     <label
-                      >Giá
+                      >{{'model.drink.price' | translate}}
                       <span class="text-danger">*</span></label
                     >
                     <input
                       nz-input
                       [maxLength]="100"
-                      placeholder="'Giá'"
+                      placeholder="{{'model.drink.price' | translate}}"
                       formControlName="price"
                     />
 
                   </div>
                   <div class="col-12 mt-3">
-                    <label for="">Mô tả</label>
+                    <label for="">{{'common.description' | translate}}</label>
                     <textarea rows="4" nz-input formControlName="description"></textarea>
                   </div>
-
                 </div>
               </div>
         </div>
     </div>
-
+  </div>
+  <div class="row">
+    <div class="col-12 text-center" *nzModalFooter>
+      <ng-container *ngIf="isDetail">
+        <button nz-button nzType="default" (click)="onCancel()">
+          {{'common.button.cancel' | translate}}
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          class="mr-2"
+          *hasRoles="RULE.DRINK_UPDATE"
+          (click)="nextToUpdate()"
+        >
+        {{'common.button.edit' | translate}}
+        </button>
+      </ng-container>
+      <ng-container *ngIf="!isDetail">
+        <button nz-button nzType="default" class="mr-2" (click)="onCancel()">
+          {{'common.button.cancel' | translate}}
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          class="mr-2"
+          (click)="onSubmit()"
+          *hasRoles="[RULE.DRINK_UPDATE, RULE.DRINK_CREATE]"
+          [disabled]="form.invalid"
+        >
+        {{'common.button.save' | translate}}
+        </button>
+      </ng-container>
+    </div>
   </div>
 </div>

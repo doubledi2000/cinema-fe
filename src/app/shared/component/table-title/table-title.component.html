@@ -1,7 +1,7 @@
 <ng-container *ngIf="!isSameComponent">
   <div class="d-flex title">
     <span (click)="onBack()" class="pre-title"
-      >{{ secondTitle.title}} &nbsp;</span
+      >{{ secondTitle.title  | translate}} &nbsp;</span
     >
     <img
       *ngIf="showBack"
@@ -9,14 +9,14 @@
       alt="back"
       (click)="onBack()"
     />
-    <span class="current-title">{{ title }}</span>
+    <span class="current-title">{{ title | translate}}</span>
   </div>
 </ng-container>
 
 <ng-container *ngIf="isSameComponent">
   <div class="d-flex title">
     <span (click)="onBackSameComponent()" class="pre-title"
-      >{{secondTitle.title}} &nbsp;</span
+      >{{secondTitle.title | translate}} &nbsp;</span
     >
     <img
       *ngIf="showBack"
@@ -24,6 +24,6 @@
       alt="back"
       (click)="onBackSameComponent()"
     />
-    <span class="current-title">{{title}}</span>
+    <span class="current-title">{{title | translate}}</span>
   </div>
 </ng-container>

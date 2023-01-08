@@ -1,6 +1,6 @@
 <div class="content">
   <div class="title-page" *nzModalTitle="">
-    <span> Thêm moi gia </span>
+    <span> {{'common.button.create' | translate}}</span>
   </div>
 </div>
 <div class="row" [formGroup]="form">
@@ -20,7 +20,7 @@
   <div class="col-6" formGroupName="prices">
     <div class="row">
       <div class="col-4">
-        <span>{{ticketLabel[0].label}}</span>
+        <span>{{'model.ticketPrice.normal' | translate}}</span>
       </div>
       <div class="col-8">
         <input
@@ -35,7 +35,7 @@
     </div>
     <div class="row">
       <div class="col-4">
-        <span>{{ticketLabel[1].label}}</span>
+        <span>{{'model.ticketPrice.vip' | translate}}</span>
       </div>
       <div class="col-8">
         <input
@@ -50,7 +50,7 @@
     </div>
     <div class="row">
       <div class="col-4">
-        <span>{{ticketLabel[2].label}}</span>
+        <span>{{'model.ticketPrice.sweet' | translate}}</span>
       </div>
       <div class="col-8">
         <input
@@ -67,9 +67,9 @@
 </div>
 <div class="row">
   <div class="col-12 text-center" *nzModalFooter>
-    <button nz-button nzType="default" (click)="handleOk()">Hủy</button>
+    <button nz-button nzType="default" (click)="handleOk()">{{'common.button.cancel' | translate}}</button>
     <button nz-button nzType="primary" class="mr-2" (click)="handleOk()">
-      Chỉnh sửa
+      {{'common.button.create' | translate}}
     </button>
   </div>
 </div>

@@ -1,4 +1,7 @@
 <div class="content">
+    <app-table-title
+      title="{{ 'model.user.list'}}"
+    ></app-table-title>
     <ng-container>
         <div class="row mt-3"  [formGroup]="searchForm">
             <div class="col-3">
@@ -6,7 +9,7 @@
                 <input
                   type="text"
                   nz-input
-                  placeholder="input search text"
+                  placeholder="{{'common.search' | translate}}"
                   formControlName="keyword"
                   (keyup.enter)="search()"
                 />
@@ -16,7 +19,7 @@
               </ng-template>
             </div>
             <div class="col-9 d-flex justify-content-end">
-                <button nz-button nzType="primary" (click)="create()">Add</button>
+                <button nz-button nzType="primary" (click)="create()">{{'common.button.create' | translate}}</button>
             </div>
         </div>
         <div class="row mt-3">
@@ -28,21 +31,21 @@
                 >
                 <thead>
                     <tr>
-                        <th nzAlign="center" nzWidth="80px">STT</th>
-                        <th nzAlign="center" nzWidth="150px" [nzSortFn]="true"> Mã nhân viên </th>
-                        <th nzAlign="center" [nzSortFn]="true">Họ tên</th>
-                        <th nzAlign="center">Chức vụ</th>
-                        <th nzAlign="center">Giới tính</th>
-                        <th nzAlign="center">Trạng thái</th>
-                        <th nzAlign="center">Hành động</th>
+                        <th nzAlign="center" nzWidth="80px">{{'common.index' | translate}}</th>
+                        <th nzAlign="center" nzWidth="150px" [nzSortFn]="true"> {{'model.user.employeeCode' | translate}} </th>
+                        <th nzAlign="center" [nzSortFn]="true">{{'model.user.fullName' | translate}}</th>
+                        <th nzAlign="center">{{'model.user.title' | translate}}</th>
+                        <th nzAlign="center">{{'model.user.gender' | translate}}</th>
+                        <th nzAlign="center">{{'common.status' | translate}}</th>
+                        <th nzAlign="center">{{'common.action' | translate}}</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <ng-container  *ngFor="let item of userList">
+                    <ng-container  *ngFor="let item of userList; index as i">
                         <tr>
                             <td class="thead-border-top-left" nzAlign="center">
-                                1
+                                {{getIndex(i)}}
                             </td>
                             <td nzAlign="center">{{item.employeeCode}}</td>
                             <td nzAlign="left">{{item.fullName}}</td>
@@ -53,30 +56,21 @@
                               <app-button-action
                                 [action]="'view'"
                                 className="first"
-                                nzTooltipTitle="Chi tiết"
+                                nzTooltipTitle="{{'common.button.view' | translate}}"
                                 nzTooltipPlacement="top"
                                 nz-tooltip
                                 (click)="view(item.id)"
                               >
-                                ></app-button-action
+                                </app-button-action
                               >
                               <app-button-action
                                 [action]="'edit'"
-                                className="first"
-                                nzTooltipTitle="Cập nhật"
+                                className="center"
+                                nzTooltipTitle="{{'common.button.update' | translate}}"
                                 nzTooltipPlacement="top"
                                 nz-tooltip
                               >
-                                ></app-button-action
-                              >
-                              <app-button-action
-                                [action]="'delete'"
-                                className="last"
-                                nzTooltipTitle="Xóa"
-                                nzTooltipPlacement="top"
-                                nz-tooltip
-                              >
-                                ></app-button-action
+                                </app-button-action
                               >
                             </td>
                         </tr>

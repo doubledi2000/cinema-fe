@@ -1,1 +1,48 @@
-<p>occupancy-report works!</p>
+<div class="content">
+  <app-table-title title="{{'model.report.occupancy.title' | translate}}"></app-table-title>
+  <ng-container>
+    <div class="row mt-3">
+      <div class="col-12" >
+        <nz-table #table [nzData]="[]" [nzTableLayout]="'auto'" >
+          <thead>
+            <tr>
+              <th nzAlign="center" nzWidth="80px">{{'common.index' | translate}}</th>
+              <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
+                {{'model.report.occupancy.locationCode' | translate}}
+              </th>
+              <th nzAlign="center" [nzSortFn]="true">{{'model.report.occupancy.locationName' | translate}}</th>
+              <th nzAlign="center" [nzSortFn]="true">{{'model.report.occupancy.filmCode' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.filmName' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalNormalTicket' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalNormalTicketWasSold' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalVIPTicket' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalVIPTicketWasSold' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalSweetTicket' | translate}}</th>
+              <th nzAlign="center">{{'model.report.occupancy.totalSweetTicketWasSold' | translate}}</th>
+            </tr>
+          </thead>
+
+          <tbody >
+            <ng-container *ngFor="let item of this.occupancyDetails; index as i">
+              <tr>
+                <td nzAlign="center" nzWidth="80px"> 1</td>
+                <td nzAlign="center" nzWidth="150px" >
+                  {{item.locationCode}}
+                </td>
+                <td nzAlign="center" >{{item.locationName}}</td>
+                <td nzAlign="center" >{{item.filmCode}}</td>
+                <td nzAlign="center">{{item.filmName}}</td>
+                <td nzAlign="center">{{item.totalNormalTicket}}</td>
+                <td nzAlign="center">{{item.totalNormalTicketWasSold}}</td>
+                <td nzAlign="center">{{item.totalVIPTicket}}</td>
+                <td nzAlign="center">{{item.totalVIPTicketWasSold}}</td>
+                <td nzAlign="center">{{item.totalSweetTicket}}</td>
+                <td nzAlign="center">{{item.totalSweetTicketWasSold}}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+  </ng-container>
+</div>

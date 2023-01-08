@@ -48,7 +48,11 @@ export class UpdatePermissionComponent implements OnInit {
   }
 
   onCancel(){
-
+    this.nzModalRef.close(
+      {
+        success: false
+      }
+    );
   }
 
   updatePermission(){
