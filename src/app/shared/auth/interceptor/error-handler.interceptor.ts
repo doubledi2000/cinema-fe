@@ -21,8 +21,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err) => {
         if(err.status != HttpStatusCode.Ok) {
-            this.toastrService.error(err.error.message);
-            debugger;
+          this.toastrService.error(err.error.message || err.error.error);
         }
         throw new Error(err)
       })

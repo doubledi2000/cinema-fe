@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -61,7 +61,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key) => antDesi
     { provide: NZ_I18N, useValue: en_US },
     {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true},
+    Title
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,8 @@
 <div class="title mb-3">
   <app-table-title
     [showBack]="true"
-    [title]="'Cập nhật'"
-    [secondTitle]="{ title: 'Cập nhật', url: '' }"
+    [title]="isDetail ? 'model.user.view' : isCreate ? 'model.user.create' :'model.user.update'"
+    [secondTitle]="{ title: 'model.user.view', url: '' }"
   ></app-table-title>
 </div>
 <section class="content" [formGroup]="form">
@@ -82,7 +82,10 @@
         <label>{{'model.user.phoneNumber' | translate}} <span class="text-danger">*</span></label>
         <input nz-input placeholder="{{'model.user.phoneNumber' | translate}}" formControlName="phoneNumber" />
       </div>
-
+      <div class="col-12 mt-2">
+        <label>{{'model.user.email' | translate}} <span class="text-danger">*</span></label>
+        <input nz-input placeholder="{{'model.user.email' | translate}}" formControlName="email" />
+      </div>
       <div class="col-12 mt-2">
         <label>{{'model.user.dayOfBirth' | translate}}<span class="text-danger">*</span></label>
         <br>
@@ -121,7 +124,7 @@
         <input type="password" nz-input placeholder="{{'model.user.password' | translate}}" formControlName="password" />
       </div>
       <div class="col-12 mt-2">
-        <label>{{'model.user.titile' | translate}} <span class="text-danger">*</span></label>
+        <label>{{'model.user.title' | translate}} <span class="text-danger">*</span></label>
       <input nz-input placeholder="{{'model.user.title' | translate}}" formControlName="title" />
       </div>
     </div>

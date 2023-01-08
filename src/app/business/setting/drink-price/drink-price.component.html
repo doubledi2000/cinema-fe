@@ -25,7 +25,7 @@
                     [nzMaxTagCount]="1"
                     [nzMaxTagPlaceholder]="tagPlaceHolder"
                     nzMode="multiple"
-                    nzPlaceHolder=""
+                    nzPlaceHolder="{{'model.drink.location' | translate}}"
                     style="width: 200%"
                     [nzShowArrow]="true"
                     [nzSize]="'large'"
@@ -84,7 +84,7 @@
                         <app-button-action
                           [action]="'view'"
                           className="first"
-                          nzTooltipTitle="{{'common.button.view'}}"
+                          nzTooltipTitle="{{'common.button.view' | translate}}"
                           nzTooltipPlacement="top"
                           nz-tooltip
                           (click)="view(item)"
@@ -116,5 +116,4 @@
             </div>
         </div>
     </ng-container>
-
 </div>

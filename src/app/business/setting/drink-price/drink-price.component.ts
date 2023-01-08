@@ -132,7 +132,14 @@ export class DrinkPriceComponent implements OnInit {
       },
       '70%'
     );
-    this.modalService.create(base);
+    const modal: NzModalRef = this.modalService.create(base);
+
+    modal.afterClose.subscribe(res => {
+      if(res && res.success) {
+        this.search();
+      }
+    })
+
   }
 
   toggleActive(item: any){

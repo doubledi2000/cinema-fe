@@ -18,8 +18,6 @@ import { NzModalRef } from 'ng-zorro-antd/modal';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent implements OnInit, OnDestroy {
-
-
   webSocketEndPoint: string = 'http://localhost:8070/ws';
   topic: string = "/topic/greetings/";
   stompClient: any;
@@ -56,6 +54,7 @@ export class BookingComponent implements OnInit, OnDestroy {
     this.loadDrink();
     this.loadLocation();
     this.initBookingRequest();
+    console.log(this.userId)
     // this.authServie.myAuthorities().subscribe(resposne => {
     //   this.currentUserId = resposne.data.userId;
     // })
@@ -139,7 +138,7 @@ errorCallBack(error: any) {
 */
 _send(message: any) {
   let body;
-  debugger;
+  console.log(message)
   if(message.status == 'AVAILABLE') {
     body = {
       showtimeId: this.detail.id,
@@ -176,17 +175,18 @@ _send(message: any) {
 handle(data: any) {
   let response = JSON.parse(data.body)
   if(response && response.data.success) {
-    this.changeStatus(response.data.ticketId, response.data.status);
+    this.changeStatus(response.data.ticketId, response.data.status, response.data.userId);
   }else {
     this.toastrService.error(response.data.message);
   }
 }
 
-changeStatus(ticketId?: string, status?: string){
+changeStatus(ticketId?: string, status?: string, userId?: string){
   this.detail.rows.forEach(ele =>{
     ele.tickets.forEach(tick =>{
       if(tick.id == ticketId) {
         tick.status = status;
+        tick.userSoldId = userId;
       }
     })
   })

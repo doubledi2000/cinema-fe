@@ -1,13 +1,27 @@
 <div class="content">
   <div class="row mb-4">
     <div class="col-4">
-      <app-table-title title="{{'model.ticketPrice.title'}}"></app-table-title>
+      <app-table-title
+        title="{{ 'model.ticketPrice.title' | translate }}"
+      ></app-table-title>
     </div>
     <div class="col-8">
-      <label style="margin-right: 10px;">{{'model.ticketPrice.location'}}</label>
-      <nz-select  [(ngModel)]="locationId" nzShowSearch nzAllowClear nzPlaceHolder="Chi nhánh" style="width: 200px;" (ngModelChange)="changeLocation()">
+      <label style="margin-right: 10px">{{
+        "model.ticketPrice.location" | translate
+      }}</label>
+      <nz-select
+        [(ngModel)]="locationId"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="{{'model.tricketPrice.location' | translate}}"
+        style="width: 200px"
+        (ngModelChange)="changeLocation()"
+      >
         <ng-container *ngFor="let location of locationList">
-          <nz-option [nzLabel]="location.name" [nzValue]="location.id"></nz-option>
+          <nz-option
+            [nzLabel]="location.name"
+            [nzValue]="location.id"
+          ></nz-option>
         </ng-container>
       </nz-select>
     </div>
@@ -21,58 +35,72 @@
         [nzHeader]="getDayName(panel.get('dayOfWeek').value)"
         [nzActive]="panel.active"
       >
-       <div [formGroupName]="i">
-        <div class="d-flex flex-wrap" formArrayName="priceByTimes">
-          <div>{{panel.get('startAt')}}</div>
-          <ng-container
-            *ngFor="
-              let configPrice of panel.get('priceByTimes')['controls'];
-              index as configPriceIndex
-            "
-          >
-            <div class="col-6 mt-5" [formGroupName]="configPriceIndex">
-              <div class="row">
-                <div class="col-3 d-flex align-items-center">
-                  <div>{{ printTime(configPrice.value)}}</div>
-                  <button (click)="deletePriceByTime(panel, configPriceIndex)">
-                    {{'common.button.delete' | translate}}
-                  </button>
-                </div>
-                <div class="col-9" formArrayName="prices">
-                  <ng-container *ngFor="let item of configPrice.get('prices')['controls']; index as priceIndex">
-                    <div class="row mb-2" [formGroupName]="priceIndex">
-                      <div class="col-3">
-                        <span>{{ticketLabel[priceIndex].label}}</span>
+        <div [formGroupName]="i">
+          <div class="d-flex flex-wrap" formArrayName="priceByTimes">
+            <div>{{ panel.get("startAt") }}</div>
+            <ng-container
+              *ngFor="
+                let configPrice of panel.get('priceByTimes')['controls'];
+                index as configPriceIndex
+              "
+            >
+              <div class="col-6 mt-5" [formGroupName]="configPriceIndex">
+                <div class="row">
+                  <div class="col-3 d-flex align-items-center">
+                    <div>{{ printTime(configPrice.value) }}</div>
+                    <app-button-action
+                    [action]="'delete'"
+                    className="center"
+                    nzTooltipTitle="{{'common.button.delete' | translate}}"
+                    nzTooltipPlacement="top"
+                    nz-tooltip
+                    (click)="deletePriceByTime(panel, configPriceIndex)"
+                  >
+                    </app-button-action
+                  >
+                  </div>
+                  <div class="col-9" formArrayName="prices">
+                    <ng-container
+                      *ngFor="
+                        let item of configPrice.get('prices')['controls'];
+                        index as priceIndex
+                      "
+                    >
+                      <div class="row mb-2" [formGroupName]="priceIndex">
+                        <div class="col-3">
+                          <span>{{ ticketLabel[priceIndex].label }}</span>
+                        </div>
+                        <div class="col-9">
+                          <nz-input-number
+                            [nzMin]="1000"
+                            [nzMax]="10000000"
+                            [nzStep]="1000"
+                            formControlName="price"
+                          >
+                          </nz-input-number>
+                          <span>VND</span>
+                        </div>
                       </div>
-                      <div class="col-9">
-                        <nz-input-number [nzMin]="1000" [nzMax]="10000000" [nzStep]="1000" formControlName="price">
-                        </nz-input-number>
-                        <span>VND</span>
-                      </div>
-                    </div>
-                  </ng-container>
+                    </ng-container>
+                  </div>
                 </div>
               </div>
+            </ng-container>
+            <div>
+              <button
+                nz-button
+                nzType="primary"
+                (click)="showModal(panel.get('priceByTimes'))"
+              >
+                {{ "common.button.create" | translate }}
+              </button>
             </div>
-          </ng-container>
-          <div>
-            <button
-              style="width: 70%; padding: 0px 100px 10px 90px"
-              class="d-flex justify-content-center"
-              (click)="showModal(panel.get('priceByTimes'))"
-            >
-              <span nz-icon="nz-icon" nzType="plus" nzTheme="outline"></span>
-            </button>
           </div>
         </div>
-       </div>
       </nz-collapse-panel>
     </nz-collapse>
-    <button nz-button nzType="default">
-      {{'common.button.cancel' | translate}}
-  </button>
-  <button nz-button nzType="primary" class="mr-2" (click)="update()" >
-      {{'common.button.save' | translate}}
-  </button>
+    <button nz-button nzType="primary" class="mr-2" (click)="update()">
+      {{ "common.button.save" | translate }}
+    </button>
   </div>
 </form>

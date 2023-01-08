@@ -69,18 +69,18 @@
         <nz-table #table [nzData]="filmList" [nzTableLayout]="'fixed'">
           <thead>
             <tr>
-              <th nzAlign="center" nzWidth="80px">{{ "common.index" }}</th>
+              <th nzAlign="center" nzWidth="80px">{{ "common.index" | translate}}</th>
               <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
-                {{ "model.film.code" }}
+                {{ "model.film.code" | translate }}
               </th>
               <th nzAlign="center" [nzSortFn]="true">
                 {{ "model.film.name" | translate }}
               </th>
-              <th nzAlign="center">{{ "model.film.producer" }}</th>
+              <th nzAlign="center">{{ "model.film.producer" | translate }}</th>
               <th nzAlign="center">
                 {{ "model.film.releaseDate" | translate }}
               </th>
-              <th nzAlign="center">{{ "model.film.duration" }}</th>
+              <th nzAlign="center">{{ "model.film.duration" | translate }}</th>
               <th nzAlign="center">
                 {{ "model.film.typeOfFilm" | translate }}
               </th>

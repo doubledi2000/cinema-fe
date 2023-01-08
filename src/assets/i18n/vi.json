@@ -42,13 +42,20 @@
       "actor": "Diễn viên",
       "director": "Đạo diễn",
       "typeOfFilm": "Thể loại phim",
-      "producer": "Nhà sản xuất"
+      "producer": "Nhà sản xuất",
+      "list": "Danh sách phim",
+      "create": "Thêm mới phim",
+      "update": "Cập nhật phim",
+      "view": "Xem chi tiết phim"
     },
     "drink": {
       "code": "Mã đồ uống",
       "name": "Tên đồ uống",
       "price": "Đơn giá",
-      "location": "Chi nhánh"
+      "location": "Chi nhánh",
+      "create": "Thêm mới đồ uống",
+      "update": "Cập nhật đồ uống",
+      "view": "Xem chi tiết đồ uống"
     },
     "location": {
       "code": "Mã chi nhánh",
@@ -66,7 +73,13 @@
       "code": "Mã phòng",
       "name": "Tên phòng",
       "seatNumber": "Số ghế",
-      "location": "Chi nhánh"
+      "location": "Chi nhánh",
+      "list": "Danh sách phòng",
+      "view": "Xem chi tiết phòng",
+      "create": "Thêm mới phòng",
+      "update": "Xem chi tiết phòng",
+      "maxRow": "Số hàng ghế tối đa"
+
     },
     "user": {
       "role": "Vai trò",
@@ -83,15 +96,32 @@
       "repeatPassword": "Nhập lại mật khẩu",
       "title": "Chức vụ",
       "description": "Giới thiệu bản thân",
-      "changePassword": "Đổi mật khẩu"
+      "changePassword": "Đổi mật khẩu",
+      "create": "Thêm mới người dùng",
+      "update": "Cập nhật người dùng",
+      "view": "Xem chi tiết người dùng",
+      "list": "Danh sách người dùng",
+      "updateProfile": "Cập nhật thông tin cá nhân",
+      "email": "Địa chỉ email"
     },
     "role": {
       "code": "Mã vai trò",
-      "name": "Tên vai trò"
+      "name": "Tên vai trò",
+      "create": "Thêm mới vai trò",
+      "update": "Cập nhật vai trò",
+      "view": "Xem chi tiết vai trò",
+      "admin": "Quản trị viên",
+      "level": "Cấp độ vai trò",
+      "permissionUpdate": "Chọn phân quyền",
+      "list": "Danh sách vai trò"
     },
     "ticketPrice": {
       "location": "Chi nhánh",
-      "title": "Quản lý giá xem phim"
+      "title": "Quản lý giá xem phim",
+      "normal": "Vé thường",
+      "vip": "Vé VIP",
+      "sweet": "Vé đôi",
+      "permissionUpdate": "Cập nhật phân quyền"
     }
   },
   "common": {
@@ -105,7 +135,8 @@
       "view": "Xem",
       "update": "Cập nhật",
       "permit": "Phân quyền",
-      "delete": "Xoá"
+      "delete": "Xoá",
+      "seatSetting": "Thiết lập ghế ngồi"
     },
     "index": "STT",
     "description": "Mô tả",
@@ -113,7 +144,55 @@
     "action": "Hành đồng",
     "vi": "Tiếng Việt",
     "en": "Tiếng Anh",
-    "search": "Tìm kiếm"
+    "search": "Tìm kiếm",
+    "title": "D-Quản lý rạp chiếu phim",
+    "charts": {
+      "line": "Biểu đồ đường",
+      "bar": "Biểu đồ cột",
+      "save": "Lưu biểu đồ"
+    }
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "booking": {
+      "booking": "Đặt phim",
+      "list": "Lịch chiếu phim"
+    },
+    "report": {
+      "revenue": "Báo cáo doanh thu",
+      "occupancy": "Báo cáo tỷ lệ bán vé"
+    },
+    "setting": {
+      "user": "Quản lý nhân viên",
+      "role": "Quản lý vai trò",
+      "ticketPrice": "Quản lý giá vé",
+      "room": "Quản lý phòng",
+      "drink": "Quản lý đồ uống"
+    },
+    "category": {
+      "typeOfFilm": "Quản lý thể loại phim",
+      "branch": "Quản lý chi nhánh",
+      "producer": "Quản lý nhà sản xuất"
+    }
+  },
+  "roles": {
+    "USER": "Quản lý người dùng",
+    "ZOOM": "Quản lý người dùng",
+    "FILM": "Quản lý phim",
+    "FILM_TYPE": "Quản lý thể loại phim",
+    "ROLE": "Quản lý vai trò",
+    "BOOKING": "Quản lý đặt vé",
+    "REPORT": "Quản lý báo cáo",
+    "LOCATION": "Quản lý chi nhánh",
+    "PRICE": "Quản lý giá vé xem phim",
+    "PRODUCER": "Quản lý nhà sản xuất",
+    "DRINK": "Quản lý đồ uống"
+  },
+  "permissions": {
+    "CREATE": "Thêm mới",
+    "UPDATE": "Cập nhật",
+    "VIEW": "XEM",
+    "DELETE": "XÓA"
   }
 
 }

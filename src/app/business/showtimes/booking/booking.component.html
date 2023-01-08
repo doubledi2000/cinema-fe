@@ -18,8 +18,8 @@
               [class.sweet-seat]="item.type == 'SWEET'"
               [class.available]="item.status == 'AVAILABLE'"
               [class.sold]="item.status == 'SOLD'"
-              [class.your-select]="item.status == 'SELECTED'"
-              [class.holded]="item.status == 'HOLDED'"
+              [class.your-select]="item.status == 'SELECTED' && item.userSoldId == this.userId"
+              [class.holded]="item.status == 'SELECTED' && item.userSoldId != this.userId"
               (click)="_send(item)"
             >
               {{item.name}}

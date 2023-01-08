@@ -1,10 +1,11 @@
 
+
 <div class="container d-flex justify-content-center">
   <div class="appbackground">
   </div>
   <div class="zoom" [formGroup]="form">
     <div class="display">
-      <div class="text-center">{{'moedl.room.monitor' | translate}}</div>
+      <div class="text-center">{{'model.room.monitor' | translate}}</div>
     </div>
     <div formArrayName="rows">
       <ng-container *ngFor="let row of form.get('rows')['controls']; index as rIndex; index as r">

@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IDrink } from '../../../../shared/model/drinks.model';
 import { FileService } from '../../../../shared/service/file.service';
 import { StorageService } from '../../../../shared/service/storage.service';
+import { RULE } from '../../../../shared/constant/authority.constant';
+import { DrinkService } from '../../../../shared/service/drink.service';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-drink-detail',
@@ -18,19 +21,22 @@ export class DrinkDetailComponent implements OnInit {
   imageUrl?: any = null;
   files: [] | any;
   fileId?: string = '';
+  RULE = RULE;
 
   form: FormGroup = new FormGroup({});
   constructor(
     private fb: FormBuilder,
     private fileService: FileService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private drinkService: DrinkService,
+    private modalRef: NzModalRef
   ) { }
 
   ngOnInit(): void {
     this.initForm();
     if(!this.isCreate) {
-      debugger;
       this.imageUrl = this.drink.filePath;
+      this.fileId = this.drink.fileId;
     }
   }
 
@@ -65,6 +71,56 @@ export class DrinkDetailComponent implements OnInit {
     })
   }
 
+  onCancel(){
+    this.modalRef.close({
+      success: false
+    })
+  }
+
+  onSubmit(){
+    if(this.isCreate) {
+      this.create();
+    } else if (this.update) {
+      this.update();
+    }
+  }
+
+  create(){
+    const body = {
+      ...this.form.value,
+      fileId: this.fileId
+    }
+    this.drinkService.create(body).subscribe(res => {
+      if(res && res.success) {
+        this.modalRef.close({
+          success: true
+        })
+      }
+    })
+  }
+
+  update(){
+    const body = {
+      ...this.form.value,
+      fileId: this.fileId
+    }
+    debugger
+    this.drinkService.update(this.drink.id,body).subscribe(res => {
+      if(res && res.success) {
+        this.modalRef.close({
+          success: true
+        })
+      }
+    })
+  }
+
+  nextToUpdate(){
+    this.isDetail = false;
+    this.isUpdate = true;
+    this.form.controls.name.enable();
+    this.form.controls.description.enable();
+    this.form.controls.price.enable();
+  }
 
   async getFiles(files: any): Promise<void> {
     if (files) {

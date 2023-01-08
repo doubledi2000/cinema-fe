@@ -9,6 +9,7 @@ import { IUser } from '../../../shared/model/user.model';
 import { LocationService } from '../../../shared/service/location.service';
 import { RoleService } from '../../../shared/service/role.service';
 import { UserService } from '../../../shared/service/user.service';
+import CommonUtil from '../../../shared/utils/common-util';
 
 @Component({
   selector: 'app-user',
@@ -90,6 +91,14 @@ export class UserComponent implements OnInit {
     //     }
     //   })
     // }
+  }
+
+  getIndex(index: number): number {
+    return CommonUtil.getIndex(
+      index,
+      this.searchRequest.pageIndex,
+      this.searchRequest.pageSize
+    );
   }
 
   onQuerySearch(params: { pageIndex: number; pageSize: number }): void {

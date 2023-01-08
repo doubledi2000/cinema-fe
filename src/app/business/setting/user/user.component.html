@@ -1,4 +1,7 @@
 <div class="content">
+    <app-table-title
+      title="{{ 'model.user.list'}}"
+    ></app-table-title>
     <ng-container>
         <div class="row mt-3"  [formGroup]="searchForm">
             <div class="col-3">
@@ -34,15 +37,15 @@
                         <th nzAlign="center">{{'model.user.title' | translate}}</th>
                         <th nzAlign="center">{{'model.user.gender' | translate}}</th>
                         <th nzAlign="center">{{'common.status' | translate}}</th>
-                        <th nzAlign="center">{{'common.action' | translate}</th>
+                        <th nzAlign="center">{{'common.action' | translate}}</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <ng-container  *ngFor="let item of userList">
+                    <ng-container  *ngFor="let item of userList; index as i">
                         <tr>
                             <td class="thead-border-top-left" nzAlign="center">
-                                1
+                                {{getIndex(i)}}
                             </td>
                             <td nzAlign="center">{{item.employeeCode}}</td>
                             <td nzAlign="left">{{item.fullName}}</td>

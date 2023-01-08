@@ -1,4 +1,5 @@
 <div class="content">
+  <app-table-title [title]="'model.role.list'"></app-table-title>
   <ng-container>
     <div class="row mt-3" [formGroup]="searchForm">
       <div class="col-3">
@@ -45,7 +46,7 @@
                 <td nzAlign="center">{{ item.name }}</td>
                 <td nzAlign="center">{{ item.description }}</td>
                 <td nzAlign="center">{{item.status}}</td>
-                <td>
+                <td nzAlign="center">
                   <app-button-action
                   [action]="'view'"
                   className="first"

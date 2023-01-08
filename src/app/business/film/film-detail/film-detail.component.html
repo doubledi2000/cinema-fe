@@ -1,8 +1,8 @@
 <div class="title mb-3">
   <app-table-title
     [showBack]="true"
-    [title]="'Cập nhật'"
-    [secondTitle]="{ title: 'Cập nhật', url: '' }"
+    [title]="isUpdate ? 'model.film.update' : isCreate ? 'model.film.create' : 'model.film.view'"
+    [secondTitle]="{ title: 'model.film.list', url: '' }"
   ></app-table-title>
 </div>
 

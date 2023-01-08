@@ -19,11 +19,27 @@
               <th nzAlign="center">{{'model.report.occupancy.totalVIPTicketWasSold' | translate}}</th>
               <th nzAlign="center">{{'model.report.occupancy.totalSweetTicket' | translate}}</th>
               <th nzAlign="center">{{'model.report.occupancy.totalSweetTicketWasSold' | translate}}</th>
-
             </tr>
           </thead>
 
           <tbody >
+            <ng-container *ngFor="let item of this.occupancyDetails; index as i">
+              <tr>
+                <td nzAlign="center" nzWidth="80px"> 1</td>
+                <td nzAlign="center" nzWidth="150px" >
+                  {{item.locationCode}}
+                </td>
+                <td nzAlign="center" >{{item.locationName}}</td>
+                <td nzAlign="center" >{{item.filmCode}}</td>
+                <td nzAlign="center">{{item.filmName}}</td>
+                <td nzAlign="center">{{item.totalNormalTicket}}</td>
+                <td nzAlign="center">{{item.totalNormalTicketWasSold}}</td>
+                <td nzAlign="center">{{item.totalVIPTicket}}</td>
+                <td nzAlign="center">{{item.totalVIPTicketWasSold}}</td>
+                <td nzAlign="center">{{item.totalSweetTicket}}</td>
+                <td nzAlign="center">{{item.totalSweetTicketWasSold}}</td>
+              </tr>
+            </ng-container>
           </tbody>
         </nz-table>
       </div>
