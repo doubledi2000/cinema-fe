@@ -1,12 +1,12 @@
 <div class="content" [formGroup]="form">
   <div class="row">
     <div class="col-4">
-      <label>Chi nhánh<span class="text-danger">*</span></label>
+      <label>{{'model.showtime.location' | translate}}<span class="text-danger">*</span></label>
       <br />
       <nz-select
         nzShowSearch
         nzAllowClear
-        nzPlaceHolder="Chi nhánh"
+        nzPlaceHolder="{{'model.showtime.location' | translate}}"
         formControlName="locationId"
         style="width: 80%"
       >
@@ -19,12 +19,12 @@
       </nz-select>
     </div>
     <div class="col-4">
-      <label>Phòng<span class="text-danger">*</span></label>
+      <label>{{'model.showtime.room' | translate}}<span class="text-danger">*</span></label>
       <br />
       <nz-select
         nzShowSearch
         nzAllowClear
-        nzPlaceHolder="Phòng"
+        nzPlaceHolder="{{'model.showtime.room' | translate}}"
         formControlName="roomId"
         style="width: 80%"
       >
@@ -37,7 +37,7 @@
       </nz-select>
     </div>
     <div class="col-4">
-      <label>Ngày công chiếu<span class="text-danger">*</span></label>
+      <label>{{'model.showtime.movieDate' | translate}}<span class="text-danger">*</span></label>
       <br />
       <nz-date-picker
         formControlName="premierDate"
@@ -46,7 +46,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6">Lịch chiếu phim</div>
+    <div class="col-6">{{'model.showtime.movieSchedule' | translate}}</div>
     <div class="col-6 d-flex justify-content-end">
       <button nz-button nzType="primary" (click)="showModal()">Add</button>
     </div>
@@ -92,12 +92,12 @@
     <div class="container">
       <div class="row">
         <div class="col-6">
-          <label>Phim<span class="text-danger">*</span></label>
+          <label>{{'model.showtime.film' | translate}}<span class="text-danger">*</span></label>
           <br />
           <nz-select
             nzShowSearch
             nzAllowClear
-            nzPlaceHolder="Phim"
+            nzPlaceHolder="{{'model.showtime.film' | translate}}"
             style="width: 80%"
             [(ngModel)]="filmId"
           >
@@ -110,7 +110,7 @@
           </nz-select>
         </div>
         <div class="col-6">
-          <label>Ngày công chiếu<span class="text-danger">*</span></label>
+          <label>{{'model.showtime.movieDate' | translate}}<span class="text-danger">*</span></label>
           <br />
           <nz-time-picker [(ngModel)]="time" nzFormat="HH:mm"></nz-time-picker>
         </div>

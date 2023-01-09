@@ -1,5 +1,5 @@
 <div class="content">
-    <app-table-title [title]="'Quản lý thể loại phim'"></app-table-title>
+    <app-table-title [title]="'model.showtime.list'"></app-table-title>
     <ng-container>
       <div class="row mt-3" [formGroup]="searchForm">
         <div class="col-3">
@@ -7,7 +7,7 @@
             <input
               type="text"
               nz-input
-              placeholder="input search text"
+              placeholder="{{'common.search' | translate}}"
               formControlName="keyword"
               (keyup.enter)="search()"
             />
@@ -24,7 +24,7 @@
           (emitter)="getFiles($event)"
           ></app-upload-simple>
 
-          <button nz-button nzType="primary" type="file" (click)="downloadTemplate()">Tải mẫu</button>
+          <button nz-button nzType="primary" type="file" (click)="downloadTemplate()">{{'model.showtime.downloadTemplate'}}</button>
         </div>
       </div>
       <div class="row mt-3">
@@ -32,16 +32,16 @@
           <nz-table #table [nzData]="showtimeList" [nzTableLayout]="'auto'">
             <thead>
               <tr>
-                <th nzAlign="center" nzWidth="80px">STT</th>
+                <th nzAlign="center" nzWidth="80px">{{'common.index' | translate}}</th>
                 <th nzAlign="center" nzWidth="150px" [nzSortFn]="true">
-                  Tên phim
+                  {{'model.showtime.film'}}
                 </th>
-                <th nzAlign="center" [nzSortFn]="true">Tên phòng</th>
-                <th nzAlign="center" [nzSortFn]="true">Chi nhánh</th>
-                <th nzAlign="center">Ngày công chiếu</th>
-                <th nzAlign="center">Xuất chiếu</th>
-                <th nzAlign="center">Trạng thái</th>
-                <th nzAlign="center">Hành Động</th>
+                <th nzAlign="center" [nzSortFn]="true">{{'model.showtime.room'| translate}}</th>
+                <th nzAlign="center" [nzSortFn]="true">{{'model.showtime.location'| translate}}</th>
+                <th nzAlign="center">{{'model.showtime.movieDate'| translate}}</th>
+                <th nzAlign="center">{{'model.showtime.showtime'| translate}}</th>
+                <th nzAlign="center">{{'common.status' | translate}}</th>
+                <th nzAlign="center">{{'common.action' | translate}}</th>
               </tr>
             </thead>
 
@@ -61,7 +61,7 @@
                     <app-button-action
                       [action]="'send'"
                       className="first"
-                      nzTooltipTitle="Tạo vé"
+                      nzTooltipTitle="{{'common.button.send' | translate}}"
                       nzTooltipPlacement="top"
                       nz-tooltip
                       (click)="generateTicket(item.id)"
@@ -72,7 +72,7 @@
                     <app-button-action
                       [action]="'cancel'"
                       className="last"
-                      nzTooltipTitle="Hủy"
+                      nzTooltipTitle="{{'common.button.cancel' | translate}}"
                       nzTooltipPlacement="top"
                       nz-tooltip
                       (click)="cancel(item.id)"

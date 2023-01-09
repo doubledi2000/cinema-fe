@@ -7,7 +7,11 @@
     },
     "typeOfFilm": {
       "code": "Mã thể loại",
-      "name": "Tên thể loại"
+      "name": "Tên thể loại",
+      "create": "Thêm mới thể loại phim",
+      "update": "Cập nhật thể loại phim",
+      "view": "Xem chi tiết thể loại phim",
+      "list": "Xem danh sách thể loại phim"
     },
     "report" : {
       "revenue": {
@@ -122,6 +126,31 @@
       "vip": "Vé VIP",
       "sweet": "Vé đôi",
       "permissionUpdate": "Cập nhật phân quyền"
+    },
+    "showtime": {
+      "list": "Danh sách lịch công chiếu",
+      "location": "Chi nhánh",
+      "room": "Phòng",
+      "movieDay": "Ngày chiếu",
+      "movieSchedule": "Lịch chiếu",
+      "film": "Phim",
+      "downloadTemplate": "Tải mẫu",
+      "showtime": "Giờ chiếu",
+      "booking": "Đặt phim",
+      "quantity": "Số lượng",
+      "theater": "Rạp",
+      "seat": "Ghế",
+      "price": "Giá vé",
+      "customer": "Khách hàng",
+      "provisional": "Tạm tính",
+      "director": "Đạo diễn",
+      "actor": "Diễn viên",
+      "premiereDate": "Khởi chiếu",
+      "duration": "Thời lượng",
+      "minute": "Phút",
+      "rated": "Rated",
+      "preRated": "C13: Phim Cấm khán giả dưới",
+      "postRated": "Tuổi"
     }
   },
   "common": {
@@ -136,7 +165,10 @@
       "update": "Cập nhật",
       "permit": "Phân quyền",
       "delete": "Xoá",
-      "seatSetting": "Thiết lập ghế ngồi"
+      "seatSetting": "Thiết lập ghế ngồi",
+      "send": "Gửi",
+      "booking": "Đặt vé",
+      "pay": "Thanh toán"
     },
     "index": "STT",
     "description": "Mô tả",

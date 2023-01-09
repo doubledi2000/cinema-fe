@@ -1,3 +1,6 @@
+<app-table-title
+title="{{ 'model.showtime.list' | translate}}"
+></app-table-title>
 <div class="content">
     <div class="row">
         <div class="col-2">
@@ -37,7 +40,7 @@
             <div class="show-time">
                 <div class="info">
                  <div class="title">
-                     Đạo diễn: &nbsp;
+                     {{'model.showtime.director' | translate}}: &nbsp;
                  </div>
                  <div class="content">
                      {{item.film.directors}}
@@ -45,7 +48,7 @@
                 </div>
                 <div class="info">
                   <div class="title">
-                    Diễn viên: &nbsp;
+                    {{'model.showtime.actor' | translate}}: &nbsp;
                   </div>
                   <div class="content">
                     {{item.film.actors | limitWord: 30}}
@@ -53,7 +56,7 @@
                 </div>
                 <div class="info">
                  <div class="title">
-                     Khởi chiếu: &nbsp;
+                    {{'model.showtime.premiereDate' | translate}}: &nbsp;
                  </div>
                  <div class="content">
                      {{item.premiereDate}}
@@ -61,18 +64,18 @@
                 </div>
                 <div class="info">
                  <div class="title">
-                     Thời lượng: &nbsp;
+                    {{'model.showtime.duration' | translate}}: &nbsp;
                  </div>
                  <div class="content">
-                     {{item.film.duration}} phút
+                     {{item.film.duration}} {{'model.showtime.minute' | translate}}
                  </div>
                 </div>
                 <div class="info">
                  <div class="title">
-                     Rated: &nbsp;
+                     {{'model.showtime.rated' | translate}}: &nbsp;
                  </div>
                  <div class="content">
-                     C13: Phim Cấm khán giả dưới {{item.film.allowedAgeFrom}} tuổi
+                    {{'model.showtime.preRated' | translate}} {{item.film.allowedAgeFrom}} {{'model.showtime.postRated' | translate}}
                  </div>
                 </div>
 

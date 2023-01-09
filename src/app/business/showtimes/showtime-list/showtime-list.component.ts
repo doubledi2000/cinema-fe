@@ -49,16 +49,16 @@ export class ShowtimeListComponent implements OnInit {
   public ngOnInit() {
     this.getDays();
     this.dateSelected = new Date();
-    this.loadShowtimes();
+    this.loadShowtimes(new Date());
     this.authService.myAuthorities().subscribe(res => {
       this.userId = res.data.userId;
     })
   }
 
-  loadShowtimes(){
+  loadShowtimes(date?: Date){
     const params = {
       startTime: 0,
-      premierDate: '2022-10-27'
+      premierDate: moment(date).format('yyyy-MM-dd')
     }
     this.showtimeService.search(params).subscribe(response=>{
       if(response && response.success) {
@@ -118,6 +118,9 @@ export class ShowtimeListComponent implements OnInit {
 
   changeSeletedDate(day: any){
     this.dateSelected = day.date;
+    if(!day.isSeleted) {
+      this.loadShowtimes(this.dateSelected);
+    }
     this.daysArr.forEach((d)=>{
       d.isSeleted = false;
     })
